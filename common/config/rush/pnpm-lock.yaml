@@ -172,7 +172,6 @@ importers:
       postcss-import: ^14.1.0
       react: ^18.2.0
       react-dom: ^18.2.0
-      react-icons: ^4.4.0
       rollup: ^2.75.7
       rollup-plugin-dts: ^4.2.2
       rollup-plugin-json: ^4.0.0
@@ -219,7 +218,6 @@ importers:
       postcss-import: 14.1.0_postcss@8.4.16
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-icons: 4.4.0_react@18.2.0
       rollup: 2.79.1
       rollup-plugin-dts: 4.2.2_rollup@2.79.1+typescript@4.8.3
       rollup-plugin-json: 4.0.0
@@ -4173,7 +4171,7 @@ packages:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
       '@types/connect': 3.4.35
-      '@types/node': 16.11.59
+      '@types/node': 18.7.18
     dev: true
 
   /@types/chai/4.3.3:
@@ -4187,7 +4185,7 @@ packages:
   /@types/connect/3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 16.11.59
+      '@types/node': 18.7.18
     dev: true
 
   /@types/eslint-scope/3.7.4:
@@ -4223,7 +4221,7 @@ packages:
   /@types/express-serve-static-core/4.17.31:
     resolution: {integrity: sha512-DxMhY+NAsTwMMFHBTtJFNp5qiHKJ7TeqOo23zVEM9alT1Ml27Q3xcTH0xwxn7Q0BbMcVEJOs/7aQtUWupUQN3Q==}
     dependencies:
-      '@types/node': 16.11.59
+      '@types/node': 18.7.18
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
     dev: true
@@ -4423,7 +4421,7 @@ packages:
     resolution: {integrity: sha512-z5xyF6uh8CbjAu9760KDKsH2FcDxZ2tFCsA4HIMWE6IkiYMXfVoa+4f9KX+FN0ZLsaMw1WNG2ETLA6N+/YA+cg==}
     dependencies:
       '@types/mime': 3.0.1
-      '@types/node': 16.11.59
+      '@types/node': 18.7.18
     dev: true
 
   /@types/sinon/10.0.13:
@@ -4455,7 +4453,7 @@ packages:
   /@types/through/0.0.30:
     resolution: {integrity: sha512-FvnCJljyxhPM3gkRgWmxmDZyAQSiBQQWLI0A0VFL0K7W1oRUrPJSqNO0NvTnLkBcotdlp3lKvaT0JrnyRDkzOg==}
     dependencies:
-      '@types/node': 16.11.59
+      '@types/node': 18.7.18
     dev: true
 
   /@types/uglify-js/3.17.0:
@@ -4472,7 +4470,7 @@ packages:
     resolution: {integrity: sha512-ayJ0iOCDNHnKpKTgBG6Q6JOnHTj9zFta+3j2b8Ejza0e4cvRyMn0ZoLEmbPrTHe5YYRlDYPvPWVdV4cTaRyH7g==}
     dependencies:
       '@types/expect': 1.20.4
-      '@types/node': 16.11.59
+      '@types/node': 18.7.18
     dev: true
 
   /@types/webpack-env/1.18.0:
@@ -13109,6 +13107,7 @@ packages:
       react: '*'
     dependencies:
       react: 18.2.0
+    dev: false
 
   /react-inspector/5.1.1_react@18.2.0:
     resolution: {integrity: sha512-GURDaYzoLbW8pMGXwYPDBIv6nqei4kK7LPRZ9q9HCZF54wqXz/dnylBp/kfE9XmekBhHvLDdcYeyIwSrvtOiWg==}

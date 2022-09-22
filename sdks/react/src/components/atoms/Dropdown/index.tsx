@@ -3,8 +3,6 @@ import { ReactElement } from 'react'
 import { Avatar } from '../Avatar'
 import { Placeholder } from '../Placeholder'
 
-import { FaCaretDown } from 'react-icons/fa'
-
 import type { DropdownProps, DropdownListProps } from './types'
 
 export const Dropdown = ({
@@ -36,7 +34,7 @@ export const Dropdown = ({
             <Placeholder size="small" />
           )}
         </div>
-        <FaCaretDown />
+        {/*<FaCaretDown />*/}
       </button>
       <DropdownList items={tmpTestItems} visible={openByDefault} />
     </div>

@@ -1,7 +1,8 @@
 import { useContext } from 'react'
-import useSWR from 'swr'
 import { KiqrContext } from '../'
 import { getEnvironments } from '../requests'
+
+import useSWR from 'swr'
 
 export const useEnvironments = () => {
   const { token } = useContext(KiqrContext)

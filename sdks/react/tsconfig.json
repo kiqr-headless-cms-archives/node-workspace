@@ -5,7 +5,7 @@
     "skipLibCheck": true,
     "jsx": "react",
     "module": "ESNext",
-    "lib": ["es2018", "dom"],
+    "lib": ["ES6", "dom"],
     "declaration": true,
     "declarationDir": "types",
     "sourceMap": true,
