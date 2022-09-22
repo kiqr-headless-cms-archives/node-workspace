@@ -1,0 +1,44 @@
+# Name of workflow
+name: Release
+
+# When workflow is triggered
+on:
+  push:
+    branches:
+      - main
+
+# Jobs to carry out
+jobs:
+  publish:
+    name: Publish packages
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      # Get code from repo
+      - uses: actions/checkout@v2
+      - uses: fregante/setup-git-user@v1
+
+      # Install NodeJS
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Run rush install and build on our code
+      - name: Install dependencies
+        run: |
+          node common/scripts/install-run-rush.js change -v
+          node common/scripts/install-run-rush.js install
+          node common/scripts/install-run-rush.js build --to tag:cli
+
+      # Setup npm credentials
+      - name: Authenticate with private NPM package
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > ~/.npmrc
+
+      # Publish packages to the npm registry
+      - name: Publish packages
+        run: node common/scripts/install-run-rush.js publish --apply --target-branch main --publish
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

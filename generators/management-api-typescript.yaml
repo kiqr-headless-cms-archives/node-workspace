@@ -1,0 +1,3 @@
+npmName: "@kiqr/management-api-sdk"
+inputSpec: "https://raw.githubusercontent.com/kiqr/openapi-specs/main/management-api.yaml"
+generatorName: typescript-fetch
