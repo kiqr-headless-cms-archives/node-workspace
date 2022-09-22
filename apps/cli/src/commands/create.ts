@@ -43,7 +43,7 @@ export default class CreateCommand extends Command {
     const kind = flags.kind ?? await this.promptForKind()
 
     // Build content type
-    const data: ContentType = {
+    const contentType: ContentType = {
       id: id,
       name: name,
       kind: (kind as ContentTypeKindEnum),
@@ -52,7 +52,9 @@ export default class CreateCommand extends Command {
     }
 
     // Store content type to file.
-    contentTypes.saveToFile(data)
+    contentTypes.saveToFile(contentType, flags.force)
+
+    view('schemas/content-type-created', contentType)
   }
 
   private async promptForKind(): Promise<string> {

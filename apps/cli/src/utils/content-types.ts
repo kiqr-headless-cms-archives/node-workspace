@@ -35,10 +35,11 @@ const saveContentTypeToFile = (contentType: ContentType, force = false) => {
 
   // Check if file exists already.
   if (fs.existsSync(targetPath) && !force) {
-    throw new ContentTypeFilenameConflict()
+    console.log('force', force)
+    throw new Error('A kiqr.json file exists already at: ' + targetPath)
   }
 
-  fs.writeFileSync(targetPath, dump(contentType))
+  fs.writeFileSync(targetPath, dump(contentType), { encoding: 'utf8', flag: 'w' })
 }
 
 const readContentTypeFromFile = (id: string): ContentType | undefined => {
