@@ -1,9 +1,11 @@
 import type {ContentType, ContentTypeField, ContentTypeFieldTypeEnum} from '@kiqr/management-api-sdk'
-import {contentTypeFilePath, createDirectoryPath} from './'
+import {contentTypeDirectory, contentTypeFilePath, createDirectoryPath} from './'
+import {dump, load} from 'js-yaml'
 
+import _ from 'lodash'
 import inflection from 'inflection'
 import fs from 'node:fs'
-import {dump} from 'js-yaml'
+import path from 'node:path'
 
 class ContentTypeFilenameConflict extends Error {}
 
@@ -39,6 +41,39 @@ const saveContentTypeToFile = (contentType: ContentType, force = false) => {
   fs.writeFileSync(targetPath, dump(contentType))
 }
 
+const readContentTypeFromFile = (id: string): ContentType | undefined => {
+  let fileName = id
+
+  // Add .yaml extension if its missing.
+  if (!_.endsWith(fileName, '.yaml')) { fileName += '.yaml' }
+
+  // Full filePath to content type file.
+  const filePath = path.join(contentTypeDirectory(), fileName)
+
+  // Return a ContentType if it exists already.
+  if (fs.existsSync(filePath)) {
+    const data = load(fs.readFileSync(filePath, 'utf8')) as ContentType
+    return data
+  }
+}
+
+const getAllContentTypes = (): any => {
+  // Create content types directory if it doesn't exists.
+  const targetDir= contentTypeDirectory()
+  createDirectoryPath(contentTypeDirectory())
+
+  const contentTypeFiles = []
+  for (const filename of fs.readdirSync(targetDir)) {
+    if (_.endsWith(filename, '.yaml')) {
+      contentTypeFiles.push(readContentTypeFromFile(filename))
+    }
+  }
+
+  return contentTypeFiles
+}
+
 export const contentTypes = {
   saveToFile: saveContentTypeToFile,
+  all: getAllContentTypes,
+  read: readContentTypeFromFile
 }

@@ -42,11 +42,15 @@ export const findProjectFileInDirectory = (startDirectory: string): string | und
   }
 }
 
-export const contentTypeFilePath = (contentType: ContentType) => {
+export const contentTypeDirectory = (): string => {
   const rootDir = findProjectRoot()
   if (!rootDir) throw new Error('Couldnt find kiqr file.')
 
-  return path.join(rootDir, '/kiqr/content-types', `${contentType.id}.yaml`)
+  return path.join(rootDir, '/kiqr/content-types')
+}
+
+export const contentTypeFilePath = (contentType: ContentType) => {
+  return path.join(contentTypeDirectory(), `${contentType.id}.yaml`)
 }
 
 export const findProjectRoot = (): string | undefined => {

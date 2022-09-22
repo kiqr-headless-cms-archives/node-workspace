@@ -1,4 +1,4 @@
-import {Configuration, User, UserApi, ProjectsApi, CreateProjectRequest, Project} from '@kiqr/management-api-sdk'
+import {Configuration, User, UserApi, ProjectsApi, CreateProjectRequest, Project, CreateSchemaRequest, SchemasApi, Schema} from '@kiqr/management-api-sdk'
 
 export interface ValidationErrorResponse {
   type: string
@@ -64,6 +64,24 @@ export const createProject = async (accessToken: string, payload: CreateProjectR
   return new Promise((resolve, reject) => {
     api
     .createProject(payload)
+    .then(response => resolve(response.data))
+    .catch(error => handleResponseError(reject, error))
+  })
+}
+
+
+export const createSchema = async (
+  accessToken: string,
+  projectId: string,
+  lastSchemaVersion: string,
+  payload: CreateSchemaRequest
+): Promise<Schema> => {
+  const configuration = new Configuration({accessToken: accessToken})
+  const api = new SchemasApi(configuration)
+
+  return new Promise((resolve, reject) => {
+    api
+    .createSchema(projectId, lastSchemaVersion, payload)
     .then(response => resolve(response.data))
     .catch(error => handleResponseError(reject, error))
   })

@@ -496,11 +496,11 @@
     //   "reviewCategory": "tools",
     //   "tags": [ "tools" ]
     // }
-    {
-      "packageName": "@kiqr/cloud-editor",
-      "projectFolder": "apps/cloud-editor",
-      "shouldPublish": false
-    },
+    // {
+    //   "packageName": "@kiqr/cloud-editor",
+    //   "projectFolder": "apps/cloud-editor",
+    //   "shouldPublish": false
+    // },
     {
       "packageName": "@kiqr/cli",
       "projectFolder": "apps/cli"
@@ -509,9 +509,9 @@
       "packageName": "@kiqr/management-api-sdk",
       "projectFolder": "sdks/management-api-sdk"
     },
-    {
-      "packageName": "@kiqr/react",
-      "projectFolder": "sdks/react"
-    }
+    // {
+    //   "packageName": "@kiqr/react",
+    //   "projectFolder": "sdks/react"
+    // }
   ]
 }
