@@ -500,17 +500,17 @@
       "packageName": "@kiqr/cli",
       "projectFolder": "apps/cli"
     },
-    {
-      "packageName": "@kiqr/cloud-editor",
-      "projectFolder": "apps/cloud-editor"
-    },
+    // {
+    //   "packageName": "@kiqr/cloud-editor",
+    //   "projectFolder": "apps/cloud-editor"
+    // },
     {
       "packageName": "@kiqr/management-api-sdk",
       "projectFolder": "sdks/management-api-sdk"
-    },
-    {
-      "packageName": "@kiqr/react",
-      "projectFolder": "sdks/react"
     }
+    // {
+    //   "packageName": "@kiqr/react",
+    //   "projectFolder": "sdks/react"
+    // }
   ]
 }

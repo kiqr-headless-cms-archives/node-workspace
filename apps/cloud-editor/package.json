@@ -18,7 +18,7 @@
     "@kiqr/react": "*"
   },
   "devDependencies": {
-    "@kiqr/management-api-sdk": "*",
+    "@kiqr/management-api-sdk": "workspace:*",
     "@types/node": "18.7.18",
     "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
