@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@kiqr/cli",
+      "comment": "Updated README",
+      "type": "none"
+    }
+  ],
+  "packageName": "@kiqr/cli"
+}
