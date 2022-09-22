@@ -1,5 +1,4 @@
 import {
-  ContentType,
   useEnvironments,
   useProjects,
   useSchema,
@@ -8,7 +7,11 @@ import {
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-import type { Environment, Project } from '@kiqr/management-api-sdk'
+import type {
+  ContentType,
+  Environment,
+  Project,
+} from '@kiqr/management-api-sdk'
 
 export const useCurrent = () => {
   const { query } = useRouter()
@@ -47,9 +50,11 @@ export const useCurrent = () => {
   }, [environments, query?.environmentId, project])
 
   useEffect(() => {
-    if (schema && query?.contentTypeId) {
-      const contentType =
-        schema?.data?.content_types[query?.contentTypeId as string]
+    const contentType = schema?.data?.content_types?.find(
+      (ct) => ct.id === query.contentTypeId
+    )
+
+    if (schema && contentType) {
       setContentType(contentType)
     } else {
       setContentType(undefined)

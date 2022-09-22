@@ -1,11 +1,12 @@
 import { Configuration, SchemasApi } from '@kiqr/management-api-sdk'
-import { SchemaWithData } from '../types'
+
+import type { SchemaExtended } from '@kiqr/management-api-sdk'
 
 export const getSchema = async (
   accessToken: string,
   projectId: string,
   id: string
-): Promise<SchemaWithData> => {
+): Promise<SchemaExtended> => {
   const configuration = new Configuration({ accessToken: accessToken })
   const api = new SchemasApi(configuration)
 
@@ -13,7 +14,7 @@ export const getSchema = async (
     return api
       .getSchema(id, projectId)
       .then((response) => {
-        resolve(response.data as SchemaWithData)
+        resolve(response.data as SchemaExtended)
       })
       .catch((error) => reject(error.message))
   })

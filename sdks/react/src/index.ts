@@ -24,4 +24,3 @@ export {
 export { KiqrContext, KiqrContextConfig } from './kiqr-context'
 export { KiqrProvider, KiqrProviderProps } from './kiqr-provider'
 export { Oauth2Config, Oauth2Token } from './oauth2-config'
-export * from './types'

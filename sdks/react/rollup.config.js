@@ -17,13 +17,13 @@ export default [
       {
         file: packageJson.main,
         format: 'cjs',
-        sourcemap: true,
+        sourcemap: true
       },
       {
         file: packageJson.module,
         format: 'esm',
-        sourcemap: true,
-      },
+        sourcemap: true
+      }
     ],
     plugins: [
       peerDepsExternal(),
@@ -33,22 +33,22 @@ export default [
       terser(),
       postcss({
         config: {
-          path: './postcss.config.js',
+          path: './postcss.config.js'
         },
         extensions: ['.css'],
         minimize: true,
         inject: {
-          insertAt: 'top',
-        },
+          insertAt: 'top'
+        }
       }),
-      json(),
+      json()
     ],
     external: ['react', 'react-dom', 'styled-components']
   },
   {
-    input: 'dist/esm/types/index.d.ts',
+    input: 'dist/esm/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    external: [/\.css$/, /\.scss$/, /\.sass$/],   // ignore .css file
-    plugins: [dts()],
-  },
+    external: [/\.css$/, /\.scss$/, /\.sass$/], // ignore .css file
+    plugins: [dts()]
+  }
 ]

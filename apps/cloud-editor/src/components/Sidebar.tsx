@@ -1,10 +1,9 @@
-import { Environment, Project } from '@kiqr/management-api-sdk'
-import { ContentType } from '@kiqr/react'
-import Link from 'next/link'
-import router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { ReactElement } from 'react'
-import { FaFire, FaFolder, FaPhotoVideo, FaRegClock } from 'react-icons/fa'
+import { FaFire, FaPhotoVideo, FaRegClock } from 'react-icons/fa'
 import { useCurrent } from '../hooks'
+
+import Link from 'next/link'
 
 export interface SidebarLinkProps {
   title: string
@@ -31,60 +30,60 @@ export const SidebarLink = ({
   )
 }
 
-const ContentTypeGroup = ({
-  items,
-  currentEnvironment,
-  currentProject,
-  kind,
-}: {
-  items: Record<string, ContentType>
-  currentEnvironment: Environment
-  currentProject: Project
-  kind: string
-}): JSX.Element => {
-  return (
-    <>
-      {Object.entries(items).map(([slug, contentType]) => (
-        <SidebarLink
-          key={slug}
-          title={contentType.name}
-          href={`/${currentProject.slug}/${currentEnvironment.slug}/${kind}/${slug}`}
-          active={
-            router.pathname ===
-              `/[projectId]/[environmentId]/${kind}/[contentTypeId]` &&
-            router.query?.contentTypeId?.toString().startsWith(slug)
-          }
-          icon={<FaFolder />}
-        />
-      ))}
-    </>
-  )
-}
+// const ContentTypeGroup = ({
+//   items,
+//   currentEnvironment,
+//   currentProject,
+//   kind,
+// }: {
+//   items: Record<string, ContentType>
+//   currentEnvironment: Environment
+//   currentProject: Project
+//   kind: string
+// }): JSX.Element => {
+//   return (
+//     <>
+//       {Object.entries(items).map(([slug, contentType]) => (
+//         <SidebarLink
+//           key={slug}
+//           title={contentType.name}
+//           href={`/${currentProject.slug}/${currentEnvironment.slug}/${kind}/${slug}`}
+//           active={
+//             router.pathname ===
+//               `/[projectId]/[environmentId]/${kind}/[contentTypeId]` &&
+//             router.query?.contentTypeId?.toString().startsWith(slug)
+//           }
+//           icon={<FaFolder />}
+//         />
+//       ))}
+//     </>
+//   )
+// }
 
 export const Sidebar = (): ReactElement | null => {
   const router = useRouter()
-  const { currentProject, currentEnvironment, currentSchema } = useCurrent()
+  const { currentProject, currentEnvironment } = useCurrent()
 
   if (!currentProject || !currentEnvironment) {
     return null
   }
 
-  const contentTypes = currentSchema?.data?.content_types
-  const collections = contentTypes
-    ? (Object.fromEntries(
-        Object.entries(contentTypes).filter(
-          ([slug, ct]) => ct.kind === 'collection'
-        )
-      ) as Record<string, ContentType>)
-    : undefined
+  // const contentTypes = currentSchema?.data?.content_types
+  // const collections = contentTypes
+  //   ? (Object.fromEntries(
+  //       Object.entries(contentTypes).filter(
+  //         ([slug, ct]) => ct.kind === 'collection'
+  //       )
+  //     ) as Record<string, ContentType>)
+  //   : undefined
 
-  const components = contentTypes
-    ? (Object.fromEntries(
-        Object.entries(contentTypes).filter(
-          ([slug, ct]) => ct.kind === 'component'
-        )
-      ) as Record<string, ContentType>)
-    : undefined
+  // const components = contentTypes
+  //   ? (Object.fromEntries(
+  //       Object.entries(contentTypes).filter(
+  //         ([slug, ct]) => ct.kind === 'component'
+  //       )
+  //     ) as Record<string, ContentType>)
+  //   : undefined
 
   return (
     <aside id="sidebar" className="w-56 border-r bg-white">
@@ -108,7 +107,7 @@ export const Sidebar = (): ReactElement | null => {
             active={router.pathname === '/[projectId]/[environmentId]/log'}
           />
 
-          {collections && Object.keys(collections).length > 0 ? (
+          {/* {collections && Object.keys(collections).length > 0 ? (
             <>
               <li className="separator">Collections</li>
               <ContentTypeGroup
@@ -130,7 +129,7 @@ export const Sidebar = (): ReactElement | null => {
                 kind="component"
               />
             </>
-          ) : null}
+          ) : null} */}
         </ul>
       </nav>
     </aside>
