@@ -50,11 +50,8 @@ export const useCurrent = () => {
   }, [environments, query?.environmentId, project])
 
   useEffect(() => {
-    const contentType = schema?.data?.content_types?.find(
-      (ct) => ct.id === query.contentTypeId
-    )
-
-    if (schema && contentType) {
+    if (schema?.data?.content_types && query?.contentTypeId) {
+      const contentType = schema.data.content_types[0]
       setContentType(contentType)
     } else {
       setContentType(undefined)
