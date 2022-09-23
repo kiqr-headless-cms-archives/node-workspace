@@ -19,7 +19,7 @@ export const buildFieldsFromArgs = (fieldsFlag: string): ContentTypeField[] => {
     fields.push({
       id: name,
       label: inflection.titleize(name),
-      type: (type as ContentTypeFieldTypeEnum),
+      type: (type ?? 'string') as ContentTypeFieldTypeEnum,
       required: false,
     })
   }
