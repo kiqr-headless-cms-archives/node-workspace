@@ -58,8 +58,7 @@
     "typescript": "^4.8.3"
   },
   "oclif": {
-    "bin": "cli",
-    "dirname": "cli",
+    "bin": "kiqr",
     "commands": "./dist/commands",
     "plugins": [
       "@oclif/plugin-help",

@@ -1,56 +1,76 @@
-KIQR CLI
---------
+CLI for KIQR Headless CMS
+======================================
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/oclif-hello-world.svg)](https://npmjs.org/package/oclif-hello-world)
-[![CircleCI](https://circleci.com/gh/oclif/hello-world/tree/main.svg?style=shield)](https://circleci.com/gh/oclif/hello-world/tree/main)
-[![Downloads/week](https://img.shields.io/npm/dw/oclif-hello-world.svg)](https://npmjs.org/package/oclif-hello-world)
-[![License](https://img.shields.io/npm/l/oclif-hello-world.svg)](https://github.com/oclif/hello-world/blob/main/package.json)
+This is the Command Line Application for [KIQR Headless CMS](https://kiqr.dev).
 
-<!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
 # Usage
 <!-- usage -->
 ```sh-session
 $ npm install -g @kiqr/cli
-$ cli COMMAND
+$ kiqr COMMAND
 running command...
-$ cli (--version)
-@kiqr/cli/0.0.12 darwin-arm64 node-v16.14.2
-$ cli --help [COMMAND]
+$ kiqr (--version)
+@kiqr/cli/0.0.14 darwin-arm64 node-v16.14.2
+$ kiqr --help [COMMAND]
 USAGE
-  $ cli COMMAND
+  $ kiqr COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`cli hello PERSON`](#cli-hello-person)
-* [`cli hello world`](#cli-hello-world)
-* [`cli help [COMMAND]`](#cli-help-command)
-* [`cli init [TARGETDIRECTORY]`](#cli-init-targetdirectory)
-* [`cli login`](#cli-login)
-* [`cli logout`](#cli-logout)
-* [`cli me`](#cli-me)
-* [`cli plugins`](#cli-plugins)
-* [`cli plugins:install PLUGIN...`](#cli-pluginsinstall-plugin)
-* [`cli plugins:inspect PLUGIN...`](#cli-pluginsinspect-plugin)
-* [`cli plugins:install PLUGIN...`](#cli-pluginsinstall-plugin-1)
-* [`cli plugins:link PLUGIN`](#cli-pluginslink-plugin)
-* [`cli plugins:uninstall PLUGIN...`](#cli-pluginsuninstall-plugin)
-* [`cli plugins:uninstall PLUGIN...`](#cli-pluginsuninstall-plugin-1)
-* [`cli plugins:uninstall PLUGIN...`](#cli-pluginsuninstall-plugin-2)
-* [`cli plugins update`](#cli-plugins-update)
+* [`kiqr create CONTENTTYPE`](#kiqr-create-contenttype)
+* [`kiqr hello PERSON`](#kiqr-hello-person)
+* [`kiqr hello world`](#kiqr-hello-world)
+* [`kiqr help [COMMAND]`](#kiqr-help-command)
+* [`kiqr init [TARGETDIRECTORY]`](#kiqr-init-targetdirectory)
+* [`kiqr inspect CONTENTTYPE`](#kiqr-inspect-contenttype)
+* [`kiqr login`](#kiqr-login)
+* [`kiqr logout`](#kiqr-logout)
+* [`kiqr me`](#kiqr-me)
+* [`kiqr plugins`](#kiqr-plugins)
+* [`kiqr plugins:install PLUGIN...`](#kiqr-pluginsinstall-plugin)
+* [`kiqr plugins:inspect PLUGIN...`](#kiqr-pluginsinspect-plugin)
+* [`kiqr plugins:install PLUGIN...`](#kiqr-pluginsinstall-plugin-1)
+* [`kiqr plugins:link PLUGIN`](#kiqr-pluginslink-plugin)
+* [`kiqr plugins:uninstall PLUGIN...`](#kiqr-pluginsuninstall-plugin)
+* [`kiqr plugins:uninstall PLUGIN...`](#kiqr-pluginsuninstall-plugin-1)
+* [`kiqr plugins:uninstall PLUGIN...`](#kiqr-pluginsuninstall-plugin-2)
+* [`kiqr plugins update`](#kiqr-plugins-update)
+* [`kiqr push`](#kiqr-push)
 
-## `cli hello PERSON`
+## `kiqr create CONTENTTYPE`
+
+Create a new content type
+
+```
+USAGE
+  $ kiqr create [CONTENTTYPE] [-n <value>] [-k collection|component] [-f <value>] [--force]
+
+FLAGS
+  -f, --fields=<value>               Initial fields
+  -k, --kind=(collection|component)  What kind of content type?
+  -n, --name=<value>                 Name of the content type
+  --force
+
+DESCRIPTION
+  Create a new content type
+
+EXAMPLES
+  $ kiqr create
+
+  $ kiqr create --kind collection --name Posts --fields="title:string description:text"
+```
+
+_See code: [dist/commands/create.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/create.ts)_
+
+## `kiqr hello PERSON`
 
 Say hello
 
 ```
 USAGE
-  $ cli hello [PERSON] -f <value>
+  $ kiqr hello [PERSON] -f <value>
 
 ARGUMENTS
   PERSON  Person to say hello to
@@ -66,31 +86,31 @@ EXAMPLES
   hello friend from oclif! (./src/commands/hello/index.ts)
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/kiqr/cli/blob/v0.0.12/dist/commands/hello/index.ts)_
+_See code: [dist/commands/hello/index.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/hello/index.ts)_
 
-## `cli hello world`
+## `kiqr hello world`
 
 Say hello world
 
 ```
 USAGE
-  $ cli hello world
+  $ kiqr hello world
 
 DESCRIPTION
   Say hello world
 
 EXAMPLES
-  $ cli hello world
+  $ kiqr hello world
   hello world! (./src/commands/hello/world.ts)
 ```
 
-## `cli help [COMMAND]`
+## `kiqr help [COMMAND]`
 
-Display help for cli.
+Display help for kiqr.
 
 ```
 USAGE
-  $ cli help [COMMAND] [-n]
+  $ kiqr help [COMMAND] [-n]
 
 ARGUMENTS
   COMMAND  Command to show help for.
@@ -99,18 +119,18 @@ FLAGS
   -n, --nested-commands  Include all nested commands in the output.
 
 DESCRIPTION
-  Display help for cli.
+  Display help for kiqr.
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.1.12/src/commands/help.ts)_
 
-## `cli init [TARGETDIRECTORY]`
+## `kiqr init [TARGETDIRECTORY]`
 
 describe the command here
 
 ```
 USAGE
-  $ cli init [TARGETDIRECTORY] [-n <value>]
+  $ kiqr init [TARGETDIRECTORY] [-n <value>]
 
 FLAGS
   -n, --name=<value>  Name your new project
@@ -119,71 +139,88 @@ DESCRIPTION
   describe the command here
 
 EXAMPLES
-  $ cli init
+  $ kiqr init
 
-  $ cli init --name "My Project"
+  $ kiqr init --name "My Project"
 ```
 
-_See code: [dist/commands/init.ts](https://github.com/kiqr/cli/blob/v0.0.12/dist/commands/init.ts)_
+_See code: [dist/commands/init.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/init.ts)_
 
-## `cli login`
+## `kiqr inspect CONTENTTYPE`
+
+Display the contents of a content type file
+
+```
+USAGE
+  $ kiqr inspect [CONTENTTYPE]
+
+DESCRIPTION
+  Display the contents of a content type file
+
+EXAMPLES
+  $ kiqr inspect
+```
+
+_See code: [dist/commands/inspect.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/inspect.ts)_
+
+## `kiqr login`
 
 Login using your KIQR ID.
 
 ```
 USAGE
-  $ cli login
+  $ kiqr login
 
 DESCRIPTION
   Login using your KIQR ID.
 
 EXAMPLES
-  $ cli login
+  $ kiqr login
 ```
 
-_See code: [dist/commands/login.ts](https://github.com/kiqr/cli/blob/v0.0.12/dist/commands/login.ts)_
+_See code: [dist/commands/login.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/login.ts)_
 
-## `cli logout`
+## `kiqr logout`
 
 Login using your KIQR ID.
 
 ```
 USAGE
-  $ cli logout
+  $ kiqr logout
 
 DESCRIPTION
   Login using your KIQR ID.
 
 EXAMPLES
-  $ cli logout
+  $ kiqr logout
 ```
 
-_See code: [dist/commands/logout.ts](https://github.com/kiqr/cli/blob/v0.0.12/dist/commands/logout.ts)_
+_See code: [dist/commands/logout.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/logout.ts)_
 
-## `cli me`
+## `kiqr me`
 
 Shows who's logged in.
 
 ```
 USAGE
-  $ cli me
+  $ kiqr me
 
 DESCRIPTION
   Shows who's logged in.
 
 EXAMPLES
-  $ cli me
+  $ kiqr me
 ```
 
-_See code: [dist/commands/me.ts](https://github.com/kiqr/cli/blob/v0.0.12/dist/commands/me.ts)_
+_See code: [dist/commands/me.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/me.ts)_
 
-## `cli plugins`
+## `kiqr plugins`
 
 List installed plugins.
 
 ```
 USAGE
-  $ cli plugins [--core]
+  $ kiqr plugins [--core]
 
 FLAGS
   --core  Show core plugins.
@@ -192,18 +229,18 @@ DESCRIPTION
   List installed plugins.
 
 EXAMPLES
-  $ cli plugins
+  $ kiqr plugins
 ```
 
 _See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.1.0/src/commands/plugins/index.ts)_
 
-## `cli plugins:install PLUGIN...`
+## `kiqr plugins:install PLUGIN...`
 
 Installs a plugin into the CLI.
 
 ```
 USAGE
-  $ cli plugins:install PLUGIN...
+  $ kiqr plugins:install PLUGIN...
 
 ARGUMENTS
   PLUGIN  Plugin to install.
@@ -225,23 +262,23 @@ DESCRIPTION
   the CLI without the need to patch and update the whole CLI.
 
 ALIASES
-  $ cli plugins add
+  $ kiqr plugins add
 
 EXAMPLES
-  $ cli plugins:install myplugin 
+  $ kiqr plugins:install myplugin 
 
-  $ cli plugins:install https://github.com/someuser/someplugin
+  $ kiqr plugins:install https://github.com/someuser/someplugin
 
-  $ cli plugins:install someuser/someplugin
+  $ kiqr plugins:install someuser/someplugin
 ```
 
-## `cli plugins:inspect PLUGIN...`
+## `kiqr plugins:inspect PLUGIN...`
 
 Displays installation properties of a plugin.
 
 ```
 USAGE
-  $ cli plugins:inspect PLUGIN...
+  $ kiqr plugins:inspect PLUGIN...
 
 ARGUMENTS
   PLUGIN  [default: .] Plugin to inspect.
@@ -254,16 +291,16 @@ DESCRIPTION
   Displays installation properties of a plugin.
 
 EXAMPLES
-  $ cli plugins:inspect myplugin
+  $ kiqr plugins:inspect myplugin
 ```
 
-## `cli plugins:install PLUGIN...`
+## `kiqr plugins:install PLUGIN...`
 
 Installs a plugin into the CLI.
 
 ```
 USAGE
-  $ cli plugins:install PLUGIN...
+  $ kiqr plugins:install PLUGIN...
 
 ARGUMENTS
   PLUGIN  Plugin to install.
@@ -285,23 +322,23 @@ DESCRIPTION
   the CLI without the need to patch and update the whole CLI.
 
 ALIASES
-  $ cli plugins add
+  $ kiqr plugins add
 
 EXAMPLES
-  $ cli plugins:install myplugin 
+  $ kiqr plugins:install myplugin 
 
-  $ cli plugins:install https://github.com/someuser/someplugin
+  $ kiqr plugins:install https://github.com/someuser/someplugin
 
-  $ cli plugins:install someuser/someplugin
+  $ kiqr plugins:install someuser/someplugin
 ```
 
-## `cli plugins:link PLUGIN`
+## `kiqr plugins:link PLUGIN`
 
 Links a plugin into the CLI for development.
 
 ```
 USAGE
-  $ cli plugins:link PLUGIN
+  $ kiqr plugins:link PLUGIN
 
 ARGUMENTS
   PATH  [default: .] path to plugin
@@ -319,16 +356,16 @@ DESCRIPTION
   command will override the user-installed or core plugin implementation. This is useful for development work.
 
 EXAMPLES
-  $ cli plugins:link myplugin
+  $ kiqr plugins:link myplugin
 ```
 
-## `cli plugins:uninstall PLUGIN...`
+## `kiqr plugins:uninstall PLUGIN...`
 
 Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ cli plugins:uninstall PLUGIN...
+  $ kiqr plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -341,17 +378,17 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ cli plugins unlink
-  $ cli plugins remove
+  $ kiqr plugins unlink
+  $ kiqr plugins remove
 ```
 
-## `cli plugins:uninstall PLUGIN...`
+## `kiqr plugins:uninstall PLUGIN...`
 
 Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ cli plugins:uninstall PLUGIN...
+  $ kiqr plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -364,17 +401,17 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ cli plugins unlink
-  $ cli plugins remove
+  $ kiqr plugins unlink
+  $ kiqr plugins remove
 ```
 
-## `cli plugins:uninstall PLUGIN...`
+## `kiqr plugins:uninstall PLUGIN...`
 
 Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ cli plugins:uninstall PLUGIN...
+  $ kiqr plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -387,17 +424,17 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ cli plugins unlink
-  $ cli plugins remove
+  $ kiqr plugins unlink
+  $ kiqr plugins remove
 ```
 
-## `cli plugins update`
+## `kiqr plugins update`
 
 Update installed plugins.
 
 ```
 USAGE
-  $ cli plugins update [-h] [-v]
+  $ kiqr plugins update [-h] [-v]
 
 FLAGS
   -h, --help     Show CLI help.
@@ -406,4 +443,26 @@ FLAGS
 DESCRIPTION
   Update installed plugins.
 ```
+
+## `kiqr push`
+
+Push your local changes to KIQR.CLOUD
+
+```
+USAGE
+  $ kiqr push [-m <value>]
+
+FLAGS
+  -m, --message=<value>  Write a meaningful commit message
+
+DESCRIPTION
+  Push your local changes to KIQR.CLOUD
+
+EXAMPLES
+  $ kiqr push
+
+  $ kiqr push --force
+```
+
+_See code: [dist/commands/push.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/push.ts)_
 <!-- commandsstop -->
