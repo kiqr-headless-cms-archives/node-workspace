@@ -505,11 +505,13 @@
     {
       "packageName": "@kiqr/cli",
       "projectFolder": "apps/cli",
+      "shouldPublish": true,
       "tags": ["cli"]
     },
     {
       "packageName": "@kiqr/management-api-sdk",
       "projectFolder": "sdks/management-api-sdk",
+      "shouldPublish": true,
       "tags": ["sdk"]
     },
     {
