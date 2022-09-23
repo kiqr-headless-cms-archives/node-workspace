@@ -5,21 +5,20 @@ CLI for KIQR Headless CMS
 
 This is the Command Line Application for [KIQR Headless CMS](https://kiqr.dev).
 
-# Usage
-<!-- usage -->
-```sh-session
-$ npm install -g @kiqr/cli
-$ kiqr COMMAND
-running command...
-$ kiqr (--version)
-@kiqr/cli/0.0.14 darwin-arm64 node-v16.14.2
-$ kiqr --help [COMMAND]
-USAGE
-  $ kiqr COMMAND
-...
+Installation
+------------
+
+Run the following command using npm:
+
+```console
+npm install @kiqr/management-api-sdk --save
 ```
-<!-- usagestop -->
-# Commands
+
+This will download and add `@kiqr/management-api-sdk` to your projects `package.json`-file.
+
+Commands
+--------
+
 <!-- commands -->
 * [`kiqr create CONTENTTYPE`](#kiqr-create-contenttype)
 * [`kiqr hello PERSON`](#kiqr-hello-person)
