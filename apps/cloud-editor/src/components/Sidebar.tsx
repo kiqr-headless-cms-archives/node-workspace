@@ -55,12 +55,8 @@ export const Sidebar = (): ReactElement | null => {
   }
 
   const contentTypes = currentSchema?.data?.content_types
-  const collections = Array.isArray(contentTypes)
-    ? contentTypes.filter((ct) => ct.kind === 'collection')
-    : []
-  const components = Array.isArray(contentTypes)
-    ? contentTypes?.filter((ct) => ct.kind === 'component')
-    : []
+  const collections = Array.isArray(contentTypes) ? contentTypes.filter((ct) => ct.kind === 'collection') : []
+  const components = Array.isArray(contentTypes) ? contentTypes?.filter((ct) => ct.kind === 'component') : []
 
   return (
     <aside id="sidebar" className="w-56 border-r bg-white">
