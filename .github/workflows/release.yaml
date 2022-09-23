@@ -30,9 +30,12 @@ jobs:
           node common/scripts/install-run-rush.js change -v
           node common/scripts/install-run-rush.js install
           node common/scripts/install-run-rush.js build --to tag:cli
+      - name: Configure git
+        run: |
+          git config --global user.name 'KIQR'
+          git config --global user.email 'github-actions@kiqr.dev'
       # Publish packages to the npm registry
       - name: Publish packages
         run: node common/scripts/install-run-rush.js publish --apply --target-branch main --publish
         env:
-          GITHUB_TOKEN: ${{ github.token }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
