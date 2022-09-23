@@ -12,7 +12,7 @@ export const Layout = ({ children }: LayoutProps): ReactElement => {
       <Topbar />
       <section className="flex flex-1">
         <Sidebar />
-        <main className="flex-1 p-5">{children}</main>
+        <main className="flex flex-col flex-1 p-5 gap-y-5">{children}</main>
       </section>
     </section>
   )
