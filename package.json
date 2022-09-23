@@ -1,0 +1,15 @@
+{
+  "name": "@kiqr/node-workspace",
+  "version": "0.1.0",
+  "description": "Monorepo for KIQR.CLOUD, CLI, React and Node SDKs.",
+  "main": "index.js",
+  "repository": "git@github.com:kiqr/node-workspace.git",
+  "author": "KIQR",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build:cli": "rush build --to tag:cli",
+    "build:cloud": "rush build --to tag:cloud",
+    "kiqr-dev": "rush build --to tag:cli && kiqr $1"
+  }
+}
