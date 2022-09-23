@@ -35,7 +35,6 @@ const saveContentTypeToFile = (contentType: ContentType, force = false) => {
 
   // Check if file exists already.
   if (fs.existsSync(targetPath) && !force) {
-    console.log('force', force)
     throw new Error('A kiqr.json file exists already at: ' + targetPath)
   }
 
