@@ -41,7 +41,7 @@ jobs:
         run: node common/scripts/install-run-rush.js change -v
 
       - name: Build affected projects
-        run: node common/scripts/install-run-rush.js build
+        run: node common/scripts/install-run-rush.js build --to tag:cli
 
       - name: Publish affected packages to NPMJS.
         run: node common/scripts/install-run-rush.js publish --apply --target-branch main --publish
