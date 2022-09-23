@@ -510,12 +510,12 @@
     {
       "packageName": "@kiqr/management-api-sdk",
       "projectFolder": "sdks/management-api-sdk",
-      "tags": ["cloud", "cli"]
+      "tags": ["sdk"]
     },
     {
       "packageName": "@kiqr/react",
       "projectFolder": "sdks/react",
-      "tags": ["cloud"]
+      "tags": ["sdk"]
     }
   ]
 }
