@@ -1,6 +1,6 @@
-import { FaFire } from "react-icons/fa"
+import { FaFire } from 'react-icons/fa'
 
-import Link from "next/link"
+import Link from 'next/link'
 
 export interface SidebarLinkProps {
   title: string

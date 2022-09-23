@@ -4,25 +4,31 @@ import { FaFolder, FaPhotoVideo, FaRegClock } from 'react-icons/fa'
 import { useCurrent } from '../hooks'
 import { SidebarLink } from './SidebarLink'
 
-import type { ContentType, Environment, Project } from '@kiqr/management-api-sdk'
+import type {
+  ContentType,
+  Environment,
+  Project,
+} from '@kiqr/management-api-sdk'
 
 const ContentTypeGroup = ({
   contentTypes,
   currentEnvironment,
-  currentProject
+  currentProject,
 }: {
   contentTypes: ContentType[]
   currentEnvironment: Environment
   currentProject: Project
 }): JSX.Element => {
-
-  const collectionHref = (contentType: ContentType) => { 
+  const collectionHref = (contentType: ContentType) => {
     return `/${currentProject.slug}/${currentEnvironment.slug}/collections/${contentType.id}`
   }
 
   const collectionActive = (contentType: ContentType) => {
-    return router.pathname === `/[projectId]/[environmentId]/collections/[contentTypeId]` && 
-           router.query?.contentTypeId?.toString().startsWith(contentType.id)
+    return (
+      router.pathname ===
+        '/[projectId]/[environmentId]/collections/[contentTypeId]' &&
+      router.query?.contentTypeId?.toString().startsWith(contentType.id)
+    )
   }
 
   return (
@@ -49,8 +55,8 @@ export const Sidebar = (): ReactElement | null => {
   }
 
   const contentTypes = currentSchema?.data?.content_types
-  const collections = contentTypes?.filter(ct => ct.kind === 'collection')
-  const components = contentTypes?.filter(ct => ct.kind === 'component')
+  const collections = contentTypes?.filter((ct) => ct.kind === 'collection')
+  const components = contentTypes?.filter((ct) => ct.kind === 'component')
 
   return (
     <aside id="sidebar" className="w-56 border-r bg-white">

@@ -6,7 +6,6 @@
     "dev": "next dev --port 8000",
     "build": "next build",
     "start": "next start",
-    "serve": "yarn start",
     "lint": "next lint"
   },
   "dependencies": {
