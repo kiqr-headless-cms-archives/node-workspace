@@ -1,5 +1,13 @@
 id: posts
 name: Posts
-kind: component
+kind: collection
 associations: []
-fields: []
+fields:
+  - id: title
+    label: Title
+    type: string
+    required: false
+  - id: body
+    label: Body
+    type: text
+    required: false
