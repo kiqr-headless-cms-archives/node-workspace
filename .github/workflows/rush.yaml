@@ -14,34 +14,34 @@ jobs:
         with:
           node-version: 16
 
-      - uses: pnpm/action-setup@v2.0.1
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          version: 7
-          run_install: false
+      # - uses: pnpm/action-setup@v2.0.1
+      #   name: Install pnpm
+      #   id: pnpm-install
+      #   with:
+      #     version: 7
+      #     run_install: false
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+      # - name: Get pnpm store directory
+      #   id: pnpm-cache
+      #   run: |
+      #     echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
 
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+      # - uses: actions/cache@v3
+      #   name: Setup pnpm cache
+      #   with:
+      #     path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+      #     key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pnpm-store-
 
       - name: Setup Rush project
-        run: pnpm common/scripts/install-run-rush.js install
+        run: node common/scripts/install-run-rush.js install
 
       - name: Check for undocumented changes.
-        run: pnpm common/scripts/install-run-rush.js change -v
+        run: node common/scripts/install-run-rush.js change -v
 
       - name: Build affected projects
-        run: pnpm common/scripts/install-run-rush.js build
+        run: node common/scripts/install-run-rush.js build
 
       - name: Publish affected packages to NPMJS.
-        run: pnpm common/scripts/install-run-rush.js publish --apply --target-branch main --publish
+        run: node common/scripts/install-run-rush.js publish --apply --target-branch main --publish
