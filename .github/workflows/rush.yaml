@@ -34,17 +34,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Install Rush globally
-        run: pnpm add -g @microsoft/rush
-
       - name: Setup Rush project
-        run: rush install
+        run: pnpm common/scripts/install-run-rush.js install
 
       - name: Check for undocumented changes.
-        run: rush change -v
+        run: pnpm common/scripts/install-run-rush.js change -v
 
       - name: Build affected projects
-        run: rush build
+        run: pnpm common/scripts/install-run-rush.js build
 
       - name: Publish affected packages to NPMJS.
-        run: rush publish --apply
+        run: pnpm common/scripts/install-run-rush.js publish --apply --target-branch main --publish
