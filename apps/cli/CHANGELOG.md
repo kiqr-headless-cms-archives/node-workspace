@@ -1,6 +1,11 @@
 # Change Log - @kiqr/cli
 
-This log was last generated on Fri, 23 Sep 2022 10:49:23 GMT and should not be manually modified.
+This log was last generated on Fri, 23 Sep 2022 19:27:11 GMT and should not be manually modified.
+
+## 0.0.15
+Fri, 23 Sep 2022 19:27:11 GMT
+
+_Version update only_
 
 ## 0.0.14
 Fri, 23 Sep 2022 10:49:23 GMT

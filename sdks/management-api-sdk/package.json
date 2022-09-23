@@ -1,6 +1,6 @@
 {
   "name": "@kiqr/management-api-sdk",
-  "version": "0.0.21",
+  "version": "0.1.0",
   "description": "Node.js api client for the KIQR Management API",
   "author": "KIQR",
   "repository": {
