@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@kiqr/cli",
+      "comment": "New command: \"kiqr inspect\"",
+      "type": "patch"
+    }
+  ],
+  "packageName": "@kiqr/cli"
+}
