@@ -31,3 +31,4 @@ jobs:
           node common/scripts/install-run-rush.js change -v
           node common/scripts/install-run-rush.js install
           node common/scripts/install-run-rush.js build --to tag:cli
+          node common/scripts/install-run-rush.js rush publish --apply --target-branch main --publish
