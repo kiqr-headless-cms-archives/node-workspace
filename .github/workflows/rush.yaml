@@ -1,6 +1,8 @@
 name: Release
 on:
-  push: main
+  push:
+    branches:
+      - main
 jobs:
   change_verify:
     name: Verify that changes has been properly documentated.
