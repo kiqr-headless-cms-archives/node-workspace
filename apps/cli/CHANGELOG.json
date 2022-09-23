@@ -1,0 +1,17 @@
+{
+  "name": "@kiqr/cli",
+  "entries": [
+    {
+      "version": "0.0.13",
+      "tag": "@kiqr/cli_v0.0.13",
+      "date": "Fri, 23 Sep 2022 10:44:29 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "First change"
+          }
+        ]
+      }
+    }
+  ]
+}
