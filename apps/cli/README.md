@@ -1,6 +1,8 @@
 CLI for KIQR Headless CMS
 ======================================
 
+[![npm version](https://badge.fury.io/js/@kiqr%2Fcli.svg)](https://badge.fury.io/js/@kiqr%2Fcli)
+
 This is the Command Line Application for [KIQR Headless CMS](https://kiqr.dev).
 
 # Usage
