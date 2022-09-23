@@ -1,89 +1,56 @@
-import { useRouter } from 'next/router'
+import router, { useRouter } from 'next/router'
 import { ReactElement } from 'react'
-import { FaFire, FaPhotoVideo, FaRegClock } from 'react-icons/fa'
+import { FaFolder, FaPhotoVideo, FaRegClock } from 'react-icons/fa'
 import { useCurrent } from '../hooks'
+import { SidebarLink } from './SidebarLink'
 
-import Link from 'next/link'
+import type { ContentType, Environment, Project } from '@kiqr/management-api-sdk'
 
-export interface SidebarLinkProps {
-  title: string
-  href: string
-  icon?: JSX.Element
-  active?: boolean
-}
+const ContentTypeGroup = ({
+  contentTypes,
+  currentEnvironment,
+  currentProject
+}: {
+  contentTypes: ContentType[]
+  currentEnvironment: Environment
+  currentProject: Project
+}): JSX.Element => {
 
-export const SidebarLink = ({
-  title,
-  icon,
-  href,
-  active = false,
-}: SidebarLinkProps) => {
+  const collectionHref = (contentType: ContentType) => { 
+    return `/${currentProject.slug}/${currentEnvironment.slug}/collections/${contentType.id}`
+  }
+
+  const collectionActive = (contentType: ContentType) => {
+    return router.pathname === `/[projectId]/[environmentId]/collections/[contentTypeId]` && 
+           router.query?.contentTypeId?.toString().startsWith(contentType.id)
+  }
+
   return (
-    <li>
-      <Link href={href}>
-        <a className={`${active ? 'active' : null}`}>
-          <span className="icon">{icon ?? <FaFire />}</span>
-          <span>{title}</span>
-        </a>
-      </Link>
-    </li>
+    <>
+      {contentTypes.map((contentType) => (
+        <SidebarLink
+          key={contentType.id}
+          title={contentType.name}
+          href={collectionHref(contentType)}
+          active={collectionActive(contentType)}
+          icon={<FaFolder />}
+        />
+      ))}
+    </>
   )
 }
 
-// const ContentTypeGroup = ({
-//   items,
-//   currentEnvironment,
-//   currentProject,
-//   kind,
-// }: {
-//   items: Record<string, ContentType>
-//   currentEnvironment: Environment
-//   currentProject: Project
-//   kind: string
-// }): JSX.Element => {
-//   return (
-//     <>
-//       {Object.entries(items).map(([slug, contentType]) => (
-//         <SidebarLink
-//           key={slug}
-//           title={contentType.name}
-//           href={`/${currentProject.slug}/${currentEnvironment.slug}/${kind}/${slug}`}
-//           active={
-//             router.pathname ===
-//               `/[projectId]/[environmentId]/${kind}/[contentTypeId]` &&
-//             router.query?.contentTypeId?.toString().startsWith(slug)
-//           }
-//           icon={<FaFolder />}
-//         />
-//       ))}
-//     </>
-//   )
-// }
-
 export const Sidebar = (): ReactElement | null => {
   const router = useRouter()
-  const { currentProject, currentEnvironment } = useCurrent()
+  const { currentProject, currentEnvironment, currentSchema } = useCurrent()
 
   if (!currentProject || !currentEnvironment) {
     return null
   }
 
-  // const contentTypes = currentSchema?.data?.content_types
-  // const collections = contentTypes
-  //   ? (Object.fromEntries(
-  //       Object.entries(contentTypes).filter(
-  //         ([slug, ct]) => ct.kind === 'collection'
-  //       )
-  //     ) as Record<string, ContentType>)
-  //   : undefined
-
-  // const components = contentTypes
-  //   ? (Object.fromEntries(
-  //       Object.entries(contentTypes).filter(
-  //         ([slug, ct]) => ct.kind === 'component'
-  //       )
-  //     ) as Record<string, ContentType>)
-  //   : undefined
+  const contentTypes = currentSchema?.data?.content_types
+  const collections = contentTypes?.filter(ct => ct.kind === 'collection')
+  const components = contentTypes?.filter(ct => ct.kind === 'component')
 
   return (
     <aside id="sidebar" className="w-56 border-r bg-white">
@@ -107,29 +74,27 @@ export const Sidebar = (): ReactElement | null => {
             active={router.pathname === '/[projectId]/[environmentId]/log'}
           />
 
-          {/* {collections && Object.keys(collections).length > 0 ? (
+          {collections && collections.length > 0 ? (
             <>
               <li className="separator">Collections</li>
               <ContentTypeGroup
-                items={collections}
+                contentTypes={collections}
                 currentEnvironment={currentEnvironment}
                 currentProject={currentProject}
-                kind="collections"
               />
             </>
           ) : null}
 
-          {components && Object.keys(components).length > 0 ? (
+          {components && components.length > 0 ? (
             <>
               <li className="separator">Components</li>
               <ContentTypeGroup
-                items={components}
+                contentTypes={components}
                 currentEnvironment={currentEnvironment}
                 currentProject={currentProject}
-                kind="component"
               />
             </>
-          ) : null} */}
+          ) : null}
         </ul>
       </nav>
     </aside>

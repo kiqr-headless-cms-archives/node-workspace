@@ -34,6 +34,8 @@ const ContentTypePage: NextPage = () => {
           {`https://content.kiqr.cloud/v1/${currentProject?.slug}/collections/${query?.contentTypeId}`}
         </a>
       </div>
+      
+      <pre>{JSON.stringify(currentContentType, null, 2)}</pre>
     </>
   )
 }

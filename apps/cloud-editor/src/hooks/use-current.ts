@@ -51,7 +51,7 @@ export const useCurrent = () => {
 
   useEffect(() => {
     if (schema?.data?.content_types && query?.contentTypeId) {
-      const contentType = schema.data.content_types[0]
+      const contentType = schema.data.content_types.find(ct => ct.id === query?.contentTypeId)
       setContentType(contentType)
     } else {
       setContentType(undefined)
