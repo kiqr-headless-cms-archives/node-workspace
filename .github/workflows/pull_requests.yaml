@@ -3,9 +3,6 @@ name: Main workflow
 
 # When workflow is triggered
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -31,4 +28,3 @@ jobs:
           node common/scripts/install-run-rush.js change -v
           node common/scripts/install-run-rush.js install
           node common/scripts/install-run-rush.js build --to tag:cli
-          node common/scripts/install-run-rush.js publish --apply --target-branch main --publish
