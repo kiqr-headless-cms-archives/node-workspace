@@ -2,8 +2,9 @@
 
 const config = {
   hooks: {
-    "pre-commit": ["check-branch", "check-lock-files"],
-    "pre-push": ["check-branch", "check-lock-files"],
+    "pre-commit": ["check-branch"],
+
+    "pre-push": ["check-branch"],
   },
 
   settings: {
