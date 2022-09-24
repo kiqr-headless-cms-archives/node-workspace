@@ -4,11 +4,8 @@ import { Card, Heading } from '@kiqr/react'
 
 import { PageTitle } from '../../../../../components'
 import { useCurrent } from '../../../../../hooks'
-import { FaLink } from 'react-icons/fa'
-import { useRouter } from 'next/router'
 
 const ContentTypePage: NextPage = () => {
-  const { query } = useRouter()
   const { currentContentType, currentProject } = useCurrent()
 
   return (
@@ -49,9 +46,8 @@ const ContentTypePage: NextPage = () => {
               <th></th>
             </tr>
           </thead>
-          <tbody>
-          </tbody>
-          </table>
+          <tbody></tbody>
+        </table>
       </Card>
     </>
   )

@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, { ReactNode, useEffect, useState } from 'react'
 
-import { KiqrContext, Oauth2Config, Oauth2Token } from '.'
-import { defaultContextValue } from './kiqr-context'
+import { Oauth2Config, Oauth2Token } from './oauth2-config'
+import { KiqrContext, defaultContextValue } from './kiqr-context'
 
 export interface KiqrProviderProps {
   children?: ReactNode

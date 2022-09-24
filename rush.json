@@ -519,6 +519,11 @@
       "projectFolder": "sdks/react",
       "shouldPublish": false,
       "tags": ["sdk"]
+    },
+    {
+      "packageName": "@kiqr/react-hooks",
+      "projectFolder": "sdks/react-hooks",
+      "tags": ["sdk"]
     }
   ]
 }
