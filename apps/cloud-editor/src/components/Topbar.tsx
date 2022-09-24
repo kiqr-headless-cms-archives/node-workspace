@@ -1,4 +1,6 @@
-import { Button, Dropdown, Logo, useSession } from '@kiqr/react'
+import { Button, Dropdown, Logo } from '@kiqr/react'
+import { useSession } from '@kiqr/react-hooks'
+
 import { ReactElement } from 'react'
 import { FaBook, FaSignOutAlt, FaTerminal } from 'react-icons/fa'
 
