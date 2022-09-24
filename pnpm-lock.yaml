@@ -1,19 +1,19 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@jeliasson/husky-hooks': ^0.3.1
+  '@jeliasson/husky-hooks': ^0.3.2
   '@openapitools/openapi-generator-cli': ^2.5.2
   husky: ^8.0.1
 
 devDependencies:
-  '@jeliasson/husky-hooks': 0.3.1
+  '@jeliasson/husky-hooks': 0.3.2
   '@openapitools/openapi-generator-cli': 2.5.2
   husky: 8.0.1
 
 packages:
 
-  /@jeliasson/husky-hooks/0.3.1:
-    resolution: {integrity: sha512-qnSgHxYo7ueM1SMVxobCyd631BdRngDBZy9lsccTaIhzINXOh4xKY5LpsBefpuzDmjM54Sx/pru5M3+d4xOPAg==}
+  /@jeliasson/husky-hooks/0.3.2:
+    resolution: {integrity: sha512-2GdtSCAfr7FbTKGKekUMkGlDSWccvkOLF9GMOGOK5FJExmOu0RfOCdwWHARdkoiAgL/syRbfmFPsFR9N4BdIHQ==}
     engines: {node: '>=14.19 <=16.x', yarn: '>=1.15'}
     hasBin: true
     requiresBuild: true
