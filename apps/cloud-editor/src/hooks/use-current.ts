@@ -1,8 +1,11 @@
-import { useEnvironments, useProjects, useSchema } from '@kiqr/react'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-
-import { useSession } from '@kiqr/react-hooks'
+import {
+  useEnvironments,
+  useProjects,
+  useSchema,
+  useSession,
+} from '@kiqr/react-hooks'
 
 import type {
   ContentType,

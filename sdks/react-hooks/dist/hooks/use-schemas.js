@@ -39,27 +39,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useSession = void 0;
+exports.useSchemas = void 0;
 var react_1 = require("react");
 var kiqr_context_1 = require("../kiqr-context");
 var management_api_sdk_1 = require("@kiqr/management-api-sdk");
 var swr_1 = __importDefault(require("swr"));
-var getUser = function (accessToken) { return __awaiter(void 0, void 0, void 0, function () {
+var getSchemas = function (accessToken, projectId) { return __awaiter(void 0, void 0, void 0, function () {
     var configuration, api;
     return __generator(this, function (_a) {
         configuration = new management_api_sdk_1.Configuration({ accessToken: accessToken });
-        api = new management_api_sdk_1.UserApi(configuration);
+        api = new management_api_sdk_1.SchemasApi(configuration);
         return [2 /*return*/, new Promise(function (resolve, reject) {
                 return api
-                    .getUser()
+                    .getSchemas(projectId)
                     .then(function (response) { return resolve(response.data); })
                     .catch(function (error) { return reject(error.message); });
             })];
     });
 }); };
-var useSession = function () {
+var useSchemas = function (projectId) {
+    if (projectId === void 0) { projectId = undefined; }
     var token = (0, react_1.useContext)(kiqr_context_1.KiqrContext).token;
-    var _a = (0, swr_1.default)([token === null || token === void 0 ? void 0 : token.access_token, '/user'], getUser), user = _a.data, userError = _a.error;
-    return { user: user, userError: userError, token: token };
+    var _a = (0, swr_1.default)([projectId, token === null || token === void 0 ? void 0 : token.access_token], function (projectId, token) { return getSchemas(token, projectId); }), schemas = _a.data, schemasError = _a.error;
+    return { schemas: schemas, schemasError: schemasError, token: token };
 };
-exports.useSession = useSession;
+exports.useSchemas = useSchemas;

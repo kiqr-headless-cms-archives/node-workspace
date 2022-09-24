@@ -5,6 +5,7 @@
     "module": "CommonJS",
     "noImplicitAny": true,
     "esModuleInterop": true,
+    "jsx": "react",
     "outDir": "dist",
     "rootDir": "./src",
     "lib": [

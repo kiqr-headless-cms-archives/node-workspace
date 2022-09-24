@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { KiqrContext, KiqrContextConfig } from '@kiqr/react'
+import { KiqrContext } from '../kiqr-context'
 import { Configuration, User, UserApi } from '@kiqr/management-api-sdk'
 
 import useSWR from 'swr'
@@ -17,7 +17,7 @@ const getUser = async (accessToken: string): Promise<User> => {
 }
 
 export const useSession = () => {
-  const { token } = useContext<KiqrContextConfig>(KiqrContext)
+  const { token } = useContext(KiqrContext)
   const { data: user, error: userError } = useSWR(
     [token?.access_token, '/user'],
     getUser
