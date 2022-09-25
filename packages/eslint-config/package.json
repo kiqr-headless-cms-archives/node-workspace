@@ -1,0 +1,32 @@
+{
+  "name": "eslint-config-kiqr",
+  "homepage": "https://kiqr.dev",
+  "version": "0.1.0",
+  "description": "Eslint config for KIQR's Node workspace",
+  "author": "KIQR",
+  "keywords": [
+    "kiqr",
+    "eslint",
+    "config"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "eslint-config-xo-space": "^0.27.0",
+    "eslint-plugin-mocha": "^9.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-unicorn": "^36.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "files": [
+    "/index.js"
+  ],
+  "scripts": {
+    "test": "eslint -c index.js ."
+  }
+}

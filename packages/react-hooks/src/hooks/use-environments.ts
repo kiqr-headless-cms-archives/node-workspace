@@ -1,29 +1,34 @@
-import { useContext } from 'react'
-import { KiqrContext } from '../kiqr-context'
-import { Configuration, Environment, EnvironmentsApi } from '@kiqr/management-api-sdk'
+import {useContext} from 'react'
+import {KiqrContext} from '../kiqr-context'
+import {Configuration, Environment, EnvironmentsApi} from '@kiqr/management-api-sdk'
 
 import useSWR from 'swr'
+import {Oauth2Token} from '../oauth2-config'
 
 const getEnvironments = async (
-  accessToken: string
+  accessToken: string,
 ): Promise<Environment[]> => {
-  const configuration = new Configuration({ accessToken: accessToken })
+  const configuration = new Configuration({accessToken: accessToken})
   const api = new EnvironmentsApi(configuration)
 
   return new Promise((resolve, reject) => {
-    return api
-      .getEnvironments()
-      .then((response) => resolve(response.data))
-      .catch((error) => reject(error.message))
+    api
+    .getEnvironments()
+    .then(response => resolve(response.data))
+    .catch(error => reject(error.message))
   })
 }
 
-export const useEnvironments = () => {
-  const { token } = useContext(KiqrContext)
-  const { data: environments, error: environmentsError } = useSWR(
+export const useEnvironments = () : {
+  environments: Environment[],
+  environmentsError: any,
+  token: Oauth2Token
+} => {
+  const {token} = useContext(KiqrContext)
+  const {data: environments, error: environmentsError} = useSWR(
     [token?.access_token, '/environments'],
-    getEnvironments
+    getEnvironments,
   )
 
-  return { environments, environmentsError, token }
+  return {environments, environmentsError, token}
 }
