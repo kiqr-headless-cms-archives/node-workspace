@@ -88,6 +88,5 @@
   "keywords": [
     "oclif"
   ],
-  "types": "dist/index.d.ts",
-  "gitHead": "c62677b3bc9f8f67ca57581eda3abbe95d6ecd74"
+  "types": "dist/index.d.ts"
 }
