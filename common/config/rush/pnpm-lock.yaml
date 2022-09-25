@@ -86,7 +86,8 @@ importers:
     specifiers:
       '@kiqr/management-api-sdk': workspace:*
       '@kiqr/react': workspace:*
-      '@kiqr/react-hooks': workspace:^0.0.1
+      '@kiqr/react-hooks': workspace:*
+      '@types/inflection': ^1.13.0
       '@types/node': ^18.7.18
       '@types/react': ^18.0.20
       '@types/react-dom': ^18.0.6
@@ -97,6 +98,7 @@ importers:
       eslint-config-next: 12.3.0
       eslint-config-prettier: ^8.5.0
       eslint-plugin-prettier: ^4.2.1
+      inflection: ^1.13.4
       next: 12.3.0
       next-auth: ^4.10.3
       postcss: ^8.4.16
@@ -108,6 +110,7 @@ importers:
       typescript: ^4.8.3
     dependencies:
       '@kiqr/react': link:../../sdks/react
+      inflection: 1.13.4
       next: 12.3.0_react-dom@18.2.0+react@18.2.0
       next-auth: 4.10.3_react-dom@18.2.0+react@18.2.0
       react: 18.2.0
@@ -116,6 +119,7 @@ importers:
     devDependencies:
       '@kiqr/management-api-sdk': link:../../sdks/management-api-sdk
       '@kiqr/react-hooks': link:../../sdks/react-hooks
+      '@types/inflection': 1.13.0
       '@types/node': 18.7.18
       '@types/react': 18.0.21
       '@types/react-dom': 18.0.6
