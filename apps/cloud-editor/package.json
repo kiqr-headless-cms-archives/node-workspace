@@ -1,6 +1,6 @@
 {
   "name": "@kiqr/cloud-editor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev --port 8000",
@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@kiqr/react": "^0.0.1",
-    "@kiqr/react-hooks": "^0.1.0",
+    "@kiqr/react": "^0.0.2",
+    "@kiqr/react-hooks": "^0.1.1",
     "inflection": "^1.13.4",
     "next": "12.3.0",
     "react": "^18.2.0",
@@ -18,7 +18,7 @@
     "react-icons": "^4.4.0"
   },
   "devDependencies": {
-    "@kiqr/management-api-sdk": "^0.1.1",
+    "@kiqr/management-api-sdk": "^0.1.2",
     "@types/inflection": "^1.13.0",
     "@types/node": "^18.7.18",
     "@types/react": "^18.0.20",
