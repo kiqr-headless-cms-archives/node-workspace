@@ -9,15 +9,19 @@ import inflection from 'inflection'
 
 const ContentTypePage: NextPage = () => {
   const { currentContentType, currentProject } = useCurrent()
-  
+
   const resources: string[] = []
 
   const singularizedContentTypeName = currentContentType
-    ? inflection.transform(currentContentType?.name, ['singularize'])?.toLowerCase()
+    ? inflection
+        .transform(currentContentType?.name, ['singularize'])
+        ?.toLowerCase()
     : null
 
   const pluralizedContentTypeName = currentContentType
-    ? inflection.transform(currentContentType?.name, ['pluralize'])?.toLowerCase()
+    ? inflection
+        .transform(currentContentType?.name, ['pluralize'])
+        ?.toLowerCase()
     : null
 
   return (
@@ -61,8 +65,8 @@ const ContentTypePage: NextPage = () => {
                     We couldn&apos;t find any{' '}
                     <strong>{pluralizedContentTypeName}</strong> in the{' '}
                     database. Get started now by creating a new{' '}
-                    {singularizedContentTypeName}{' '}
-                    or import a collection of {pluralizedContentTypeName}.
+                    {singularizedContentTypeName} or import a collection of{' '}
+                    {pluralizedContentTypeName}.
                   </p>
                   <div className="gap-x-5 flex">
                     <Button

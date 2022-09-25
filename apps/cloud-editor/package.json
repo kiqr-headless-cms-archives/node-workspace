@@ -10,16 +10,15 @@
   },
   "dependencies": {
     "next": "12.3.0",
-    "next-auth": "^4.10.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
-    "@kiqr/react": "workspace:*",
-    "inflection": "^1.13.4"
+    "inflection": "^1.13.4",
+    "@kiqr/react": "*",
+    "@kiqr/react-hooks": "*"
   },
   "devDependencies": {
-    "@kiqr/management-api-sdk": "workspace:*",
-    "@kiqr/react-hooks": "workspace:*",
+    "@kiqr/management-api-sdk": "*",
     "@types/node": "^18.7.18",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",

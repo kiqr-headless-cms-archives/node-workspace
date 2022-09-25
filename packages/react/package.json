@@ -64,8 +64,8 @@
     "react-icons": "^4"
   },
   "dependencies": {
-    "@kiqr/management-api-sdk": "workspace:*",
-    "@kiqr/react-hooks": "workspace:*",
+    "@kiqr/management-api-sdk": "*",
+    "@kiqr/react-hooks": "*",
     "axios": "^0.27.2",
     "swr": "^1.3.0"
   },
