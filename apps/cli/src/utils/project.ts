@@ -1,8 +1,8 @@
-import { dump, load } from "js-yaml";
-import { findProjectFileInDirectory, findProjectRoot } from "./"
+import {dump, load} from 'js-yaml'
+import {findProjectFileInDirectory, findProjectRoot} from './'
 
 import fs from 'node:fs'
-import path from "node:path"
+import path from 'node:path'
 
 export interface ProjectConfig {
   id: string
@@ -17,10 +17,12 @@ const hasConfig = (): boolean => {
 
 const parseProjectConfigFromFile = (): ProjectConfig | undefined => {
   const configPath = findProjectFileInDirectory(path.resolve())
-  if (!configPath) { return undefined }
+  if (!configPath) {
+    return undefined
+  }
 
   return load(fs.readFileSync(configPath, 'utf8')) as ProjectConfig
-} 
+}
 
 const getConfigValue = <T>(key: keyof ProjectConfig): T | undefined => {
   const projectConfig = parseProjectConfigFromFile()
@@ -29,7 +31,7 @@ const getConfigValue = <T>(key: keyof ProjectConfig): T | undefined => {
   }
 }
 
-const setConfigValue = <T extends any>(key: string, value: T): void => {
+const setConfigValue = <T>(key: string, value: T): void => {
   const projectConfig = parseProjectConfigFromFile()
   const filePath = findProjectFileInDirectory(path.resolve())
 
@@ -42,5 +44,5 @@ const setConfigValue = <T extends any>(key: string, value: T): void => {
 export const project = {
   hasConfig,
   getConfigValue,
-  setConfigValue
+  setConfigValue,
 }

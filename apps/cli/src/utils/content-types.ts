@@ -7,8 +7,6 @@ import inflection from 'inflection'
 import fs from 'node:fs'
 import path from 'node:path'
 
-class ContentTypeFilenameConflict extends Error {}
-
 export const buildFieldsFromArgs = (fieldsFlag: string): ContentTypeField[] => {
   const explodedFieldsFlag = fieldsFlag.split(' ')
   const fields: ContentTypeField[] = []
@@ -38,14 +36,16 @@ const saveContentTypeToFile = (contentType: ContentType, force = false) => {
     throw new Error('A kiqr.json file exists already at: ' + targetPath)
   }
 
-  fs.writeFileSync(targetPath, dump(contentType), { encoding: 'utf8', flag: 'w' })
+  fs.writeFileSync(targetPath, dump(contentType), {encoding: 'utf8', flag: 'w'})
 }
 
 const readContentTypeFromFile = (id: string): ContentType | undefined => {
   let fileName = id
 
   // Add .yaml extension if its missing.
-  if (!_.endsWith(fileName, '.yaml')) { fileName += '.yaml' }
+  if (!_.endsWith(fileName, '.yaml')) {
+    fileName += '.yaml'
+  }
 
   // Full filePath to content type file.
   const filePath = path.join(contentTypeDirectory(), fileName)
@@ -59,7 +59,7 @@ const readContentTypeFromFile = (id: string): ContentType | undefined => {
 
 const getAllContentTypes = (): any => {
   // Create content types directory if it doesn't exists.
-  const targetDir= contentTypeDirectory()
+  const targetDir = contentTypeDirectory()
   createDirectoryPath(contentTypeDirectory())
 
   const contentTypeFiles = []
@@ -75,5 +75,5 @@ const getAllContentTypes = (): any => {
 export const contentTypes = {
   saveToFile: saveContentTypeToFile,
   all: getAllContentTypes,
-  read: readContentTypeFromFile
+  read: readContentTypeFromFile,
 }

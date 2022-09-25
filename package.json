@@ -4,7 +4,7 @@
   "repository": "git@github.com:kiqr/node-workspace.git",
   "license": "MIT",
   "scripts": {
-    "generate:sdks": "npm generate:sdks:management-api-typescript",
+    "generate:sdks": "yarn generate:sdks:management-api-typescript",
     "generate:sdks:management-api-typescript": "openapi-generator generate -g typescript-axios -o sdks/management-api-sdk -c ./common/config/generators/management-api-typescript.yaml"
   },
   "devDependencies": {
