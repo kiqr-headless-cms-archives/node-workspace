@@ -1,7 +1,7 @@
 {
   "name": "@kiqr/react-hooks",
   "homepage": "https://kiqr.dev",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "React hooks the KIQR Management API",
   "author": "KIQR",
   "keywords": [
@@ -19,11 +19,11 @@
     "prepack": "yarn build"
   },
   "dependencies": {
+    "@kiqr/management-api-sdk": "^0.1.1",
     "axios": "^0.27.2",
-    "ts-node": "^10.9.1",
-    "@kiqr/management-api-sdk": "*",
     "react": "^18.2.0",
-    "swr": "^1.3.0"
+    "swr": "^1.3.0",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/node": "^18.7.18",
