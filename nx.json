@@ -1,0 +1,47 @@
+{
+  "npmScope": "kiqr",
+  "workspaceLayout": {
+    "appsDir": "apps",
+    "libsDir": "packages"
+  },
+  "extends": "nx/presets/npm.json",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "postpack",
+          "posttest",
+          "prepack",
+          "test",
+          "version",
+          "copy-files",
+          "dev",
+          "prepare",
+          "storybook",
+          "build-storybook",
+          "chromatic"
+        ],
+        "accessToken": "NTQzM2NmOGMtZmU2OC00MDNiLTg0NDYtZTg2N2RjODgxMGE4fHJlYWQtd3JpdGU="
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "prepare": {
+      "dependsOn": [
+        "^prepare"
+      ]
+    }
+  },
+  "affected": {
+    "defaultBase": "main"
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json"
+}

@@ -1,12 +1,8 @@
 {
-  "name": "@kiqr/node-workspace",
-  "version": "0.1.0",
-  "description": "Monorepo for KIQR.CLOUD, CLI, React and Node SDKs.",
-  "main": "index.js",
-  "repository": "git@github.com:kiqr/node-workspace.git",
-  "author": "KIQR",
-  "license": "MIT",
   "private": true,
+  "description": "Monorepo for KIQR.CLOUD, CLI, React and Node SDKs.",
+  "repository": "git@github.com:kiqr/node-workspace.git",
+  "license": "MIT",
   "scripts": {
     "generate:sdks": "pnpm generate:sdks:management-api-typescript",
     "generate:sdks:management-api-typescript": "openapi-generator generate -g typescript-axios -o sdks/management-api-sdk -c ./common/config/generators/management-api-typescript.yaml"
@@ -14,6 +10,8 @@
   "devDependencies": {
     "@jeliasson/husky-hooks": "^0.3.2",
     "@openapitools/openapi-generator-cli": "^2.5.2",
-    "husky": "^8.0.1"
+    "husky": "^8.0.1",
+    "nx": "14.7.13",
+    "@nrwl/nx-cloud": "latest"
   }
 }
