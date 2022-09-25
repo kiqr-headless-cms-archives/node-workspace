@@ -63,11 +63,5 @@ jspm_packages/
 .idea/
 *.iml
 
-# Rush temporary files
-common/deploy/
-common/temp/
-common/autoinstallers/*/.npmrc
-**/.rush/temp/
-
 # Heft temporary files
 .heft

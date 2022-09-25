@@ -8,10 +8,6 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "rush build",
-    "build:cli": "rush build --to tag:cli",
-    "build:cloud": "rush build --to tag:cloud",
-    "kiqr-dev": "rush build --to tag:cli && kiqr $1",
     "generate:sdks": "pnpm generate:sdks:management-api-typescript",
     "generate:sdks:management-api-typescript": "openapi-generator generate -g typescript-axios -o sdks/management-api-sdk -c ./common/config/generators/management-api-typescript.yaml"
   },
