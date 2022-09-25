@@ -63,7 +63,7 @@ EXAMPLES
   $ kiqr create --kind collection --name Posts --fields="title:string description:text"
 ```
 
-_See code: [dist/commands/create.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/create.ts)_
+_See code: [dist/commands/create.ts](https://github.com/kiqr/cli/blob/v0.0.16/dist/commands/create.ts)_
 
 ## `kiqr hello PERSON`
 
@@ -87,7 +87,7 @@ EXAMPLES
   hello friend from oclif! (./src/commands/hello/index.ts)
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/hello/index.ts)_
+_See code: [dist/commands/hello/index.ts](https://github.com/kiqr/cli/blob/v0.0.16/dist/commands/hello/index.ts)_
 
 ## `kiqr hello world`
 
@@ -145,7 +145,7 @@ EXAMPLES
   $ kiqr init --name "My Project"
 ```
 
-_See code: [dist/commands/init.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/init.ts)_
+_See code: [dist/commands/init.ts](https://github.com/kiqr/cli/blob/v0.0.16/dist/commands/init.ts)_
 
 ## `kiqr inspect CONTENTTYPE`
 
@@ -162,7 +162,7 @@ EXAMPLES
   $ kiqr inspect
 ```
 
-_See code: [dist/commands/inspect.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/inspect.ts)_
+_See code: [dist/commands/inspect.ts](https://github.com/kiqr/cli/blob/v0.0.16/dist/commands/inspect.ts)_
 
 ## `kiqr login`
 
@@ -179,7 +179,7 @@ EXAMPLES
   $ kiqr login
 ```
 
-_See code: [dist/commands/login.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/login.ts)_
+_See code: [dist/commands/login.ts](https://github.com/kiqr/cli/blob/v0.0.16/dist/commands/login.ts)_
 
 ## `kiqr logout`
 
@@ -196,7 +196,7 @@ EXAMPLES
   $ kiqr logout
 ```
 
-_See code: [dist/commands/logout.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/logout.ts)_
+_See code: [dist/commands/logout.ts](https://github.com/kiqr/cli/blob/v0.0.16/dist/commands/logout.ts)_
 
 ## `kiqr me`
 
@@ -213,7 +213,7 @@ EXAMPLES
   $ kiqr me
 ```
 
-_See code: [dist/commands/me.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/me.ts)_
+_See code: [dist/commands/me.ts](https://github.com/kiqr/cli/blob/v0.0.16/dist/commands/me.ts)_
 
 ## `kiqr plugins`
 
@@ -465,5 +465,5 @@ EXAMPLES
   $ kiqr push --force
 ```
 
-_See code: [dist/commands/push.ts](https://github.com/kiqr/cli/blob/v0.0.14/dist/commands/push.ts)_
+_See code: [dist/commands/push.ts](https://github.com/kiqr/cli/blob/v0.0.16/dist/commands/push.ts)_
 <!-- commandsstop -->

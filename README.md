@@ -1,28 +1,47 @@
-## KIQR - Node Workspace
+KIQR - Node Workspace
+---------------------
 
 This is the monorepo for KIQR.CLOUD, CLI, React and Node SDKs.
 
-### Development
+#### What's included?
+
+| Project            | Version | Npm package | Description |
+|--------------------|---------|-------------|---|
+| apps/cli           | [![npm version](https://badge.fury.io/js/@kiqr%2Fcli.svg)](https://badge.fury.io/js/@kiqr%2Fcli) | @kiqr/cli   |   |
+| apps/cloud-editor  | _n/a_ | _private_  |   |
+| packages/react-components  | [![npm version](https://badge.fury.io/js/@kiqr%2Freact-components.svg)](https://badge.fury.io/js/@kiqr%2Freact-components) | @kiqr/react-components  |   |
+| packages/react-hooks  | [![npm version](https://badge.fury.io/js/@kiqr%2Freact-hooks.svg)](https://badge.fury.io/js/@kiqr%2Freact-hooks) | @kiqr/react-hooks  |   |
+| sdks/management-api-sdk  | [![npm version](https://badge.fury.io/js/@kiqr%2Fmanagement-api-sdk.svg)](https://badge.fury.io/js/@kiqr%2Fmanagement-api-sdk) | @kiqr/management-api-sdk  |   |
+
+## Getting started
 
 #### Setup workspace and install dependencies for all projects
 
 ```console
-rush install
+lerna bootstrap
 ```
 
-#### Build all projects
+#### Start local version of KIQR.CLOUD
 
 ```console
-rush build
+lerna run dev
 ```
+
+#### Run commands on all projects
+
+```console
+lerna run build
+lerna run lint
+lerna run test
+```
+
+### Other
 
 #### Generate SDKs from OpenAPI specifications
 
 ```console
-pnpm generate:sdks
+yarn generate:sdks
 ```
-
-### Other
 
 #### Git Hooks
 

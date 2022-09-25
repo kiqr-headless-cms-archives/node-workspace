@@ -69,12 +69,11 @@ export const createProject = async (accessToken: string, payload: CreateProjectR
   })
 }
 
-
 export const createSchema = async (
   accessToken: string,
   projectId: string,
   lastSchemaVersion: string,
-  payload: CreateSchemaRequest
+  payload: CreateSchemaRequest,
 ): Promise<Schema> => {
   const configuration = new Configuration({accessToken: accessToken})
   const api = new SchemasApi(configuration)

@@ -1,6 +1,6 @@
 {
   "name": "@kiqr/cli",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "The command line application for KIQR Headless CMS.",
   "author": "KIQR",
   "bin": {
@@ -17,7 +17,7 @@
     "/oclif.manifest.json"
   ],
   "dependencies": {
-    "@kiqr/management-api-sdk": "workspace:*",
+    "@kiqr/management-api-sdk": "^0.1.1",
     "@oclif/core": "^1.13.10",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
@@ -49,6 +49,7 @@
     "eslint": "^8.23.1",
     "eslint-config-oclif": "^4",
     "eslint-config-oclif-typescript": "^1.0.2",
+    "eslint-plugin-unicorn": "^43.0.2",
     "globby": "^11",
     "mocha": "^9",
     "oclif": "^3",
@@ -88,6 +89,5 @@
   "keywords": [
     "oclif"
   ],
-  "types": "dist/index.d.ts",
-  "gitHead": "c62677b3bc9f8f67ca57581eda3abbe95d6ecd74"
+  "types": "dist/index.d.ts"
 }

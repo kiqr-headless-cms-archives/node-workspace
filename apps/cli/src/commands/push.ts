@@ -1,25 +1,31 @@
-import { Command, Flags } from "@oclif/core"
-import { contentTypes, createSchema, project, promptForString, ResponseError, session, view } from "../utils"
+/* eslint-disable camelcase */
+import {Command, Flags} from '@oclif/core'
+import {contentTypes, createSchema, project, promptForString, ResponseError, session, view} from '../utils'
 
 export default class PushCommand extends Command {
-  static description = "Push your local changes to KIQR.CLOUD"
+  static description = 'Push your local changes to KIQR.CLOUD'
   static examples = [
-    "<%= config.bin %> <%= command.id %>",
-    "<%= config.bin %> <%= command.id %> --force",
+    '<%= config.bin %> <%= command.id %>',
+    '<%= config.bin %> <%= command.id %> --force',
   ]
 
   static flags = {
     message: Flags.string({
-      char: "m",
-      description: "Write a meaningful commit message",
+      char: 'm',
+      description: 'Write a meaningful commit message',
     }),
   }
 
   public async run(): Promise<void> {
     const {isLoggedIn, token} = session()
 
-    if (!isLoggedIn) { return view('errors/unauthenticated') }
-    if (!project.hasConfig()) { return view("errors/config-not-found") }
+    if (!isLoggedIn) {
+      return view('errors/unauthenticated')
+    }
+
+    if (!project.hasConfig()) {
+      return view('errors/config-not-found')
+    }
 
     const {flags} = await this.parse(PushCommand)
     const payload = {
