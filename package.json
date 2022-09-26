@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "generate:sdks": "yarn generate:sdks:management-api-typescript",
-    "generate:sdks:management-api-typescript": "openapi-generator generate -g typescript-axios -o sdks/management-api-sdk -c ./common/config/generators/management-api-typescript.yaml"
+    "generate:sdks:management-api-typescript": "openapi-generator generate -g typescript-axios -o sdks/management-api-sdk -c ./config/generators/management-api-sdk.yaml"
   },
   "devDependencies": {
     "@jeliasson/husky-hooks": "^0.3.2",
