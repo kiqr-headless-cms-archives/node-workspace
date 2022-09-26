@@ -1,12 +1,8 @@
-# Name of workflow
 name: Main workflow
-
-# When workflow is triggered
 on:
   pull_request:
-    branches:
-      - main
-# Jobs to carry out
+    types: [opened, synchronize]
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -14,17 +10,22 @@ jobs:
       matrix:
         node-version: [16.x]
     steps:
-      # Get code from repo
       - name: Checkout code
-        uses: actions/checkout@v1
-      # Install NodeJS
+        uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      # Run rush install and build on our code
-      # - name: Install dependencies
-      #   run: |
-      #     node common/scripts/install-run-rush.js change -v
-      #     node common/scripts/install-run-rush.js install
-      #     node common/scripts/install-run-rush.js build --to tag:cli
+
+      - name: "Setup npm" # Add our registry to npm config
+        run: npm set "//registry.npmjs.org/:_authToken=${secrets.NPM_AUTH_TOKEN}"
+
+      - name: Install dependencies
+        run: npx lerna bootstrap
+
+      # Run code checks
+      - name: Lint & test
+        run: |
+          npx lerna run lint
+          npx lerna run test
