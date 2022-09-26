@@ -1,7 +1,7 @@
 {
   "name": "eslint-config-kiqr-typescript",
   "homepage": "https://kiqr.dev",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Eslint config for Typescript in KIQR's Node workspace",
   "author": "KIQR",
   "keywords": [
