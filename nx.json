@@ -1,5 +1,4 @@
 {
-  "npmScope": "@kiqr",
   "workspaceLayout": {
     "appsDir": "apps",
     "libsDir": "packages"
