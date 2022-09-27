@@ -121,7 +121,9 @@ const ContentTypePage: NextPage = () => {
                     <FaCircle />
                   </td>
                   <td>
-                    <Link href="#">
+                    <Link
+                      href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.id}`}
+                    >
                       <a>{resource.name}</a>
                     </Link>
                   </td>
