@@ -32,7 +32,6 @@ jobs:
   publish:
     name: Publish NPM packages
     needs: tests
-    if: github.event.pull_request.merged == true # Condition
     runs-on: ubuntu-latest
     strategy:
       matrix:
