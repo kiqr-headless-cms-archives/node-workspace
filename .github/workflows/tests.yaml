@@ -22,11 +22,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: npx lerna bootstrap
+        run: npm install
+        run: yarn lerna bootstrap
 
       # Run code checks
       - name: Lint & test
         run: |
-          npx lerna run lint
-          npx lerna run build
-          npx lerna run test
+          yarn lerna run lint
+          yarn lerna run build
+          yarn lerna run test
