@@ -1,0 +1,7 @@
+{
+    "apps/cli": "0.0.18",
+    "packages/eslint-config": "0.1.1",
+    "packages/eslint-config-typescript": "0.1.1",
+    "packages/react-hooks": "0.1.2",
+    "sdks/management-api-sdk": "0.1.3"
+  }

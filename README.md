@@ -10,6 +10,8 @@ This is the monorepo for KIQR.CLOUD, CLI, React and Node SDKs.
 | apps/cli           | [![npm version](https://badge.fury.io/js/@kiqr%2Fcli.svg)](https://badge.fury.io/js/@kiqr%2Fcli) | @kiqr/cli   |   |
 | apps/cloud-editor  | _n/a_ | _private_  |   |
 | packages/react-components  | [![npm version](https://badge.fury.io/js/@kiqr%2Freact-components.svg)](https://badge.fury.io/js/@kiqr%2Freact-components) | @kiqr/react-components  |   |
+| packages/eslint-config  | [![npm version](https://badge.fury.io/js/eslint-config-kiqr.svg)](https://badge.fury.io/js/eslint-config-kiqr) | eslint-config-kiqr  |   |
+| packages/eslint-config-typescript  | [![npm version](https://badge.fury.io/js/eslint-config-kiqr-typescript.svg)](https://badge.fury.io/js/eslint-config-kiqr-typescript) | eslint-config-kiqr-typescript  |   |
 | packages/react-hooks  | [![npm version](https://badge.fury.io/js/@kiqr%2Freact-hooks.svg)](https://badge.fury.io/js/@kiqr%2Freact-hooks) | @kiqr/react-hooks  |   |
 | sdks/management-api-sdk  | [![npm version](https://badge.fury.io/js/@kiqr%2Fmanagement-api-sdk.svg)](https://badge.fury.io/js/@kiqr%2Fmanagement-api-sdk) | @kiqr/management-api-sdk  |   |
 
