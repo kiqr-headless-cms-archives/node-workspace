@@ -20,6 +20,23 @@ export const promptForString = async (question: string, suggested?: string): Pro
 }
 
 /**
+ * Prompt for confirmation.
+ * Ask's a question and expects user to answer with a yes or no.
+ *
+ * @param {string} question The message to show before input.
+ * @returns {string} The written answer.
+*/
+export const promptForConfirmation = async (question: string): Promise<string> => {
+  const response = await inquirer.prompt({
+    type: 'confirm',
+    name: 'value',
+    message: question,
+  }).then()
+
+  return response.value
+}
+
+/**
  * Render a list of options to select.
  * Ask's a question and expects user to answer with one of the predefined options.
  *

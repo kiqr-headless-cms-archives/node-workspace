@@ -1,5 +1,5 @@
 import {Command, Flags} from '@oclif/core'
-import {createDirectoryPath, createProject, findProjectFileInDirectory, promptForString, ResponseError, session, view} from '../utils'
+import {createDirectoryPath, createProject, findProjectFileInDirectory, promptForConfirmation, promptForString, ResponseError, session, view} from '../utils'
 import {Project} from '@kiqr/management-api-sdk'
 import {dump} from 'js-yaml'
 
@@ -33,7 +33,7 @@ export default class InitCommand extends Command {
     this.targetDirectory = path.resolve(args.targetDirectory ?? '.')
 
     // Check that theres no project in the targetDir already.
-    await this.throwIfConflictingProject()
+    await this.throwOrDeleteIfConflictingProject()
 
     // Create target directory if it does not exist.
     await createDirectoryPath(this.targetDirectory)
@@ -60,14 +60,20 @@ export default class InitCommand extends Command {
   }
 
   // Check for conflicting projects
-  private async throwIfConflictingProject(): Promise<void> {
+  private async throwOrDeleteIfConflictingProject(): Promise<void> {
     if (!this.targetDirectory)
       return
 
     const conflictingFile = findProjectFileInDirectory(this.targetDirectory)
 
     if (conflictingFile) {
-      throw new Error(`A kiqr.yaml file exists at: ${conflictingFile}`)
+      this.log(`A kiqr.yaml file already exists at: ${conflictingFile}`)
+      const deleteFile = await promptForConfirmation('Choose "yes" if you want to delete it and replace it with a new project')
+      if (deleteFile) {
+        fs.unlinkSync(conflictingFile)
+      } else {
+        throw new Error(`A kiqr.yaml file exists at: ${conflictingFile}`)
+      }
     }
   }
 
