@@ -1,7 +1,10 @@
-name: Code checks
+name: Tests
 on:
   pull_request:
     types: [opened, synchronize]
+  push:
+    branches:
+      - main
 
 jobs:
   lint:
