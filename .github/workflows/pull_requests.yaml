@@ -18,9 +18,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: "Setup npm" # Add our registry to npm config
-        run: npm set "//registry.npmjs.org/:_authToken=${secrets.NPM_AUTH_TOKEN}"
-
       - name: Install dependencies
         run: npx lerna bootstrap
 
@@ -28,4 +25,5 @@ jobs:
       - name: Lint & test
         run: |
           npx lerna run lint
+          npx lerna run build
           npx lerna run test
