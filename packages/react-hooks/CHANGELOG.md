@@ -6,6 +6,20 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### [0.1.3](https://www.github.com/kiqr/node-workspace/compare/react-hooks-v0.1.2...react-hooks-v0.1.3) (2022-09-27)
 
 
+### Bug Fixes
+
+* update to wildcard plugin versions ([#39](https://www.github.com/kiqr/node-workspace/issues/39)) ([adaa6d3](https://www.github.com/kiqr/node-workspace/commit/adaa6d3c7ee3d40c5e4018c9ebdc28c636cf56d4))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @kiqr/management-api-sdk bumped from * to ^0.2.0
+
+### [0.1.3](https://www.github.com/kiqr/node-workspace/compare/react-hooks-v0.1.2...react-hooks-v0.1.3) (2022-09-27)
+
+
 ### Dependencies
 
 * The following workspace dependencies were updated
