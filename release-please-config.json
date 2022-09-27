@@ -1,4 +1,5 @@
 {
+  "bootstrap-sha": "dd45fd8394cf15c587ca3f1ac2a0a7a7b7f2cd23",
   "packages": {
     "apps/cli": {},
     "packages/eslint-config": {},
