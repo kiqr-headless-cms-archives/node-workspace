@@ -1,6 +1,6 @@
 {
   "name": "@kiqr/cli",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "The command line application for KIQR Headless CMS.",
   "author": "KIQR",
   "bin": {

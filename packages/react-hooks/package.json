@@ -1,7 +1,7 @@
 {
   "name": "@kiqr/react-hooks",
   "homepage": "https://kiqr.dev",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "React hooks the KIQR Management API",
   "author": "KIQR",
   "keywords": [
