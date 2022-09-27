@@ -22,7 +22,7 @@ module.exports = {
     "no-unused-expressions": "off",
     "node/no-unsupported-features/es-syntax": "off",
     "node/no-missing-import": ["error", {
-      "tryExtensions": [".js", ".ts"]
+      "tryExtensions": [".js", ".ts", ".tsx"]
     }],
     "valid-jsdoc": ["warn", { "requireReturnType": false, "requireParamType": false }]
   }

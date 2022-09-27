@@ -3,14 +3,22 @@ import type { NextPage } from 'next'
 import { Box, Button, Card, Heading } from '@kiqr/react'
 import { PageTitle } from '../../../../../components'
 import { useCurrent } from '../../../../../hooks'
+import { useResources } from '@kiqr/react-hooks'
+import { FaCircle } from 'react-icons/fa'
 
 import Image from 'next/image'
 import inflection from 'inflection'
+import Link from 'next/link'
 
 const ContentTypePage: NextPage = () => {
-  const { currentContentType, currentProject } = useCurrent()
+  const { currentContentType, currentEnvironment, currentProject } =
+    useCurrent()
 
-  const resources: string[] = []
+  const { resources } = useResources(
+    currentProject?.id,
+    currentEnvironment?.id,
+    currentContentType?.id
+  )
 
   const singularizedContentTypeName = currentContentType
     ? inflection
@@ -48,7 +56,7 @@ const ContentTypePage: NextPage = () => {
         </a>
       </div>*/}
 
-      {currentContentType ? (
+      {currentContentType && resources?.length == 0 ? (
         <Box>
           <div className="container mx-auto py-24">
             <div className="flex flex-wrap">
@@ -103,10 +111,28 @@ const ContentTypePage: NextPage = () => {
                 <th>Name</th>
                 <th>Updated at</th>
                 <th>Created at</th>
-                <th></th>
+                <th className="actions">Actions</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              {resources.map((resource) => (
+                <tr key={resource.id}>
+                  <td className="mini">
+                    <FaCircle />
+                  </td>
+                  <td>
+                    <Link href="#">
+                      <a>{resource.name}</a>
+                    </Link>
+                  </td>
+                  <td>{resource.updated_at}</td>
+                  <td>{resource.created_at}</td>
+                  <td className="actions">
+                    <Button text="Edit" size="xs" />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </Card>
       ) : null}
