@@ -31,11 +31,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: "https://registry.npmjs.org"
 
-      - name: Build Packages
+      - name: Test & build packages
         if: ${{ steps.release.outputs.releases_created }}
         run: |
           npm install
           npx lerna bootstrap
+          npx lerna test
           npx lerna build
 
       # Release Please has already incremented versions and published tags, so we just
