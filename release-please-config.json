@@ -1,11 +1,24 @@
 {
   "last-release-sha": "bf2c8f643ee49e5db3c772c20f374c1b0c23eb68",
   "monorepo-tags": true,
+  "plugins": [
+    "node-workspace"
+  ],
   "packages": {
-    "apps/cli": {},
-    "packages/eslint-config": {},
-    "packages/eslint-config-typescript": {},
-    "packages/react-hooks": {},
-    "sdks/management-api-sdk": {}
+    "apps/cli": {
+      "release-as": ""
+    },
+    "packages/eslint-config": {
+      "release-as": ""
+    },
+    "packages/eslint-config-typescript": {
+      "release-as": ""
+    },
+    "packages/react-hooks": {
+      "release-as": ""
+    },
+    "sdks/management-api-sdk": {
+      "release-as": ""
+    }
   }
 }
