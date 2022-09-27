@@ -34,9 +34,9 @@ jobs:
       - name: Test & build packages
         if: ${{ steps.release.outputs.releases_created }}
         run: |
-          yarn lerna bootstrap
-          yarn lerna run test
-          yarn lerna run build
+          npx lerna bootstrap
+          npx lerna run test
+          npx lerna run build
 
       # Release Please has already incremented versions and published tags, so we just
       # need to publish all unpublished versions to NPM here
@@ -45,4 +45,4 @@ jobs:
         if: ${{ steps.release.outputs.releases_created }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
-        run: npx lerna publish from-package --no-push --no-private --no-git-reset --yes
+        run: npx lerna publish from-package --no-push --no-private --no-git-reset --no-git-reset --yes
