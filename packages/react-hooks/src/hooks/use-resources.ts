@@ -9,7 +9,7 @@ const getResources = async (
   accessToken: string,
   projectId: string,
   environmentId: string,
-  contentType: string
+  contentType: string,
 ): Promise<Resource[]> => {
   const configuration = new Configuration({accessToken: accessToken})
   const api = new ResourcesApi(configuration)
