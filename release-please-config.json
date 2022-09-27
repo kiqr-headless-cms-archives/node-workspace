@@ -1,5 +1,6 @@
 {
-  "bootstrap-sha": "bf2c8f643ee49e5db3c772c20f374c1b0c23eb68",
+  "last-release-sha": "bf2c8f643ee49e5db3c772c20f374c1b0c23eb68",
+  "monorepo-tags": true,
   "packages": {
     "apps/cli": {},
     "packages/eslint-config": {},
