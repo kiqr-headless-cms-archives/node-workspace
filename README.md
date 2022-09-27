@@ -24,7 +24,7 @@ lerna bootstrap
 #### Start local version of KIQR.CLOUD
 
 ```console
-lerna run dev
+foreman start
 ```
 
 #### Run commands on all projects
