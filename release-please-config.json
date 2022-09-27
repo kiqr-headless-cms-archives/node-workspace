@@ -1,0 +1,9 @@
+{
+  "packages": {
+    "apps/cli": {},
+    "packages/eslint-config": {},
+    "packages/eslint-config-typescript": {},
+    "packages/react-hooks": {},
+    "sdks/management-api-sdk": {}
+  }
+}
