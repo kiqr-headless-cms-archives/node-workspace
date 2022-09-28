@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import { Heading } from '@kiqr/react'
+import { Heading } from '@kiqr/react-components'
 import { PageTitle } from '../../../components'
 
 const ActivityLog: NextPage = () => {

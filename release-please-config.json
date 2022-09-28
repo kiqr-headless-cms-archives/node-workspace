@@ -13,6 +13,9 @@
     "packages/eslint-config-typescript": {
       "release-as": ""
     },
+    "packages/react-components": {
+      "release-as": ""
+    },
     "packages/react-hooks": {
       "release-as": ""
     },

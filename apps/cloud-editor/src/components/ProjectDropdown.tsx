@@ -1,5 +1,5 @@
 import { Project } from '@kiqr/management-api-sdk'
-import { Dropdown } from '@kiqr/react'
+import { Dropdown } from '@kiqr/react-components'
 import { ReactElement } from 'react'
 
 export const ProjectDropdown = ({
