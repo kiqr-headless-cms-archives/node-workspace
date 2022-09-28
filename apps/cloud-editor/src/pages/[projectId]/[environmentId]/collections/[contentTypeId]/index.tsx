@@ -122,7 +122,7 @@ const ContentTypePage: NextPage = () => {
                   </td>
                   <td>
                     <Link
-                      href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.id}`}
+                      href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
                     >
                       <a>{resource.name}</a>
                     </Link>
