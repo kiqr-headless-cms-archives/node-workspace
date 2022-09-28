@@ -67,11 +67,11 @@ const ResourcePage: NextPage = () => {
             title="Delete resource"
             subtitle="Unpublish and archive resource"
           >
+            <p className="text-xs px-5 pt-0">
+              Deleting a resource will unpublish and archive it. It will be{' '}
+              <strong>permanently deleted</strong> after 30 days.
+            </p>
             <Padding>
-              <p className="mb-5">
-                Deleting a resource will unpublish and archive it. It will be{' '}
-                <strong>permanently deleted</strong> after 30 days.
-              </p>
               <Button text="Delete resource" type="danger" size="xs" />
             </Padding>
           </Card>
