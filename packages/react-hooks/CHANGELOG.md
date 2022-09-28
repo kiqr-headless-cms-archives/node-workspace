@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.0](https://www.github.com/kiqr/node-workspace/compare/react-hooks-v0.1.3...react-hooks-v0.2.0) (2022-09-28)
+
+
+### Features
+
+* Added a useResource() hook ([#46](https://www.github.com/kiqr/node-workspace/issues/46)) ([b31a923](https://www.github.com/kiqr/node-workspace/commit/b31a923dc23759b876b9c457297dffae03c8058b))
+
 ### [0.1.3](https://www.github.com/kiqr/node-workspace/compare/react-hooks-v0.1.2...react-hooks-v0.1.3) (2022-09-27)
 
 
