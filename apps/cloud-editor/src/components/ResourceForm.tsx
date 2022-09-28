@@ -66,7 +66,7 @@ export const ResourceForm = ({ values, contentType }: ResourceFormProps) => {
             <TabList>
               <Tab
                 selectedClassName="font-bold text-primary-700 bg-neutral-50"
-                className="flex w-full px-5 py-4 items-center gap-x-1 text-xs hover:bg-white border-b cursor-pointer"
+                className="flex w-full px-5 py-4 items-center gap-x-1 text-xs border-b cursor-pointer"
               >
                 <div className="mr-3">
                   <FaWrench />
@@ -74,8 +74,8 @@ export const ResourceForm = ({ values, contentType }: ResourceFormProps) => {
                 <span>General settings</span>
               </Tab>
               <Tab
-                selectedClassName="font-bold text-primary-700"
-                className="flex w-full px-5 py-4 items-center gap-x-1 text-xs hover:bg-white border-b cursor-pointer"
+                selectedClassName="font-bold text-primary-700 bg-neutral-50"
+                className="flex w-full px-5 py-4 items-center gap-x-1 text-xs border-b cursor-pointer"
               >
                 <div className="mr-3">
                   <FaGoogle />
@@ -116,7 +116,11 @@ export const ResourceForm = ({ values, contentType }: ResourceFormProps) => {
                 <Field key={field.id} field={field} />
               ))}
             </TabPanel>
-            <TabPanel>SEO SETTINGS</TabPanel>
+            <TabPanel>
+              {contentType.fields.map((field) => (
+                <Field key={field.id} field={field} />
+              ))}
+            </TabPanel>
           </main>
         </div>
       </Card>
