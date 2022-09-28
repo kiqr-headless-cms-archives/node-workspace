@@ -1,5 +1,6 @@
 import { Card } from '@kiqr/react-components'
 import { FaGoogle, FaWrench } from 'react-icons/fa'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 
 import type {
   ContentType,
@@ -51,7 +52,7 @@ export const ResourceForm = ({ values, contentType }: ResourceFormProps) => {
     : null
 
   return (
-    <div>
+    <Tabs>
       <Card
         title="General settings"
         subtitle={
@@ -62,27 +63,29 @@ export const ResourceForm = ({ values, contentType }: ResourceFormProps) => {
       >
         <div className="flex border-t">
           <aside className="border-r w-60">
-            <ul>
-              <li>
-                <button className="font-bold flex w-full px-5 py-4 items-center gap-x-1 text-xs hover:bg-white border-b bg-neutral-50 text-primary-700">
-                  <div className="mr-3">
-                    <FaWrench />
-                  </div>
-                  <span>General</span>
-                </button>
-              </li>
-              <li>
-                <button className="flex w-full px-5 py-4 items-center gap-x-1 text-xs hover:bg-white border-b text-neutral-500">
-                  <div className="mr-3">
-                    <FaGoogle />
-                  </div>
-                  <span>SEO Settings</span>
-                </button>
-              </li>
-            </ul>
+            <TabList>
+              <Tab
+                selectedClassName="font-bold text-primary-700 bg-neutral-50"
+                className="flex w-full px-5 py-4 items-center gap-x-1 text-xs hover:bg-white border-b cursor-pointer"
+              >
+                <div className="mr-3">
+                  <FaWrench />
+                </div>
+                <span>General settings</span>
+              </Tab>
+              <Tab
+                selectedClassName="font-bold text-primary-700"
+                className="flex w-full px-5 py-4 items-center gap-x-1 text-xs hover:bg-white border-b cursor-pointer"
+              >
+                <div className="mr-3">
+                  <FaGoogle />
+                </div>
+                <span>SEO Settings</span>
+              </Tab>
+            </TabList>
           </aside>
           <main className="flex-1">
-            <section id="general">
+            <TabPanel>
               <div className="flex flex-col w-full p-5 border-b border-neutral-200 bg-white relative">
                 <label
                   htmlFor="name"
@@ -112,10 +115,11 @@ export const ResourceForm = ({ values, contentType }: ResourceFormProps) => {
               {contentType.fields.map((field) => (
                 <Field key={field.id} field={field} />
               ))}
-            </section>
+            </TabPanel>
+            <TabPanel>SEO SETTINGS</TabPanel>
           </main>
         </div>
       </Card>
-    </div>
+    </Tabs>
   )
 }
