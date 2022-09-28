@@ -7,7 +7,7 @@ import { Placeholder } from '../Placeholder'
 
 export const Card = ({ title, subtitle, children, avatarUrl }: CardProps) => {
   return (
-    <div className="bg-white border rounded border-slate-200 overflow-hidden hover:shadow">
+    <div className="bg-white text-sm text-neutral-500 border rounded border-slate-200 overflow-hidden hover:shadow">
       <Padding>
         <div className="flex flex-col gap-y-5">
           {avatarUrl ? <Avatar src={avatarUrl} type="square" /> : null}
