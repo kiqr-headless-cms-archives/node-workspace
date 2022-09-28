@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@kiqr/react": "*",
+    "@kiqr/react-components": "*",
     "@kiqr/react-hooks": "*",
     "inflection": "^1.13.4",
     "next": "12.3.0",

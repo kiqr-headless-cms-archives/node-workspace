@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import { Box, Button, Card, Heading } from '@kiqr/react'
+import { Box, Button, Card, Heading } from '@kiqr/react-components'
 import { PageTitle } from '../../../../../components'
 import { useCurrent } from '../../../../../hooks'
 import { useResources } from '@kiqr/react-hooks'

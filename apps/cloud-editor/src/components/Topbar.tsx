@@ -1,4 +1,4 @@
-import { Button, Dropdown, Logo } from '@kiqr/react'
+import { Button, Dropdown, Logo } from '@kiqr/react-components'
 import { useSession } from '@kiqr/react-hooks'
 
 import { ReactElement } from 'react'

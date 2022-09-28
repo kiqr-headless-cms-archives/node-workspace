@@ -7,7 +7,7 @@ import {
   Padding,
   Placeholder,
   ProgressBar,
-} from '@kiqr/react'
+} from '@kiqr/react-components'
 
 import type { Project } from '@kiqr/management-api-sdk'
 
