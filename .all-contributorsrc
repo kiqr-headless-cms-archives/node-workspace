@@ -19,6 +19,15 @@
         "infra",
         "doc"
       ]
+    },
+    {
+      "login": "the",
+      "name": "Thomas Eichmann",
+      "avatar_url": "https://avatars.githubusercontent.com/u/41003?v=4",
+      "profile": "https://www.thomaseichmann.com",
+      "contributions": [
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 7,
