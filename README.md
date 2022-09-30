@@ -1,6 +1,6 @@
 KIQR - Node Workspace
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 ---------------------
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
@@ -65,6 +65,7 @@ Contributors
   <tbody>
     <tr>
       <td align="center"><a href="https://rasmuskjellberg.se/"><img src="https://avatars.githubusercontent.com/u/2277443?v=4?s=100" width="100px;" alt="Rasmus Kjellberg"/><br /><sub><b>Rasmus Kjellberg</b></sub></a><br /><a href="https://github.com/kiqr/node-workspace/commits?author=kjellberg" title="Code">💻</a> <a href="#design-kjellberg" title="Design">🎨</a> <a href="#ideas-kjellberg" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-kjellberg" title="Project Management">📆</a> <a href="#infra-kjellberg" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/kiqr/node-workspace/commits?author=kjellberg" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://www.thomaseichmann.com"><img src="https://avatars.githubusercontent.com/u/41003?v=4?s=100" width="100px;" alt="Thomas Eichmann"/><br /><sub><b>Thomas Eichmann</b></sub></a><br /><a href="#infra-the" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     </tr>
   </tbody>
   <tfoot>
