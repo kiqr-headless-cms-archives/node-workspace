@@ -28,6 +28,15 @@
       "contributions": [
         "infra"
       ]
+    },
+    {
+      "login": "frexuz",
+      "name": "Kristian Gerardsson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49692?v=4",
+      "profile": "https://github.com/Frexuz",
+      "contributions": [
+        "mentoring"
+      ]
     }
   ],
   "contributorsPerLine": 7,
