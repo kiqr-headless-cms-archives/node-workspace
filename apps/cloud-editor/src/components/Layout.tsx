@@ -23,8 +23,11 @@ export const Layout = ({ children }: LayoutProps): ReactElement => {
             <span className="flex items-center gap-x-1">
               This is an open-source project. Explore and contribute to the
               project on{' '}
-              <Link href="https://github.com/kiqr/node-workspace">
-                <a className="flex items-center gap-x-1 font-bold">
+              <Link href="https://github.com/kiqr/node-workspace/tree/main/apps/cloud-editor">
+                <a
+                  target="_blank"
+                  className="flex items-center gap-x-1 font-bold"
+                >
                   <FaGithub /> Github.
                 </a>
               </Link>
