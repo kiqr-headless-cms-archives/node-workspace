@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { PaddingProps } from './types'
 
 export const Padding = ({ children, theme }: PaddingProps) => {
-  const className = classNames('flex', 'justify-between', 'p-5', {
+  const className = classNames('p-5', {
     'bg-neutral-50': theme === 'tinted' ? true : false
   })
 

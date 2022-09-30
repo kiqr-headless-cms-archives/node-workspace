@@ -1,11 +1,13 @@
 import type { NextPage } from 'next'
 
-import { Heading } from '@kiqr/react-components'
-import { PageTitle } from '../../../../../../../components'
+import { PageTitle, ResourceForm } from '../../../../../../../components'
 import { useCurrent } from '../../../../../../../hooks'
 import { FaLink } from 'react-icons/fa'
 import { useRouter } from 'next/router'
+
+import { Button, Heading, Card, Padding } from '@kiqr/react-components'
 import { useResource } from '@kiqr/react-hooks'
+
 import inflection from 'inflection'
 
 const ResourcePage: NextPage = () => {
@@ -42,6 +44,38 @@ const ResourcePage: NextPage = () => {
         <a target="_blank" className="text-white" href="#">
           {`https://content.kiqr.cloud/v1/${currentProject?.slug}/collections/${query?.contentTypeId}/resources/${query?.resourceId}`}
         </a>
+      </div>
+
+      <div className="grid grid-cols-4 gap-x-5">
+        <div className="left col-span-3">
+          <ResourceForm values={resource} contentType={currentContentType} />
+        </div>
+        <aside className="right flex flex-col gap-y-5">
+          <Card
+            title="Save changes"
+            subtitle="Publish or schedule your resource for later"
+          >
+            <div className="bg-neutral-50 p-5 flex justify-between gap-x-5">
+              <Button text="Save draft" />
+              <Button text="Publish" type="primary" />
+            </div>
+          </Card>
+
+          <Card title="Versions" />
+
+          <Card
+            title="Delete resource"
+            subtitle="Unpublish and archive resource"
+          >
+            <p className="text-xs px-5 pt-0">
+              Deleting a resource will unpublish and archive it. It will be{' '}
+              <strong>permanently deleted</strong> after 30 days.
+            </p>
+            <Padding>
+              <Button text="Delete resource" type="danger" size="xs" />
+            </Padding>
+          </Card>
+        </aside>
       </div>
     </>
   )
