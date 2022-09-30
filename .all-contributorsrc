@@ -12,7 +12,12 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/2277443?v=4",
       "profile": "https://rasmuskjellberg.se/",
       "contributions": [
-        "code"
+        "code",
+        "design",
+        "ideas",
+        "projectManagement",
+        "infra",
+        "doc"
       ]
     }
   ],
