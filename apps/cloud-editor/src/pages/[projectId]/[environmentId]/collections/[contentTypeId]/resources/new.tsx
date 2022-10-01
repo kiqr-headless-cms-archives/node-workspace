@@ -1,33 +1,22 @@
 import type { NextPage } from 'next'
 
-import { useCurrent } from '../../../../../../../hooks'
-import { useRouter } from 'next/router'
-
-import { useResource } from '@kiqr/react-hooks'
-import { useEffect, useState } from 'react'
-import { PageTitle } from '../../../../../../../components'
 import { Button, Heading } from '@kiqr/react-components'
-
+import { PageTitle } from '../../../../../../components'
+import { useCurrent } from '../../../../../../hooks'
+import { useEffect, useState } from 'react'
+import { FaArrowCircleLeft } from 'react-icons/fa'
 import inflection from 'inflection'
+import Link from 'next/link'
+
 import {
   EditResourceLayout,
   ResourceFormValues,
-} from '../../../../../../../components'
-import { ContentType } from '@kiqr/management-api-sdk'
-import Link from 'next/link'
-import { FaArrowCircleLeft } from 'react-icons/fa'
+} from '../../../../../../components'
 
-const ResourcePage: NextPage = () => {
-  const { currentProject, currentEnvironment, currentContentType } =
-    useCurrent()
+import type { ContentType } from '@kiqr/management-api-sdk'
 
-  const { query } = useRouter()
-  const { resource } = useResource(
-    query?.resourceId as string,
-    currentProject?.id,
-    currentEnvironment?.id,
-    currentContentType?.name
-  )
+const NewResourcePage: NextPage = () => {
+  const { currentProject, currentEnvironment, currentContentType } = useCurrent()
 
   const [isLoading, setIsLoading] = useState(true)
   const [formData, setFormData] = useState<ResourceFormValues>({
@@ -38,35 +27,39 @@ const ResourcePage: NextPage = () => {
 
   // Setup defaultValues from useResource before rendering EditResourceLayout.
   useEffect(() => {
-    if (!resource || !currentContentType) return
+    if (!currentContentType) return
 
     setFormData((previousState) => {
       const state = {
         ...previousState,
-        name: resource.name,
-        slug: resource.slug,
       }
 
-      currentContentType.fields.map(
-        (field) => (state.content[field.id] = 'n/a')
-      )
+      currentContentType.fields.map((field) => (state.content[field.id] = ''))
       return state
     })
 
     setIsLoading(false)
-  }, [resource, currentContentType])
+  }, [currentContentType])
 
   // Handle submission of form.
   const onSubmit = (data: ResourceFormValues): void => setFormData(data)
 
   return (
     <>
-      <PageTitle segments={[resource?.name, 'Edit']} />
+      <PageTitle
+        segments={currentContentType ? [currentContentType.name, 'New'] : ['']}
+      />
       <Heading
-        title={resource?.name}
+        title={
+          currentContentType
+            ? `New ${inflection
+                .transform(currentContentType?.name, ['singularize'])
+                .toLowerCase()}`
+            : undefined
+        }
         subtitle={
           currentContentType
-            ? `Edit resource ${inflection
+            ? `Create a new ${inflection
                 .transform(currentContentType?.name, ['singularize'])
                 .toLowerCase()}`
             : undefined
@@ -81,7 +74,7 @@ const ResourcePage: NextPage = () => {
         <>Loading..</>
       ) : (
         <EditResourceLayout
-          isNewResource={false}
+          isNewResource={true}
           contentType={currentContentType as ContentType}
           defaultValues={formData}
           onSubmit={onSubmit}
@@ -91,4 +84,4 @@ const ResourcePage: NextPage = () => {
   )
 }
 
-export default ResourcePage
+export default NewResourcePage
