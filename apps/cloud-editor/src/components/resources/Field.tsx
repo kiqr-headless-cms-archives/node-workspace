@@ -28,7 +28,9 @@ export const Field = ({ field, register, errors }: FieldProps): JSX.Element => {
         className="border-neutral-200 outline-none focus:ring-0 text-sm bg-white"
         placeholder={`Enter a value for "${field.label.toLowerCase()}"`}
       />
-      {errors?.content?.[field.id] && <FormError message="This field is required" />}
+      {errors?.content?.[field.id] && (
+        <FormError message="This field is required" />
+      )}
     </div>
   )
 }

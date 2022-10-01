@@ -16,7 +16,8 @@ import {
 import type { ContentType } from '@kiqr/management-api-sdk'
 
 const NewResourcePage: NextPage = () => {
-  const { currentProject, currentEnvironment, currentContentType } = useCurrent()
+  const { currentProject, currentEnvironment, currentContentType } =
+    useCurrent()
 
   const [isLoading, setIsLoading] = useState(true)
   const [formData, setFormData] = useState<ResourceFormValues>({
@@ -65,8 +66,15 @@ const NewResourcePage: NextPage = () => {
             : undefined
         }
       >
-        <Link href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}`}>
-          <a><Button icon={<FaArrowCircleLeft />} text={`Back to ${currentContentType?.name.toLowerCase()}`} /></a>
+        <Link
+          href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}`}
+        >
+          <a>
+            <Button
+              icon={<FaArrowCircleLeft />}
+              text={`Back to ${currentContentType?.name.toLowerCase()}`}
+            />
+          </a>
         </Link>
       </Heading>
 

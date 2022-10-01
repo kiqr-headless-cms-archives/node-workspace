@@ -45,8 +45,16 @@ const ContentTypePage: NextPage = () => {
             : undefined
         }
       >
-        <Link href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/new`}>
-          <a><Button icon={<FaPlusCircle />} text={`New ${singularizedContentTypeName}`} type="primary" /></a>
+        <Link
+          href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/new`}
+        >
+          <a>
+            <Button
+              icon={<FaPlusCircle />}
+              text={`New ${singularizedContentTypeName}`}
+              type="primary"
+            />
+          </a>
         </Link>
       </Heading>
 

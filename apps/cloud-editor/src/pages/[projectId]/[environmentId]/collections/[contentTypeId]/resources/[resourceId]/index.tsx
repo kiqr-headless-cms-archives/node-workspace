@@ -72,8 +72,15 @@ const ResourcePage: NextPage = () => {
             : undefined
         }
       >
-        <Link href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}`}>
-          <a><Button icon={<FaArrowCircleLeft />} text={`Back to ${currentContentType?.name.toLowerCase()}`} /></a>
+        <Link
+          href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}`}
+        >
+          <a>
+            <Button
+              icon={<FaArrowCircleLeft />}
+              text={`Back to ${currentContentType?.name.toLowerCase()}`}
+            />
+          </a>
         </Link>
       </Heading>
 
