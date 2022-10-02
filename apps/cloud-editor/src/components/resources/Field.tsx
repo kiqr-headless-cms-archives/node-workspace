@@ -8,7 +8,6 @@ export interface FieldProps {
 }
 
 export const Field = ({ field, register, errors }: FieldProps): JSX.Element => {
-  console.log(errors)
   return (
     <div
       key={field.id}
