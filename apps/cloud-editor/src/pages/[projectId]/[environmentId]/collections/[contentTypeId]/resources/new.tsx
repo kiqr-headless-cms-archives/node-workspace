@@ -45,36 +45,43 @@ const NewResourcePage: NextPage = () => {
 
   // Handle submission of form.
   const onSubmit = async (data: ResourceFormValues): Promise<void> => {
-    const configuration = new Configuration({accessToken: token.access_token})
+    const configuration = new Configuration({ accessToken: token.access_token })
     const api = new ResourcesApi(configuration)
 
     if (!currentContentType) return console.error('Missing content type')
     if (!currentProject) return console.error('Missing project_id')
     if (!currentEnvironment) return console.error('Missing environment_id')
-  
+
     const payload = {
       ...data,
       content_type: currentContentType.id,
       project_id: currentProject.id,
-      environment_id: currentEnvironment.id
+      environment_id: currentEnvironment.id,
     }
 
-    api.createResource(currentProject.id, payload).then((response) => {
-      console.log('response status', response.status)
-      console.log('response data', response.data)
-      if (response?.data?.slug) {
-        Router.push(`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${response.data.slug}`)
-      }
-    }).catch(error => {
-      if (error?.response?.data && error?.response?.status === 422) {
-        const data = error.response.data
-        if (data?.type === 'validation' && data?.errors) {
-          data.errors.map((message: string)  => console.error('ERROR', message))
+    api
+      .createResource(currentProject.id, payload)
+      .then((response) => {
+        console.log('response status', response.status)
+        console.log('response data', response.data)
+        if (response?.data?.slug) {
+          Router.push(
+            `/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${response.data.slug}`
+          )
         }
-      } else {
-        console.error('ERROR', error)
-      }
-    })
+      })
+      .catch((error) => {
+        if (error?.response?.data && error?.response?.status === 422) {
+          const data = error.response.data
+          if (data?.type === 'validation' && data?.errors) {
+            data.errors.map((message: string) =>
+              console.error('ERROR', message)
+            )
+          }
+        } else {
+          console.error('ERROR', error)
+        }
+      })
   }
 
   return (
