@@ -4,7 +4,7 @@ import { Box, Button, Card, Heading } from '@kiqr/react-components'
 import { PageTitle } from '../../../../../components'
 import { useCurrent } from '../../../../../hooks'
 import { useResources } from '@kiqr/react-hooks'
-import { FaCircle } from 'react-icons/fa'
+import { FaCircle, FaPlusCircle } from 'react-icons/fa'
 
 import Image from 'next/image'
 import inflection from 'inflection'
@@ -35,7 +35,7 @@ const ContentTypePage: NextPage = () => {
   return (
     <>
       {currentProject && currentContentType ? (
-        <PageTitle segments={[currentContentType.name]} />
+        <PageTitle segments={[currentContentType.name, 'List']} />
       ) : null}
       <Heading
         title={currentContentType?.name ? currentContentType.name : undefined}
@@ -44,7 +44,19 @@ const ContentTypePage: NextPage = () => {
             ? `Listing all resources in collection "${currentContentType.name}"`
             : undefined
         }
-      />
+      >
+        <Link
+          href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/new`}
+        >
+          <a>
+            <Button
+              icon={<FaPlusCircle />}
+              text={`New ${singularizedContentTypeName}`}
+              type="primary"
+            />
+          </a>
+        </Link>
+      </Heading>
 
       {/*<div className="flex items-center bg-primary-800 p-2 text-xs gap-x-2 rounded">
         <div className="bg-primary-900 text-white mr-1 w-8 h-8 rounded flex items-center justify-center">
@@ -77,11 +89,17 @@ const ContentTypePage: NextPage = () => {
                     {pluralizedContentTypeName}.
                   </p>
                   <div className="gap-x-5 flex">
-                    <Button
-                      text={`Create ${singularizedContentTypeName}`}
-                      type="primary"
-                      size="lg"
-                    />
+                    <Link
+                      href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/new`}
+                    >
+                      <a>
+                        <Button
+                          text={`Create ${singularizedContentTypeName}`}
+                          type="primary"
+                          size="lg"
+                        />
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </div>

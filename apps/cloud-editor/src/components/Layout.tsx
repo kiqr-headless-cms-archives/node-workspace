@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ReactElement } from 'react'
+import { Toaster } from 'react-hot-toast'
 import { FaGithub } from 'react-icons/fa'
 import { Sidebar } from './Sidebar'
 import { Topbar } from './Topbar'
@@ -11,6 +12,7 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps): ReactElement => {
   return (
     <section className="flex flex-col items-stretch min-h-screen">
+      <Toaster />
       <Topbar />
       <section className="flex flex-1">
         <Sidebar />

@@ -10,7 +10,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "chromatic": "npx chromatic --project-token=dd03e9c83563",
-    "lint": "yarn eslint . --ext .ts --config .eslintrc"
+    "lint": "eslint . --ext .ts --config .eslintrc"
   },
   "browser": {
     "fs": false,
