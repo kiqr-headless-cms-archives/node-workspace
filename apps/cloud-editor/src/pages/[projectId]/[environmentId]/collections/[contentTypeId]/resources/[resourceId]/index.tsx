@@ -1,21 +1,23 @@
 import type { NextPage } from 'next'
 
-import { useCurrent } from '../../../../../../../hooks'
-import { useRouter } from 'next/router'
-
-import { useResource } from '@kiqr/react-hooks'
 import { useEffect, useState } from 'react'
-import { PageTitle } from '../../../../../../../components'
+import { useRouter } from 'next/router'
+import { useResource } from '@kiqr/react-hooks'
 import { Button, Heading } from '@kiqr/react-components'
 
-import inflection from 'inflection'
+import { useCurrent } from '../../../../../../../hooks'
+import { PageTitle } from '../../../../../../../components'
+
 import {
   EditResourceLayout,
   ResourceFormValues,
 } from '../../../../../../../components'
+
 import { ContentType } from '@kiqr/management-api-sdk'
-import Link from 'next/link'
 import { FaArrowCircleLeft } from 'react-icons/fa'
+
+import Link from 'next/link'
+import inflection from 'inflection'
 
 const ResourcePage: NextPage = () => {
   const { currentProject, currentEnvironment, currentContentType } =
