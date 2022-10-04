@@ -2,7 +2,7 @@ KIQR - Node Workspace
 ---------------------
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This is the monorepo for KIQR.CLOUD, CLI, React and Node SDKs.
@@ -66,6 +66,7 @@ Thanks goes to these wonderful people:
       <td align="center"><a href="https://rasmuskjellberg.se/"><img src="https://avatars.githubusercontent.com/u/2277443?v=4?s=100" width="100px;" alt="Rasmus Kjellberg"/><br /><sub><b>Rasmus Kjellberg</b></sub></a><br /><a href="https://github.com/kiqr/node-workspace/commits?author=kjellberg" title="Code">💻</a> <a href="#design-kjellberg" title="Design">🎨</a> <a href="#ideas-kjellberg" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-kjellberg" title="Project Management">📆</a> <a href="#infra-kjellberg" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/kiqr/node-workspace/commits?author=kjellberg" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/jeliasson"><img src="https://avatars.githubusercontent.com/u/865493?v=4?s=100" width="100px;" alt="Johan Eliasson"/><br /><sub><b>Johan Eliasson</b></sub></a><br /><a href="#infra-jeliasson" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
       <td align="center"><a href="https://github.com/Frexuz"><img src="https://avatars.githubusercontent.com/u/49692?v=4?s=100" width="100px;" alt="Kristian Gerardsson"/><br /><sub><b>Kristian Gerardsson</b></sub></a><br /><a href="#mentoring-frexuz" title="Mentoring">🧑‍🏫</a></td>
+      <td align="center"><a href="https://github.com/Nocoderbaby"><img src="https://avatars.githubusercontent.com/u/101124448?v=4?s=100" width="100px;" alt="nocoderbaby"/><br /><sub><b>nocoderbaby</b></sub></a><br /><a href="#mentoring-nocoderbaby" title="Mentoring">🧑‍🏫</a></td>
     </tr>
   </tbody>
   <tfoot>
