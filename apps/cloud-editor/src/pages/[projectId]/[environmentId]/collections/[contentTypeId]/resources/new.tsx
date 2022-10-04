@@ -18,6 +18,7 @@ import {
 } from '../../../../../../components'
 
 import type { ContentType } from '@kiqr/management-api-sdk'
+import toast from 'react-hot-toast'
 
 const NewResourcePage: NextPage = () => {
   const { currentProject, currentEnvironment, currentContentType } =
@@ -59,29 +60,43 @@ const NewResourcePage: NextPage = () => {
       environment_id: currentEnvironment.id,
     }
 
-    api
-      .createResource(currentProject.id, payload)
-      .then((response) => {
-        console.log('response status', response.status)
-        console.log('response data', response.data)
+    toast.promise(
+      api.createResource(currentProject.id, payload).then(response => {
         if (response?.data?.slug) {
-          Router.push(
-            `/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${response.data.slug}`
-          )
+          Router.push(`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${response.data.slug}`)
         }
-      })
-      .catch((error) => {
-        if (error?.response?.data && error?.response?.status === 422) {
-          const data = error.response.data
-          if (data?.type === 'validation' && data?.errors) {
-            data.errors.map((message: string) =>
-              console.error('ERROR', message)
-            )
-          }
-        } else {
-          console.error('ERROR', error)
-        }
-      })
+      }),
+      {
+        loading: 'Saving...',
+        success: `Successfully created ${payload.name}`,
+        error: <b>Could not save.</b>,
+      }
+    )
+
+    // api
+    //   .createResource(currentProject.id, payload)
+    //   .then((response) => {
+    //     console.log('response status', response.status)
+    //     console.log('response data', response.data)
+    //     if (response?.data?.slug) {
+    //       toast.success(`Successfully created ${response.data.name}!`)
+    //       Router.push(
+    //         `/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${response.data.slug}`
+    //       )
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     if (error?.response?.data && error?.response?.status === 422) {
+    //       const data = error.response.data
+    //       if (data?.type === 'validation' && data?.errors) {
+    //         data.errors.map((message: string) =>
+    //           console.error('ERROR', message)
+    //         )
+    //       }
+    //     } else {
+    //       console.error('ERROR', error)
+    //     }
+    //   })
   }
 
   return (
