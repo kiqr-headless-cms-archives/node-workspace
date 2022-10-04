@@ -61,9 +61,11 @@ const NewResourcePage: NextPage = () => {
     }
 
     toast.promise(
-      api.createResource(currentProject.id, payload).then(response => {
+      api.createResource(currentProject.id, payload).then((response) => {
         if (response?.data?.slug) {
-          Router.push(`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${response.data.slug}`)
+          Router.push(
+            `/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${response.data.slug}`
+          )
         }
       }),
       {
