@@ -50,7 +50,7 @@ const ResourcePage: NextPage = () => {
       }
 
       currentContentType.fields.map(
-        (field) => (state.content[field.id] = 'n/a')
+        (field) => (state.content[field.id] = resource.content?.data[field.id])
       )
       return state
     })
