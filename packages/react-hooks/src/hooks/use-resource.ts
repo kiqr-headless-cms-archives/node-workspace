@@ -9,16 +9,14 @@ import {Oauth2Token} from '../oauth2-config'
 const getResource = async (
   accessToken: string,
   id: string,
-  projectId: string,
   environmentId: string,
-  contentType: string,
 ): Promise<Resource> => {
   const configuration = new Configuration({accessToken: accessToken})
   const api = new ResourcesApi(configuration)
 
   return new Promise((resolve, reject) => {
     api
-    .getResource(id, projectId, environmentId, contentType)
+    .getResource(id, environmentId)
     .then(response => resolve(response.data))
     .catch(error => reject(error.message))
   })
@@ -31,8 +29,8 @@ export const useResource = (id: string | undefined, projectId: string | undefine
 } => {
   const {token} = useContext(KiqrContext)
   const {data: resource, error: resourceError} = useSWR(
-    [id, projectId, environmentId, contentType, token?.access_token],
-    (id, projectId, environmentId, contentType, token) => getResource(token as string, id, projectId as string, environmentId, contentType),
+    [id, environmentId, token?.access_token],
+    (id, environmentId, token) => getResource(token as string, id, environmentId),
   )
 
   return {resource, resourceError, token}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from 'react-hook-form'
 import { Button, Card, Padding } from '@kiqr/react-components'
 import { ResourceForm } from '..'
@@ -7,7 +8,7 @@ import type { ContentType } from '@kiqr/management-api-sdk'
 export interface ResourceFormValues {
   name: string
   slug: string
-  content: Record<string, string | number | boolean>
+  content: Record<string, any>
 }
 
 export interface EditResourceLayoutProps {

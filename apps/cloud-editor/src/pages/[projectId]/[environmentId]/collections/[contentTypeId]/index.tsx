@@ -15,9 +15,9 @@ const ContentTypePage: NextPage = () => {
     useCurrent()
 
   const { resources } = useResources(
-    currentProject?.id,
     currentEnvironment?.id,
-    currentContentType?.id
+    currentContentType?.id,
+    1
   )
 
   const singularizedContentTypeName = currentContentType
