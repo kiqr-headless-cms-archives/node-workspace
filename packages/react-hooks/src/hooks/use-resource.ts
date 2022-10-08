@@ -1,4 +1,3 @@
-/* eslint-disable max-params */
 import {useContext} from 'react'
 import {KiqrContext} from '../kiqr-context'
 import {Configuration, Resource, ResourcesApi} from '@kiqr/management-api-sdk'
@@ -22,7 +21,7 @@ const getResource = async (
   })
 }
 
-export const useResource = (id: string | undefined, projectId: string | undefined, environmentId: string | undefined, contentType: string | undefined) : {
+export const useResource = (id: string | undefined, projectId: string | undefined, environmentId: string | undefined) : {
   resource: Resource,
   resourceError: any,
   token: Oauth2Token
