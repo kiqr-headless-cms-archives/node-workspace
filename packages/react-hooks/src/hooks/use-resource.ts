@@ -21,16 +21,12 @@ const getResource = async (
   })
 }
 
-export const useResource = (id: string | undefined, projectId: string | undefined, environmentId: string | undefined) : {
-  resource: Resource,
-  resourceError: any,
-  token: Oauth2Token
-} => {
+export const useResource = (id: string | undefined, environmentId: string | undefined) => {
   const {token} = useContext(KiqrContext)
-  const {data: resource, error: resourceError} = useSWR(
+  const {data: resource, error: resourceError, mutate: mutate} = useSWR(
     [id, environmentId, token?.access_token],
     (id, environmentId, token) => getResource(token as string, id, environmentId),
   )
 
-  return {resource, resourceError, token}
+  return {resource, resourceError, mutate, token}
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ContentTypeField } from '@kiqr/management-api-sdk'
 import { FormError } from '..'
 
