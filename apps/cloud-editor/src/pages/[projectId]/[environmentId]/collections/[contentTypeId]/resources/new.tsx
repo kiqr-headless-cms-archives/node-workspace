@@ -1,55 +1,36 @@
 import type { NextPage } from 'next'
 
-import { Button, Heading } from '@kiqr/react-components'
-import { PageTitle } from '../../../../../../components'
-import { useCurrent } from '../../../../../../hooks'
-import { useEffect, useState } from 'react'
+import { Button, Card, Heading } from '@kiqr/react-components'
+import { useSession } from '@kiqr/react-hooks'
 import { FaArrowCircleLeft } from 'react-icons/fa'
-import inflection from 'inflection'
-import Link from 'next/link'
-import Router from 'next/router'
-
 import {
   Configuration,
   CreateResourceRequest,
   ResourcesApi,
 } from '@kiqr/management-api-sdk'
-import { useSession } from '@kiqr/react-hooks'
+import { useForm } from 'react-hook-form'
 
-import {
-  EditResourceLayout,
-  ResourceFormValues,
-} from '../../../../../../components'
+import { PageTitle, ResourceForm } from '../../../../../../components'
+import { useCurrent } from '../../../../../../hooks'
 
-import type { ContentType } from '@kiqr/management-api-sdk'
+import inflection from 'inflection'
+import Link from 'next/link'
 import toast from 'react-hot-toast'
+import Router from 'next/router'
 
 const NewResourcePage: NextPage = () => {
+  const { token } = useSession()
   const { currentProject, currentEnvironment, currentContentType } =
     useCurrent()
-  const { token } = useSession()
 
-  const [isLoading, setIsLoading] = useState(true)
-  const [formData, setFormData] = useState<ResourceFormValues>({
-    name: '',
-    slug: '',
-    content: {},
-  })
-
-  // Setup defaultValues from useResource before rendering EditResourceLayout.
-  useEffect(() => {
-    if (!currentContentType) return
-
-    setFormData((state) => {
-      currentContentType.fields.map((field) => (state.content[field.id] = ''))
-      return state
-    })
-
-    setIsLoading(false)
-  }, [currentContentType])
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<CreateResourceRequest>()
 
   // Handle submission of form.
-  const onSubmit = async (data: ResourceFormValues): Promise<void> => {
+  const onSubmit = async (data: CreateResourceRequest): Promise<void> => {
     const configuration = new Configuration({ accessToken: token.access_token })
     const api = new ResourcesApi(configuration)
 
@@ -110,17 +91,25 @@ const NewResourcePage: NextPage = () => {
           </a>
         </Link>
       </Heading>
-
-      {isLoading ? (
-        <>Loading..</>
-      ) : (
-        <EditResourceLayout
-          isNewResource={true}
-          contentType={currentContentType as ContentType}
-          defaultValues={formData}
-          onSubmit={onSubmit}
-        />
-      )}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="grid grid-cols-4 gap-x-5"
+      >
+        <main className="left col-span-3">
+          <ResourceForm register={register} errors={errors} />
+        </main>
+        <aside className="right flex flex-col gap-y-5">
+          <Card
+            title="Save changes"
+            subtitle="Publish or schedule your resource for later"
+          >
+            <div className="bg-neutral-50 p-5 flex justify-between gap-x-5">
+              <Button text="Save draft" />
+              <Button text="Save &amp; publish" type="primary" />
+            </div>
+          </Card>
+        </aside>
+      </form>
     </>
   )
 }

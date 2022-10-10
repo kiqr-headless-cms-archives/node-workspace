@@ -1,26 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card } from '@kiqr/react-components'
 import { FaGoogle, FaWrench } from 'react-icons/fa'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
-
-import type { ContentType } from '@kiqr/management-api-sdk'
-import inflection from 'inflection'
 import { FormError, Field } from '..'
+import { useCurrent } from '../../hooks'
+
+import inflection from 'inflection'
 
 export interface ResourceFormProps {
   register: any
   errors: any
-  contentType: ContentType | undefined
 }
 
-export const ResourceForm = ({
-  register,
-  errors,
-  contentType,
-}: ResourceFormProps) => {
-  if (!contentType) return null
+export const ResourceForm = ({ register, errors }: ResourceFormProps) => {
+  const { currentContentType } = useCurrent()
+  if (!currentContentType) return null
 
-  const singularizedContentTypeName = contentType
-    ? inflection.transform(contentType.name, ['singularize'])?.toLowerCase()
+  const singularizedContentTypeName = currentContentType
+    ? inflection
+        .transform(currentContentType.name, ['singularize'])
+        ?.toLowerCase()
     : null
 
   return (
@@ -84,7 +83,7 @@ export const ResourceForm = ({
                 />
                 {errors?.slug && <FormError message="This field is required" />}
               </div>
-              {contentType.fields.map((field) => (
+              {currentContentType.fields.map((field) => (
                 <Field
                   key={field.id}
                   field={field}
@@ -94,7 +93,7 @@ export const ResourceForm = ({
               ))}
             </TabPanel>
             <TabPanel>
-              {contentType.fields.map((field) => (
+              {currentContentType.fields.map((field) => (
                 <Field
                   key={field.id}
                   field={field}
