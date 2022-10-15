@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import { Box, Button, Card, Heading } from '@kiqr/react-components'
+import { Box, Button, Card, Heading, LocalTime } from '@kiqr/react-components'
 import { PageTitle } from '../../../../components'
 import { useCurrent } from '../../../../hooks'
 import { useResources } from '@kiqr/react-hooks'
@@ -145,10 +145,20 @@ const ContentTypePage: NextPage = () => {
                       <a>{resource.name}</a>
                     </Link>
                   </td>
-                  <td>{resource.updated_at}</td>
-                  <td>{resource.created_at}</td>
+                  <td>
+                    <LocalTime at={resource.updated_at} />
+                  </td>
+                  <td>
+                    <LocalTime at={resource.created_at} />
+                  </td>
                   <td className="actions">
-                    <Button text="Edit" size="xs" />
+                    <Link
+                      href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
+                    >
+                      <a>
+                        <Button text="Edit" size="xs" />
+                      </a>
+                    </Link>
                   </td>
                 </tr>
               ))}

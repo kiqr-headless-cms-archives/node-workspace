@@ -5,8 +5,15 @@ import {
   UpdateResourceRequest,
 } from '@kiqr/management-api-sdk'
 
-import { Button, Card, Heading, Padding } from '@kiqr/react-components'
-import { useResource, useSession } from '@kiqr/react-hooks'
+import {
+  Button,
+  Card,
+  Heading,
+  Padding,
+  LocalTime,
+} from '@kiqr/react-components'
+
+import { useResource, useResourceVersions, useSession } from '@kiqr/react-hooks'
 import { useRouter } from 'next/router'
 
 import Link from 'next/link'
@@ -26,6 +33,11 @@ const ResourcePage: NextPage = () => {
     useCurrent()
 
   const { resource, mutate } = useResource(
+    query?.resourceId as string,
+    currentEnvironment?.id
+  )
+
+  const { versions, mutate: mutateVersions } = useResourceVersions(
     query?.resourceId as string,
     currentEnvironment?.id
   )
@@ -73,6 +85,7 @@ const ResourcePage: NextPage = () => {
         .updateResource(resource.id, currentEnvironment.id, payload)
         .then((response) => {
           mutate(response.data)
+          mutateVersions()
         }),
       {
         loading: 'Saving...',
@@ -123,7 +136,29 @@ const ResourcePage: NextPage = () => {
             </div>
           </Card>
 
-          <Card title="Versions" />
+          {versions && versions.length > 0 ? (
+            <Card
+              title="Versions"
+              subtitle={`Current version: v${resource?.version}`}
+            >
+              <table className="table border-t">
+                <tbody>
+                  {versions.slice(0, 5).map((version) => (
+                    <tr key={version.version}>
+                      <td className="text-center mini">v{version.version}</td>
+                      <td className="">
+                        <LocalTime at={version.updated_at} />
+                      </td>
+                      <td className="mini">
+                        <Button text="Restore" size="xs" />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </Card>
+          ) : null}
+
           <Card
             title="Delete resource"
             subtitle="Unpublish and archive resource"
