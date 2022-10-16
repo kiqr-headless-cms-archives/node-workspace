@@ -1,7 +1,7 @@
 {
   "name": "@kiqr/react-hooks",
   "homepage": "https://kiqr.dev",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "React hooks the KIQR Management API",
   "author": "KIQR",
   "keywords": [
@@ -20,7 +20,7 @@
     "lint": "eslint . --ext .ts --config .eslintrc"
   },
   "dependencies": {
-    "@kiqr/management-api-sdk": "^0.2.0",
+    "@kiqr/management-api-sdk": "^1.0.0",
     "axios": "^0.27.2",
     "react": "^18.2.0",
     "swr": "^1.3.0",

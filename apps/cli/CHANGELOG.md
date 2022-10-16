@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### [0.0.20](https://www.github.com/kiqr/node-workspace/compare/cli-v0.0.19...cli-v0.0.20) (2022-10-16)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @kiqr/management-api-sdk bumped from ^0.2.0 to ^1.0.0
+
 ### [0.0.19](https://www.github.com/kiqr/node-workspace/compare/cli-v0.0.18...cli-v0.0.19) (2022-09-27)
 
 
