@@ -15,7 +15,7 @@ const StringField = (props: FieldProps): JSX.Element => {
     <>
       <input
         type="text"
-        {...register(`content[${field.id}]`, { required: true })}
+        {...register(`content[${field.id}]`, { required: field.required })}
         className="border-neutral-200 outline-none focus:ring-0 text-sm bg-white"
         placeholder={`Enter a value for "${field.label.toLowerCase()}"`}
       />
@@ -35,7 +35,7 @@ const TextareaField = (props: FieldProps): JSX.Element => {
       <textarea
         type="text"
         rows="3"
-        {...register(`content[${field.id}]`, { required: true })}
+        {...register(`content[${field.id}]`, { required: field.required })}
         className="border-neutral-200 outline-none focus:ring-0 text-sm bg-white"
         placeholder={`Enter a text for "${field.label.toLowerCase()}"`}
       ></textarea>
