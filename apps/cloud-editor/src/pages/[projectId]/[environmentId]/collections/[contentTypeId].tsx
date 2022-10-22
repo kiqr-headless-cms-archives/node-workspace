@@ -10,14 +10,18 @@ import Image from 'next/image'
 import inflection from 'inflection'
 import Link from 'next/link'
 
+import { Pagination } from '../../../../components/atoms/Pagination/Pagination'
+import { useState } from 'react'
+
 const ContentTypePage: NextPage = () => {
   const { currentContentType, currentEnvironment, currentProject } =
     useCurrent()
 
-  const { resources } = useResources(
+  const [page, setPage] = useState(1)
+  const { resources, pagination } = useResources(
     currentEnvironment?.id,
     currentContentType?.id,
-    1
+    page
   )
 
   const singularizedContentTypeName = currentContentType
@@ -120,7 +124,11 @@ const ContentTypePage: NextPage = () => {
       {resources && resources?.length > 0 ? (
         <Card
           title="All"
-          subtitle={`Displaying ${0} of ${0} resources in this collection.`}
+          subtitle={
+            pagination
+              ? `Displaying page ${pagination.page} of ${pagination.pages}`
+              : `Loading ${pluralizedContentTypeName}..`
+          }
         >
           <table className="table border-t">
             <thead>
@@ -165,6 +173,10 @@ const ContentTypePage: NextPage = () => {
             </tbody>
           </table>
         </Card>
+      ) : null}
+
+      {pagination ? (
+        <Pagination pagination={pagination} setPage={setPage} />
       ) : null}
     </>
   )

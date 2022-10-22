@@ -1,16 +1,15 @@
 import {useContext} from 'react'
 import {KiqrContext} from '../kiqr-context'
-import {Configuration, Resource, ResourcesApi} from '@kiqr/management-api-sdk'
+import {Configuration, Resource, ResourcesApi, ResourcesResponse, ResponseMetaPagination} from '@kiqr/management-api-sdk'
 
 import useSWR from 'swr'
-import {Oauth2Token} from '../oauth2-config'
 
 const getResources = async (
   accessToken: string,
   environmentId: string,
   contentType: string,
   pageNumber: number,
-): Promise<Resource[]> => {
+): Promise<ResourcesResponse> => {
   const configuration = new Configuration({accessToken: accessToken})
   const api = new ResourcesApi(configuration)
 
@@ -25,13 +24,19 @@ const getResources = async (
 export const useResources = (environmentId: string | undefined, contentType: string | undefined, pageNumber: number) : {
   resources: Resource[],
   resourcesError: any,
-  token: Oauth2Token
+  pagination: ResponseMetaPagination,
+  loading: boolean
 } => {
   const {token} = useContext(KiqrContext)
-  const {data: resources, error: resourcesError} = useSWR(
+  const {data, error: resourcesError} = useSWR(
     [environmentId, contentType, token?.access_token, pageNumber],
     (environmentId, contentType, token, pageNumber) => getResources(token as string, environmentId, contentType, pageNumber),
   )
 
-  return {resources, resourcesError, token}
+  const resources = data ? data?.results : []
+  const pagination = data ? data.meta.pagination : undefined
+
+  const loading = !data
+
+  return {resources, pagination, resourcesError, loading}
 }
