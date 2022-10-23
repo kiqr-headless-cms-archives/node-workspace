@@ -4,13 +4,13 @@
     "node-workspace"
   ],
   "packages": {
-    "apps/cli": {
-      "release-as": ""
-    },
     "packages/eslint-config": {
       "release-as": ""
     },
     "packages/eslint-config-typescript": {
+      "release-as": ""
+    },
+    "packages/kiqr-cli": {
       "release-as": ""
     },
     "packages/react-components": {
