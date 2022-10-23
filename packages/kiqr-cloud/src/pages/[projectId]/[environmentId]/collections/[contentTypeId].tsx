@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
 import { Box, Card, Heading, LocalTime } from '@kiqr/react-components'
-import { Button } from '@kiqr/core'
+import { Button, Pagination } from '@kiqr/core'
 
 import { PageTitle } from '../../../../components'
 import { useCurrent } from '../../../../hooks'
@@ -12,7 +12,6 @@ import Image from 'next/image'
 import inflection from 'inflection'
 import Link from 'next/link'
 
-import { Pagination } from '../../../../components/atoms/Pagination/Pagination'
 import { useState } from 'react'
 
 const ContentTypePage: NextPage = () => {
@@ -173,8 +172,12 @@ const ContentTypePage: NextPage = () => {
         </Card>
       ) : null}
 
-      {pagination ? (
-        <Pagination pagination={pagination} setPage={setPage} />
+      {pagination && pagination.pages > 1 ? (
+        <Pagination
+          currentPage={pagination.page}
+          totalPages={pagination.pages}
+          callback={setPage}
+        />
       ) : null}
     </>
   )

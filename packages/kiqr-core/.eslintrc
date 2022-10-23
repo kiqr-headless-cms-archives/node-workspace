@@ -2,9 +2,10 @@
   "extends": [
     "kiqr",
     "kiqr-typescript",
+    "prettier"
   ],
   "rules": {
-    "unicorn/filename-case": "off",
+    "unicorn/filename-case": "off"
   },
   "overrides": [
     {
