@@ -9,7 +9,8 @@ export const Button = ({
   size = 'md',
   type = 'secondary',
   icon = undefined,
-  disabled = false
+  disabled = false,
+  onClick
 }: ButtonProps): ReactElement => {
   const defaultClasses =
     'inline-flex items-center gap-x-2 leading-3 justify-center rounded transition shadow font-bold cursor-pointer hover:shadow-none'
@@ -30,8 +31,9 @@ export const Button = ({
   }
 
   const className = classNames(defaultClasses, themeClasses, sizeClasses)
+
   return (
-    <button className={className} disabled={disabled}>
+    <button className={className} onClick={onClick} disabled={disabled}>
       {icon || null}
       {text || null}
     </button>

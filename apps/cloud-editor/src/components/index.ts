@@ -7,3 +7,6 @@ export * from './SidebarLink'
 export * from './resources/ResourceForm'
 export * from './resources/FormError'
 export * from './resources/Field'
+
+export * from './atoms/Group/Group'
+export * from './atoms/Pagination/Pagination'

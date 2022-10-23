@@ -6,4 +6,5 @@ export interface ButtonProps {
   icon?: ReactElement
   type?: string
   disabled?: boolean
+  onClick?: () => any
 }
