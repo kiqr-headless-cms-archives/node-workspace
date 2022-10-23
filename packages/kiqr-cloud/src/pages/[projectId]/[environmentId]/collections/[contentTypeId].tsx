@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
-import { Box, Card, Heading, LocalTime } from '@kiqr/react-components'
-import { Button, Pagination } from '@kiqr/core'
+import { Box, Card, Heading } from '@kiqr/react-components'
+import { Button, Pagination, LocalTime } from '@kiqr/core'
 
 import { PageTitle } from '../../../../components'
 import { useCurrent } from '../../../../hooks'
@@ -151,10 +151,10 @@ const ContentTypePage: NextPage = () => {
                     </Link>
                   </td>
                   <td>
-                    <LocalTime at={resource.updated_at} />
+                    <LocalTime epochTime={resource.updated_at} />
                   </td>
                   <td>
-                    <LocalTime at={resource.created_at} />
+                    <LocalTime epochTime={resource.created_at} />
                   </td>
                   <td className="actions">
                     <Link

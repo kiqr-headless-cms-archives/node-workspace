@@ -5,8 +5,8 @@ import {
   UpdateResourceRequest,
 } from '@kiqr/management-api-sdk'
 
-import { Card, Heading, Padding, LocalTime } from '@kiqr/react-components'
-import { Button } from '@kiqr/core'
+import { Card, Heading, Padding } from '@kiqr/react-components'
+import { Button, LocalTime } from '@kiqr/core'
 
 import { useResource, useResourceVersions, useSession } from '@kiqr/react-hooks'
 import { useRouter } from 'next/router'
@@ -141,7 +141,7 @@ const ResourcePage: NextPage = () => {
                     <tr key={version.version}>
                       <td className="text-center mini">v{version.version}</td>
                       <td className="">
-                        <LocalTime at={version.updated_at} />
+                        <LocalTime epochTime={version.updated_at} />
                       </td>
                       <td className="mini">
                         <Button size="xs">Restore</Button>
