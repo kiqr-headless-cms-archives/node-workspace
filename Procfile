@@ -1,1 +1,1 @@
-editor: cd apps/cloud-editor && yarn run dev
+editor: cd packages/kiqr-cloud && yarn run dev
