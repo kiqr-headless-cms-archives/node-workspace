@@ -1,6 +1,8 @@
 import type { NextPage } from 'next'
 
-import { Box, Button, Card, Heading, LocalTime } from '@kiqr/react-components'
+import { Box, Card, Heading, LocalTime } from '@kiqr/react-components'
+import { Button } from '@kiqr/core'
+
 import { PageTitle } from '../../../../components'
 import { useCurrent } from '../../../../hooks'
 import { useResources } from '@kiqr/react-hooks'
@@ -53,11 +55,9 @@ const ContentTypePage: NextPage = () => {
           href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/new`}
         >
           <a>
-            <Button
-              icon={<FaPlusCircle />}
-              text={`New ${singularizedContentTypeName}`}
-              type="primary"
-            />
+            <Button icon={<FaPlusCircle />} variant="primary">
+              {`New ${singularizedContentTypeName}`}
+            </Button>
           </a>
         </Link>
       </Heading>
@@ -97,11 +97,9 @@ const ContentTypePage: NextPage = () => {
                       href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/new`}
                     >
                       <a>
-                        <Button
-                          text={`Create ${singularizedContentTypeName}`}
-                          type="primary"
-                          size="lg"
-                        />
+                        <Button variant="primary" size="lg">
+                          {`Create ${singularizedContentTypeName}`}
+                        </Button>
                       </a>
                     </Link>
                   </div>
@@ -164,7 +162,7 @@ const ContentTypePage: NextPage = () => {
                       href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
                     >
                       <a>
-                        <Button text="Edit" size="xs" />
+                        <Button size="xs">Edit</Button>
                       </a>
                     </Link>
                   </td>

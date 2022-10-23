@@ -13,6 +13,9 @@
     "packages/kiqr-cli": {
       "release-as": ""
     },
+    "packages/kiqr-core": {
+      "release-as": ""
+    },
     "packages/react-components": {
       "release-as": ""
     },

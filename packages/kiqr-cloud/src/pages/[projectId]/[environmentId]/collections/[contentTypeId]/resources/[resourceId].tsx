@@ -5,13 +5,8 @@ import {
   UpdateResourceRequest,
 } from '@kiqr/management-api-sdk'
 
-import {
-  Button,
-  Card,
-  Heading,
-  Padding,
-  LocalTime,
-} from '@kiqr/react-components'
+import { Card, Heading, Padding, LocalTime } from '@kiqr/react-components'
+import { Button } from '@kiqr/core'
 
 import { useResource, useResourceVersions, useSession } from '@kiqr/react-hooks'
 import { useRouter } from 'next/router'
@@ -111,10 +106,9 @@ const ResourcePage: NextPage = () => {
           href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}`}
         >
           <a>
-            <Button
-              icon={<FaArrowCircleLeft />}
-              text={`Back to ${currentContentType?.name.toLowerCase()}`}
-            />
+            <Button icon={<FaArrowCircleLeft />}>
+              {`Back to ${currentContentType?.name.toLowerCase()}`}
+            </Button>
           </a>
         </Link>
       </Heading>
@@ -131,8 +125,8 @@ const ResourcePage: NextPage = () => {
             subtitle="Publish or schedule your resource for later"
           >
             <div className="bg-neutral-50 p-5 flex justify-between gap-x-5">
-              <Button text="Save draft" />
-              <Button text="Publish now" type="primary" />
+              <Button>Save draft</Button>
+              <Button variant="primary">Publish</Button>
             </div>
           </Card>
 
@@ -150,7 +144,7 @@ const ResourcePage: NextPage = () => {
                         <LocalTime at={version.updated_at} />
                       </td>
                       <td className="mini">
-                        <Button text="Restore" size="xs" />
+                        <Button size="xs">Restore</Button>
                       </td>
                     </tr>
                   ))}
@@ -168,7 +162,9 @@ const ResourcePage: NextPage = () => {
               <strong>permanently deleted</strong> after 30 days.
             </p>
             <Padding>
-              <Button text="Delete resource" type="danger" size="xs" />
+              <Button variant="danger" size="xs">
+                Delete resource
+              </Button>
             </Padding>
           </Card>
         </aside>

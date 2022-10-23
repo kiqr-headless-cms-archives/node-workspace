@@ -2,7 +2,6 @@ import './styles/tailwind.css'
 
 // Components
 export {Avatar} from './components/atoms/Avatar'
-export {Button} from './components/atoms/Button'
 export {Box} from './components/atoms/Box'
 export {Card} from './components/atoms/Card'
 export {Dropdown} from './components/atoms/Dropdown'

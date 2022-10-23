@@ -1,5 +1,5 @@
 import type { ResponseMetaPagination } from '@kiqr/management-api-sdk'
-import { Button } from '@kiqr/react-components'
+import { Button } from '@kiqr/core'
 import { Group } from '../..'
 
 interface PaginationProps {
@@ -20,10 +20,11 @@ export const Pagination = ({ pagination, setPage }: PaginationProps) => {
         <Button
           onClick={() => setPage(page)}
           key={page}
-          text={page.toString()}
           size="xs"
-          type={page === pagination.page ? 'primary' : 'secondary'}
-        />
+          variant={page === pagination.page ? 'primary' : 'secondary'}
+        >
+          {page.toString()}
+        </Button>
       )
     } else {
       return null

@@ -1,4 +1,6 @@
-import { Button, Dropdown, Logo } from '@kiqr/react-components'
+import { Dropdown, Logo } from '@kiqr/react-components'
+import { Button } from '@kiqr/core'
+
 import { useSession } from '@kiqr/react-hooks'
 
 import { ReactElement } from 'react'
@@ -41,8 +43,12 @@ export const Topbar = () => {
           environment={currentEnvironment?.name}
         />
         <div className="flex items-center gap-x-5 ml-auto">
-          <Button icon={<FaBook />} text="DOCS" size="xs" />
-          <Button icon={<FaTerminal />} text="CLI" size="xs" />
+          <Button icon={<FaBook />} size="xs">
+            DOCS
+          </Button>
+          <Button icon={<FaTerminal />} size="xs">
+            CLI
+          </Button>
           <div className="h-10 w-[1px] bg-neutral-100"></div>
           <UserDropdown />
           <div className="h-10 w-[1px] bg-neutral-100"></div>
