@@ -58,7 +58,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           Lorem ipsum dolor
         </div>
       </div>
-      <div className="py-5">
+      <div className="pt-5">
         <ProgressBar title={project ? 'Project status' : ''} percentage={0} />
       </div>
     </Card>
