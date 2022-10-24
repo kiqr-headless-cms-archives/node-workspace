@@ -16,9 +16,6 @@
     "packages/kiqr-core": {
       "release-as": ""
     },
-    "packages/react-components": {
-      "release-as": ""
-    },
     "packages/react-hooks": {
       "release-as": ""
     },

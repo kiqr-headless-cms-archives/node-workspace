@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@kiqr/react-components": "*",
     "@kiqr/react-hooks": "*",
     "@kiqr/core": "*",
     "inflection": "^1.13.4",
