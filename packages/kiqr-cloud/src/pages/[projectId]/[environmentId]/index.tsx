@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import { Heading } from '@kiqr/react-components'
+import { Heading } from '@kiqr/core'
 
 import { PageTitle } from '../../../components'
 import { useCurrent } from '../../../hooks'

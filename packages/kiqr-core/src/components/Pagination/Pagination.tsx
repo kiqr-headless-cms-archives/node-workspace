@@ -10,10 +10,11 @@ export interface PaginationProps {
   currentPage?: number
   totalPages?: number
   maxLength?: number
+  gap?: number
   callback: (pageNumber: number) => void
 }
 
-export const Pagination = ({ currentPage = 1, totalPages = 1, maxLength = 10, callback }: PaginationProps) => {
+export const Pagination = ({ currentPage = 1, totalPages = 1, maxLength = 10, gap = 3, callback }: PaginationProps) => {
   const pageNumbers = []
   const aroundCount = Math.floor((maxLength - 1) / 2)
 
@@ -66,7 +67,7 @@ export const Pagination = ({ currentPage = 1, totalPages = 1, maxLength = 10, ca
 
   return (
     <div className="flex justify-center items-center">
-      <Group>
+      <Group gap={gap}>
         { prevPage ? <Button onClick={() => callback(prevPage)} icon={<FaChevronCircleLeft />} size="xs"/> : null }
         {beforeLinks()}
         <Button variant="primary" size="xs">{currentPage}</Button>

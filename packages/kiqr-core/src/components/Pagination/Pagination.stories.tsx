@@ -8,7 +8,8 @@ const meta: Meta = {
   component: Pagination,
   argTypes: {
     currentPage: { control: { type: 'range', min: 0, max: 100 }, defaultValue: 4 },
-    totalPages: { control: { type: 'range', min: 0, max: 100 }, defaultValue: 20 }
+    totalPages: { control: { type: 'range', min: 0, max: 100 }, defaultValue: 20 },
+    gap: { control: { type: 'range', min: 0, max: 5 }, defaultValue: 3 }
   },
   parameters: {
     controls: {expanded: true},

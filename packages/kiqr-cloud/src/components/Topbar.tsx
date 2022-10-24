@@ -1,31 +1,16 @@
-import { Dropdown, Logo } from '@kiqr/react-components'
-import { Button } from '@kiqr/core'
-
-import { useSession } from '@kiqr/react-hooks'
-
-import { ReactElement } from 'react'
 import { FaBook, FaSignOutAlt, FaTerminal } from 'react-icons/fa'
 
+import { useSession } from '@kiqr/react-hooks'
+import { Avatar, Button, Group } from '@kiqr/core'
+
 import Link from 'next/link'
-import { ProjectDropdown } from '.'
+
+import { Logo } from '../components'
 import { useCurrent } from '../hooks'
 
-const UserDropdown = (): ReactElement => {
-  const { user } = useSession()
-
-  if (!user) return <Dropdown />
-
-  return (
-    <Dropdown
-      line1={user.name}
-      line2={user.email}
-      avatarUrl={user.avatar_url}
-    />
-  )
-}
-
 export const Topbar = () => {
-  const { projects, currentEnvironment, currentProject } = useCurrent()
+  const { currentEnvironment, currentProject } = useCurrent()
+  const { user } = useSession()
 
   return (
     <nav className="h-16 flex items-center bg-white text-sm border-b">
@@ -37,12 +22,22 @@ export const Topbar = () => {
         </Link>
       </aside>
       <section className="flex items-center flex-1 px-5 gap-x-5">
-        <ProjectDropdown
-          projects={projects}
-          currentProject={currentProject}
-          environment={currentEnvironment?.name}
-        />
-        <div className="flex items-center gap-x-5 ml-auto">
+        {currentProject ? (
+          <Group gap={4}>
+            <Avatar
+              src={`https://avatars.dicebear.com/api/initials/${currentProject.name}.svg`}
+            />
+            <Group direction="vertical" gap={0}>
+              <strong>{currentProject.name}</strong>
+              {currentEnvironment ? (
+                <span className="topbar-separator">
+                  {currentEnvironment.name}
+                </span>
+              ) : null}
+            </Group>
+          </Group>
+        ) : null}
+        <Group className="ml-auto">
           <Button icon={<FaBook />} size="xs">
             DOCS
           </Button>
@@ -50,10 +45,20 @@ export const Topbar = () => {
             CLI
           </Button>
           <div className="h-10 w-[1px] bg-neutral-100"></div>
-          <UserDropdown />
+          {user ? (
+            <Group gap={4}>
+              <Avatar
+                src={`https://avatars.dicebear.com/api/initials/${user.name}.svg`}
+              />
+              <Group direction="vertical" gap={0}>
+                <strong>{user.name}</strong>
+                <span className="topbar-separator">{user.email}</span>
+              </Group>
+            </Group>
+          ) : null}
           <div className="h-10 w-[1px] bg-neutral-100"></div>
           <Button icon={<FaSignOutAlt />} size="xs" />
-        </div>
+        </Group>
       </section>
     </nav>
   )

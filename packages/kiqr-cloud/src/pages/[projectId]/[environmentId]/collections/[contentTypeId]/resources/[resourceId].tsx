@@ -5,7 +5,7 @@ import {
   UpdateResourceRequest,
 } from '@kiqr/management-api-sdk'
 
-import { Card, Heading, Padding } from '@kiqr/react-components'
+import { Card, Heading, Padding } from '@kiqr/core'
 import { Button, LocalTime } from '@kiqr/core'
 
 import { useResource, useResourceVersions, useSession } from '@kiqr/react-hooks'

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import { Card, Heading } from '@kiqr/react-components'
+import { Card, Heading } from '@kiqr/core'
 import { Button } from '@kiqr/core'
 
 import { useSession } from '@kiqr/react-hooks'

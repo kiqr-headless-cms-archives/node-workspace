@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { Heading } from '@kiqr/react-components'
+import { Heading } from '@kiqr/core'
 import { ProjectStack } from '../components'
 import { useCurrent } from '../hooks'
 

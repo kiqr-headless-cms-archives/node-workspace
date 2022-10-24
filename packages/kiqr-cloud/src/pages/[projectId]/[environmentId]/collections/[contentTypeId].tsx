@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
-import { Box, Card, Heading } from '@kiqr/react-components'
-import { Button, Pagination, LocalTime } from '@kiqr/core'
+import { Card, Heading } from '@kiqr/core'
+import { Box, Button, Pagination, LocalTime } from '@kiqr/core'
 
 import { PageTitle } from '../../../../components'
 import { useCurrent } from '../../../../hooks'
