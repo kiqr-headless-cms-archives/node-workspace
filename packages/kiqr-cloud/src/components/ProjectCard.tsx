@@ -1,13 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import {
-  Avatar,
-  AvatarStack,
-  Card,
-  Padding,
-  Placeholder,
-  ProgressBar,
-} from '@kiqr/react-components'
+import { Card, Padding, Placeholder, ProgressBar } from '@kiqr/react-components'
+import { Avatar, Group } from '@kiqr/core'
 
 import type { Project } from '@kiqr/management-api-sdk'
 
@@ -30,46 +24,40 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         <div className="flex w-full items-center">
           <div className="flex w-1/2">
             {project ? (
-              <AvatarStack spacing={-3}>
+              <Group spacing={-3}>
                 <Avatar
                   src="https://avatars.dicebear.com/api/initials/rk.svg"
-                  type={'circle'}
+                  variant={'circle'}
                 />
                 <Avatar
                   src="https://avatars.dicebear.com/api/initials/ju.svg"
-                  type={'circle'}
+                  variant={'circle'}
                 />
                 <Avatar
                   src="https://avatars.dicebear.com/api/initials/ts.svg"
-                  type={'circle'}
+                  variant={'circle'}
                 />
-              </AvatarStack>
+              </Group>
             ) : (
-              <AvatarStack spacing={-3}>
+              <Group spacing={-3}>
                 <Avatar
                   src="https://avatars.dicebear.com/api/initials/.svg"
-                  type={'circle'}
+                  variant={'circle'}
                 />
                 <Avatar
                   src="https://avatars.dicebear.com/api/initials/-.svg"
-                  type={'circle'}
+                  variant={'circle'}
                 />
                 <Avatar
                   src="https://avatars.dicebear.com/api/initials/_.svg"
-                  type={'circle'}
+                  variant={'circle'}
                 />
-              </AvatarStack>
+              </Group>
             )}
           </div>
           <div className="flex flex-col w-1/2 text-right text-xs text-slate-400 gap-y-1">
-            <strong className="text-primary-700">
-              {project?.id ? (
-                'Project ID'
-              ) : (
-                <Placeholder length={10} size="small" />
-              )}
-            </strong>
-            {project?.id || <Placeholder />}
+            <strong className="text-primary-700">Quota</strong>
+            Lorem ipsum dolor
           </div>
         </div>
       </Padding>
