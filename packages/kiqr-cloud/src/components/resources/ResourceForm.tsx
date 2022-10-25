@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Card } from '@kiqr/irelia'
+import { Box, Heading, Padding } from '@kiqr/irelia'
 import { FaGoogle, FaWrench } from 'react-icons/fa'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import { FormError, Field } from '..'
@@ -24,7 +24,14 @@ export const ResourceForm = ({ register, errors }: ResourceFormProps) => {
 
   return (
     <Tabs>
-      <Card title="General" subtitle="Edit general settings">
+      <Box p={0}>
+        <Padding>
+          <Heading
+            title="General"
+            subtitle="Edit general settings"
+            variant="box"
+          />
+        </Padding>
         <div className="flex border-t">
           <aside className="border-r w-60">
             <TabList>
@@ -104,7 +111,7 @@ export const ResourceForm = ({ register, errors }: ResourceFormProps) => {
             </TabPanel>
           </main>
         </div>
-      </Card>
+      </Box>
     </Tabs>
   )
 }

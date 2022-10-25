@@ -18,10 +18,10 @@ export const Card = ({ title, subtitle, children, avatarUrl }: CardProps) => {
         <Group>{avatarUrl ? <Avatar src={avatarUrl} variant="square" /> : null}
         <header className="flex flex-col">
           <h3 className="text-primary-700 font-bold">{title}</h3>
-          <p className="text-xs text-slate-400">{subtitle}</p>
+          <p className="text-xs text-neutral-400">{subtitle}</p>
         </header>
         </Group>
-        <div className="text-sm text-neutral-400">{children}</div>
+        <div className="text-sm text-neutral-500">{children}</div>
       </Group>
     </Box>
   )

@@ -15,6 +15,10 @@ body { font-family: 'Poppins'; }
   .topbar-separator {
     @apply text-xs text-neutral-400
   }
+
+  a {
+    @apply text-primary-700 hover:text-primary-900
+  }
 }
 
 /**
@@ -39,52 +43,5 @@ body { font-family: 'Poppins'; }
 
   aside#sidebar nav ul li a .icon {
     @apply flex items-center justify-center w-4 h-4 mr-4;
-  }
-}
-
-/**
- * Tables
-**/
-@layer base {
-  .table {
-    @apply w-full
-  }
-
-  .table thead {
-    @apply bg-neutral-100
-  }
-
-  .table thead th,
-  .table tbody td {
-    @apply text-left text-sm px-5 py-2 border-r
-  }
-
-  .table thead th {
-    @apply text-xs bg-white py-4 uppercase text-primary-700;
-  }
-
-  .table tbody td {
-    @apply text-sm;
-  }
-
-  .table thead th.mini,
-  .table tbody td.mini {
-    @apply w-0 text-center whitespace-nowrap
-  }
-
-  .table tbody .actions {
-    @apply flex gap-x-4
-  }
-
-  .table tr {
-    @apply border-b;
-  }
-
-  .table tr.active {
-    @apply bg-neutral-100;
-  }
-
-  .table tbody td a {
-    @apply text-primary-700 hover:text-primary-800
   }
 }

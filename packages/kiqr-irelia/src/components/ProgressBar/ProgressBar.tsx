@@ -10,8 +10,8 @@ export interface ProgressBarProps {
 
 export const ProgressBar = ({
   title,
-  startText,
-  completedText,
+  startText = 'Not started',
+  completedText = 'Completed',
   percentage = 0
 }: ProgressBarProps) => {
   const statusText = (percentage === 0 || percentage === 100) ? (percentage === 0 ? startText : completedText) : `${percentage}%`
@@ -31,9 +31,9 @@ export const ProgressBar = ({
   return (
     <>
       <div className="text-xs mb-3 text-primary-700 flex justify-between">
-        <strong>{title || <Placeholder length={10} size="xs" />}</strong>
+        <strong>{title}</strong>
         <span className="text-gray-500 font-bold">
-          {statusText || <Placeholder length={10} size="xs" />}
+          {statusText}
         </span>
       </div>
       <div className="w-full bg-gray-200 rounded-full h-1.5">

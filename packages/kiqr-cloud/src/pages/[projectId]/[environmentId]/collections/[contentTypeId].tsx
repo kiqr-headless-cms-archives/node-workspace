@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import { Card, Heading } from '@kiqr/irelia'
+import { Card, Column, Heading, Row, Table } from '@kiqr/irelia'
 import { Box, Button, Pagination, LocalTime } from '@kiqr/irelia'
 
 import { PageTitle } from '../../../../components'
@@ -119,57 +119,46 @@ const ContentTypePage: NextPage = () => {
       ) : null}
 
       {resources && resources?.length > 0 ? (
-        <Card
-          title="All"
-          subtitle={
-            pagination
-              ? `Displaying page ${pagination.page} of ${pagination.pages}`
-              : `Loading ${pluralizedContentTypeName}..`
-          }
-        >
-          <table className="table border-t">
-            <thead>
-              <tr>
-                <th className="mini"></th>
-                <th>Name</th>
-                <th>Updated at</th>
-                <th>Created at</th>
-                <th className="actions">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {resources.map((resource) => (
-                <tr key={resource.id}>
-                  <td className="mini">
-                    <FaCircle />
-                  </td>
-                  <td>
-                    <Link
-                      href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
-                    >
-                      <a>{resource.name}</a>
-                    </Link>
-                  </td>
-                  <td>
-                    <LocalTime epochTime={resource.updated_at} />
-                  </td>
-                  <td>
-                    <LocalTime epochTime={resource.created_at} />
-                  </td>
-                  <td className="actions">
-                    <Link
-                      href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
-                    >
-                      <a>
-                        <Button size="xs">Edit</Button>
-                      </a>
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </Card>
+        <Table>
+          <Row>
+            <Column variant="th" className="w-0"></Column>
+            <Column variant="th">Name</Column>
+            <Column variant="th">Updated at</Column>
+            <Column variant="th">Created at</Column>
+            <Column variant="th" className="w-0">
+              Actions
+            </Column>
+          </Row>
+          {resources.map((resource) => (
+            <Row key={resource.id}>
+              <Column className="w-0">
+                <FaCircle />
+              </Column>
+              <Column>
+                <Link
+                  href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
+                >
+                  <a>{resource.name}</a>
+                </Link>
+              </Column>
+              <Column>
+                <LocalTime epochTime={resource.updated_at} />
+              </Column>
+              <Column>
+                <LocalTime epochTime={resource.created_at} />
+              </Column>
+              <Column className="w-0">
+                <Link
+                  href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
+                >
+                  <a>
+                    <Button size="xs">Edit</Button>
+                  </a>
+                </Link>
+              </Column>
+            </Row>
+          ))}
+        </Table>
       ) : null}
 
       {pagination && pagination.pages > 1 ? (
