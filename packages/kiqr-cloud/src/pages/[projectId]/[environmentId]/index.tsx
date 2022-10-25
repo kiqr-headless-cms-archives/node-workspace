@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import { Heading } from '@kiqr/core'
+import { Heading } from '@kiqr/irelia'
 
 import { PageTitle } from '../../../components'
 import { useCurrent } from '../../../hooks'

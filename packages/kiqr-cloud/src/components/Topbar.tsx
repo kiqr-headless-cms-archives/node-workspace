@@ -1,7 +1,7 @@
 import { FaBook, FaSignOutAlt, FaTerminal } from 'react-icons/fa'
 
 import { useSession } from '@kiqr/react-hooks'
-import { Avatar, Button, Group } from '@kiqr/core'
+import { Avatar, Button, Group } from '@kiqr/irelia'
 
 import Link from 'next/link'
 

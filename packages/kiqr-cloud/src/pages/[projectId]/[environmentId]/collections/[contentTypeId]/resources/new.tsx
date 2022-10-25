@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
-import { Card, Heading } from '@kiqr/core'
-import { Button } from '@kiqr/core'
+import { Card, Heading } from '@kiqr/irelia'
+import { Button } from '@kiqr/irelia'
 
 import { useSession } from '@kiqr/react-hooks'
 import { FaArrowCircleLeft } from 'react-icons/fa'
