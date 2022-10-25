@@ -5,8 +5,8 @@ import {
   UpdateResourceRequest,
 } from '@kiqr/management-api-sdk'
 
-import { Card, Heading, Padding } from '@kiqr/core'
-import { Button, LocalTime } from '@kiqr/core'
+import { Card, Heading, Padding } from '@kiqr/irelia'
+import { Button, LocalTime } from '@kiqr/irelia'
 
 import { useResource, useResourceVersions, useSession } from '@kiqr/react-hooks'
 import { useRouter } from 'next/router'

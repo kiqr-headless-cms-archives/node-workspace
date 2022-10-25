@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import { Avatar, Card, ProgressBar, Group } from '@kiqr/core'
+import { Avatar, Card, ProgressBar, Group } from '@kiqr/irelia'
 
 import type { Project } from '@kiqr/management-api-sdk'
 

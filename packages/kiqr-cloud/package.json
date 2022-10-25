@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@kiqr/react-hooks": "*",
-    "@kiqr/core": "*",
+    "@kiqr/irelia": "*",
     "inflection": "^1.13.4",
     "next": "12.3.0",
     "react": "^18.2.0",

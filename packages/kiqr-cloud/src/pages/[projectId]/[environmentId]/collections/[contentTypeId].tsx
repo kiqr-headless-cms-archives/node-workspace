@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
-import { Card, Heading } from '@kiqr/core'
-import { Box, Button, Pagination, LocalTime } from '@kiqr/core'
+import { Card, Heading } from '@kiqr/irelia'
+import { Box, Button, Pagination, LocalTime } from '@kiqr/irelia'
 
 import { PageTitle } from '../../../../components'
 import { useCurrent } from '../../../../hooks'
