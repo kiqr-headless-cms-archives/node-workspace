@@ -1,6 +1,8 @@
 import type { NextPage } from 'next'
 
-import { Button, Card, Heading } from '@kiqr/react-components'
+import { Card, Heading } from '@kiqr/core'
+import { Button } from '@kiqr/core'
+
 import { useSession } from '@kiqr/react-hooks'
 import { FaArrowCircleLeft } from 'react-icons/fa'
 import {
@@ -84,10 +86,9 @@ const NewResourcePage: NextPage = () => {
           href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}`}
         >
           <a>
-            <Button
-              icon={<FaArrowCircleLeft />}
-              text={`Back to ${currentContentType?.name.toLowerCase()}`}
-            />
+            <Button icon={<FaArrowCircleLeft />}>
+              {`Back to ${currentContentType?.name.toLowerCase()}`}
+            </Button>
           </a>
         </Link>
       </Heading>
@@ -104,8 +105,8 @@ const NewResourcePage: NextPage = () => {
             subtitle="Publish or schedule your resource for later"
           >
             <div className="bg-neutral-50 p-5 flex justify-between gap-x-5">
-              <Button text="Save draft" />
-              <Button text="Save &amp; publish" type="primary" />
+              <Button>Save draft</Button>
+              <Button variant="primary">Save &amp; publish</Button>
             </div>
           </Card>
         </aside>

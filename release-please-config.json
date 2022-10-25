@@ -13,7 +13,7 @@
     "packages/kiqr-cli": {
       "release-as": ""
     },
-    "packages/react-components": {
+    "packages/kiqr-core": {
       "release-as": ""
     },
     "packages/react-hooks": {

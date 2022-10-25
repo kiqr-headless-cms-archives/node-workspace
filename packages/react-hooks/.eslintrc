@@ -2,5 +2,8 @@
   "extends": [
     "kiqr",
     "kiqr-typescript"
-  ]
+  ],
+  "rules": {
+    "camelcase": "off"
+  }
 }

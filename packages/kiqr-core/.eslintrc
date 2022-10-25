@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "kiqr",
+    "kiqr-typescript",
+    "prettier"
+  ],
+  "rules": {
+    "unicorn/filename-case": "off"
+  },
+  "overrides": [
+    {
+      // or whatever matches stories specified in .storybook/main.js
+      "files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
+      "rules": {
+        "node/no-unpublished-import": "off"
+      }
+    }
+  ]
+}

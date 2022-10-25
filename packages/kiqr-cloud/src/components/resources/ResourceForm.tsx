@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Card } from '@kiqr/react-components'
+import { Card } from '@kiqr/core'
 import { FaGoogle, FaWrench } from 'react-icons/fa'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import { FormError, Field } from '..'

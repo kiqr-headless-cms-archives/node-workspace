@@ -1,6 +1,8 @@
 import type { NextPage } from 'next'
 
-import { Box, Button, Card, Heading, LocalTime } from '@kiqr/react-components'
+import { Card, Heading } from '@kiqr/core'
+import { Box, Button, Pagination, LocalTime } from '@kiqr/core'
+
 import { PageTitle } from '../../../../components'
 import { useCurrent } from '../../../../hooks'
 import { useResources } from '@kiqr/react-hooks'
@@ -10,7 +12,6 @@ import Image from 'next/image'
 import inflection from 'inflection'
 import Link from 'next/link'
 
-import { Pagination } from '../../../../components/atoms/Pagination/Pagination'
 import { useState } from 'react'
 
 const ContentTypePage: NextPage = () => {
@@ -53,11 +54,9 @@ const ContentTypePage: NextPage = () => {
           href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/new`}
         >
           <a>
-            <Button
-              icon={<FaPlusCircle />}
-              text={`New ${singularizedContentTypeName}`}
-              type="primary"
-            />
+            <Button icon={<FaPlusCircle />} variant="primary">
+              {`New ${singularizedContentTypeName}`}
+            </Button>
           </a>
         </Link>
       </Heading>
@@ -97,11 +96,9 @@ const ContentTypePage: NextPage = () => {
                       href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/new`}
                     >
                       <a>
-                        <Button
-                          text={`Create ${singularizedContentTypeName}`}
-                          type="primary"
-                          size="lg"
-                        />
+                        <Button variant="primary" size="lg">
+                          {`Create ${singularizedContentTypeName}`}
+                        </Button>
                       </a>
                     </Link>
                   </div>
@@ -154,17 +151,17 @@ const ContentTypePage: NextPage = () => {
                     </Link>
                   </td>
                   <td>
-                    <LocalTime at={resource.updated_at} />
+                    <LocalTime epochTime={resource.updated_at} />
                   </td>
                   <td>
-                    <LocalTime at={resource.created_at} />
+                    <LocalTime epochTime={resource.created_at} />
                   </td>
                   <td className="actions">
                     <Link
                       href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
                     >
                       <a>
-                        <Button text="Edit" size="xs" />
+                        <Button size="xs">Edit</Button>
                       </a>
                     </Link>
                   </td>
@@ -175,8 +172,12 @@ const ContentTypePage: NextPage = () => {
         </Card>
       ) : null}
 
-      {pagination ? (
-        <Pagination pagination={pagination} setPage={setPage} />
+      {pagination && pagination.pages > 1 ? (
+        <Pagination
+          currentPage={pagination.page}
+          totalPages={pagination.pages}
+          callback={setPage}
+        />
       ) : null}
     </>
   )
