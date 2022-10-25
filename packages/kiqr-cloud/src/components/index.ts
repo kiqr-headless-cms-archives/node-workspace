@@ -1,4 +1,4 @@
-export * from './Logo'
+export * from './atoms/Logo'
 
 // Unorganized components that should be organized asap:
 export * from './Layout'
