@@ -1,4 +1,5 @@
 export * from './atoms/Logo'
+export * from './organisms/ResourcesTable'
 
 // Unorganized components that should be organized asap:
 export * from './Layout'

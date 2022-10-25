@@ -16,6 +16,7 @@ import {
   Row,
   Column,
   Group,
+  ApiEndpoint,
 } from '@kiqr/irelia'
 
 import { useResource, useResourceVersions, useSession } from '@kiqr/react-hooks'
@@ -122,6 +123,13 @@ const ResourcePage: NextPage = () => {
           </a>
         </Link>
       </Heading>
+
+      {currentProject && currentContentType && resource ? (
+        <ApiEndpoint
+          url={`https://content.kiqr.cloud/v1/collections/${currentContentType.id}/${resource.slug}`}
+        />
+      ) : null}
+
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-4 gap-x-5"

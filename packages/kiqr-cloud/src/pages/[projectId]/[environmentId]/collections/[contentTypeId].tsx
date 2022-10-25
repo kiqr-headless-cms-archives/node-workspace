@@ -1,18 +1,19 @@
 import type { NextPage } from 'next'
 
-import { Card, Column, Heading, Row, Table } from '@kiqr/irelia'
-import { Box, Button, Pagination, LocalTime } from '@kiqr/irelia'
+import { ApiEndpoint, Heading } from '@kiqr/irelia'
+import { Box, Button, Pagination } from '@kiqr/irelia'
 
 import { PageTitle } from '../../../../components'
 import { useCurrent } from '../../../../hooks'
 import { useResources } from '@kiqr/react-hooks'
-import { FaCircle, FaPlusCircle } from 'react-icons/fa'
+import { FaPlusCircle } from 'react-icons/fa'
 
 import Image from 'next/image'
 import inflection from 'inflection'
 import Link from 'next/link'
 
 import { useState } from 'react'
+import { ResourcesTable } from '../../../../components/organisms/ResourcesTable/ResourcesTable'
 
 const ContentTypePage: NextPage = () => {
   const { currentContentType, currentEnvironment, currentProject } =
@@ -42,34 +43,29 @@ const ContentTypePage: NextPage = () => {
       {currentProject && currentContentType ? (
         <PageTitle segments={[currentContentType.name, 'List']} />
       ) : null}
-      <Heading
-        title={currentContentType?.name ? currentContentType.name : undefined}
-        subtitle={
-          currentContentType
-            ? `Listing all resources in collection "${currentContentType.name}"`
-            : undefined
-        }
-      >
-        <Link
-          href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/new`}
-        >
-          <a>
-            <Button icon={<FaPlusCircle />} variant="primary">
-              {`New ${singularizedContentTypeName}`}
-            </Button>
-          </a>
-        </Link>
-      </Heading>
 
-      {/*<div className="flex items-center bg-primary-800 p-2 text-xs gap-x-2 rounded">
-        <div className="bg-primary-900 text-white mr-1 w-8 h-8 rounded flex items-center justify-center">
-          <FaLink />
-        </div>
-        <strong className="text-white">GET</strong>
-        <a target="_blank" className="text-white" href="#">
-          {`https://content.kiqr.cloud/v1/${currentProject?.slug}/collections/${query?.contentTypeId}`}
-        </a>
-      </div>*/}
+      {currentContentType ? (
+        <Heading
+          title={currentContentType.name}
+          subtitle={`Listing all resources in collection "${currentContentType.name}"`}
+        >
+          <Link
+            href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/new`}
+          >
+            <a>
+              <Button icon={<FaPlusCircle />} variant="primary">
+                {`New ${singularizedContentTypeName}`}
+              </Button>
+            </a>
+          </Link>
+        </Heading>
+      ) : null}
+
+      {currentProject && currentContentType ? (
+        <ApiEndpoint
+          url={`https://content.kiqr.cloud/v1/collections/${currentContentType.id}`}
+        />
+      ) : null}
 
       {currentContentType && resources?.length == 0 ? (
         <Box>
@@ -119,46 +115,7 @@ const ContentTypePage: NextPage = () => {
       ) : null}
 
       {resources && resources?.length > 0 ? (
-        <Table>
-          <Row>
-            <Column variant="th" className="w-0"></Column>
-            <Column variant="th">Name</Column>
-            <Column variant="th">Updated at</Column>
-            <Column variant="th">Created at</Column>
-            <Column variant="th" className="w-0">
-              Actions
-            </Column>
-          </Row>
-          {resources.map((resource) => (
-            <Row key={resource.id}>
-              <Column className="w-0">
-                <FaCircle />
-              </Column>
-              <Column>
-                <Link
-                  href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
-                >
-                  <a>{resource.name}</a>
-                </Link>
-              </Column>
-              <Column>
-                <LocalTime epochTime={resource.updated_at} />
-              </Column>
-              <Column>
-                <LocalTime epochTime={resource.created_at} />
-              </Column>
-              <Column className="w-0">
-                <Link
-                  href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
-                >
-                  <a>
-                    <Button size="xs">Edit</Button>
-                  </a>
-                </Link>
-              </Column>
-            </Row>
-          ))}
-        </Table>
+        <ResourcesTable resources={resources} />
       ) : null}
 
       {pagination && pagination.pages > 1 ? (
