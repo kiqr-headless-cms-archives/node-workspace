@@ -9,16 +9,16 @@ Installation
 Run the following command using npm:
 
 ```console
-npm install @kiqr/react --save
+npm install @kiqr/irelia --save
 ```
 
 or with **yarn**:
 
 ```console
-yarn add @kiqr/react
+yarn add @kiqr/irelia
 ```
 
-This will download and add `@kiqr/react` to your projects `package.json`-file.
+This will download and add `@kiqr/irelia` to your projects `package.json`-file.
 
 Getting started
 ---------------

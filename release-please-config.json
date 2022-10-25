@@ -10,10 +10,10 @@
     "packages/eslint-config-typescript": {
       "release-as": ""
     },
-    "packages/kiqr-cli": {
+    "packages/kiqr-irelia": {
       "release-as": ""
     },
-    "packages/kiqr-core": {
+    "packages/kiqr-cli": {
       "release-as": ""
     },
     "packages/react-hooks": {
