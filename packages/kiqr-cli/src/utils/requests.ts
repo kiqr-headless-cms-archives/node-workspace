@@ -1,4 +1,14 @@
-import {Configuration, User, UserApi, ProjectsApi, CreateProjectRequest, Project, CreateSchemaRequest, SchemasApi, Schema} from '@kiqr/management-api-sdk'
+import {
+  Configuration,
+  User,
+  UserApi,
+  ProjectsApi,
+  CreateProjectRequest,
+  Project,
+  CreateSchemaRequest,
+  SchemasApi,
+  Schema,
+} from '@kiqr/management-api-sdk'
 
 export interface ValidationErrorResponse {
   type: string
@@ -12,7 +22,11 @@ export class ResponseError extends Error {
   public type: string
   public errors: string[] | undefined
 
-  constructor(message: string, statusCode: string, response: ValidationErrorResponse) {
+  constructor(
+    message: string,
+    statusCode: string,
+    response: ValidationErrorResponse
+  ) {
     super(message)
 
     // assign the status code
@@ -37,7 +51,7 @@ const handleResponseError = (reject: any, originalError: any) => {
     const responseError = new ResponseError(
       originalError.message, // error message
       originalError.response?.status, // status code
-      originalError.response?.data, // response body
+      originalError.response?.data // response body
     )
     reject(responseError)
   } else {
@@ -46,26 +60,29 @@ const handleResponseError = (reject: any, originalError: any) => {
 }
 
 export const getUser = async (accessToken: string): Promise<User> => {
-  const configuration = new Configuration({accessToken: accessToken})
+  const configuration = new Configuration({ accessToken: accessToken })
   const api = new UserApi(configuration)
 
   return new Promise((resolve, reject) => {
     api
-    .getUser()
-    .then(response => resolve(response.data))
-    .catch(error => handleResponseError(reject, error))
+      .getUser()
+      .then((response) => resolve(response.data))
+      .catch((error) => handleResponseError(reject, error))
   })
 }
 
-export const createProject = async (accessToken: string, payload: CreateProjectRequest): Promise<Project> => {
-  const configuration = new Configuration({accessToken: accessToken})
+export const createProject = async (
+  accessToken: string,
+  payload: CreateProjectRequest
+): Promise<Project> => {
+  const configuration = new Configuration({ accessToken: accessToken })
   const api = new ProjectsApi(configuration)
 
   return new Promise((resolve, reject) => {
     api
-    .createProject(payload)
-    .then(response => resolve(response.data))
-    .catch(error => handleResponseError(reject, error))
+      .createProject(payload)
+      .then((response) => resolve(response.data))
+      .catch((error) => handleResponseError(reject, error))
   })
 }
 
@@ -73,15 +90,15 @@ export const createSchema = async (
   accessToken: string,
   projectId: string,
   lastSchemaVersion: string,
-  payload: CreateSchemaRequest,
+  payload: CreateSchemaRequest
 ): Promise<Schema> => {
-  const configuration = new Configuration({accessToken: accessToken})
+  const configuration = new Configuration({ accessToken: accessToken })
   const api = new SchemasApi(configuration)
 
   return new Promise((resolve, reject) => {
     api
-    .createSchema(projectId, lastSchemaVersion, payload)
-    .then(response => resolve(response.data))
-    .catch(error => handleResponseError(reject, error))
+      .createSchema(projectId, lastSchemaVersion, payload)
+      .then((response) => resolve(response.data))
+      .catch((error) => handleResponseError(reject, error))
   })
 }

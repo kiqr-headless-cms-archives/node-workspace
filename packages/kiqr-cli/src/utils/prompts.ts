@@ -7,14 +7,19 @@ import inquirer from 'inquirer'
  * @param {string} question The message to show before input.
  * @param {string} suggested Suggested answer.
  * @returns {string} The written answer.
-*/
-export const promptForString = async (question: string, suggested?: string): Promise<string> => {
-  const response = await inquirer.prompt({
-    type: 'input',
-    name: 'value',
-    default: suggested,
-    message: question,
-  }).then()
+ */
+export const promptForString = async (
+  question: string,
+  suggested?: string
+): Promise<string> => {
+  const response = await inquirer
+    .prompt({
+      type: 'input',
+      name: 'value',
+      default: suggested,
+      message: question,
+    })
+    .then()
 
   return response.value
 }
@@ -25,13 +30,17 @@ export const promptForString = async (question: string, suggested?: string): Pro
  *
  * @param {string} question The message to show before input.
  * @returns {string} The written answer.
-*/
-export const promptForConfirmation = async (question: string): Promise<string> => {
-  const response = await inquirer.prompt({
-    type: 'confirm',
-    name: 'value',
-    message: question,
-  }).then()
+ */
+export const promptForConfirmation = async (
+  question: string
+): Promise<string> => {
+  const response = await inquirer
+    .prompt({
+      type: 'confirm',
+      name: 'value',
+      message: question,
+    })
+    .then()
 
   return response.value
 }
@@ -43,18 +52,23 @@ export const promptForConfirmation = async (question: string): Promise<string> =
  * @param {string} question The message to show before input.
  * @param {string[]} options An array with options.
  * @returns {string} The selected option.
-*/
-export const selectAnOption = async (question: string, options: Array<Array<string>>): Promise<string> => {
-  const choices: string[] = options.map(o => o[1])
+ */
+export const selectAnOption = async (
+  question: string,
+  options: Array<Array<string>>
+): Promise<string> => {
+  const choices: string[] = options.map((o) => o[1])
 
-  const selectedText = await inquirer.prompt({
-    type: 'list',
-    name: 'value',
-    message: question,
-    choices: choices,
-  }).then(response => response.value)
+  const selectedText = await inquirer
+    .prompt({
+      type: 'list',
+      name: 'value',
+      message: question,
+      choices: choices,
+    })
+    .then((response) => response.value)
 
-  const selectedOption = options.find(option => option[1] === selectedText)
+  const selectedOption = options.find((option) => option[1] === selectedText)
   const selectedKey = selectedOption ? selectedOption[0] : undefined
 
   if (!selectedKey) {

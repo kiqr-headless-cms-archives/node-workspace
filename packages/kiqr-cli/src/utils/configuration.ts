@@ -28,7 +28,7 @@ export class Configuration {
    * @param {string} value The config value.
    * @returns void
    */
-  set<T>(key: string, value: T) : void {
+  set<T>(key: string, value: T): void {
     this.config.set(key, value)
   }
 
@@ -37,7 +37,7 @@ export class Configuration {
    * @param {string} key The config key.
    * @returns void
    */
-  delete(key: string) : void {
+  delete(key: string): void {
     this.config.delete(key)
   }
 }

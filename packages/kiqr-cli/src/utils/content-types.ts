@@ -1,6 +1,14 @@
-import type {ContentType, ContentTypeField, ContentTypeFieldTypeEnum} from '@kiqr/management-api-sdk'
-import {contentTypeDirectory, contentTypeFilePath, createDirectoryPath} from './'
-import {dump, load} from 'js-yaml'
+import type {
+  ContentType,
+  ContentTypeField,
+  ContentTypeFieldTypeEnum,
+} from '@kiqr/management-api-sdk'
+import {
+  contentTypeDirectory,
+  contentTypeFilePath,
+  createDirectoryPath,
+} from './'
+import { dump, load } from 'js-yaml'
 
 import _ from 'lodash'
 import inflection from 'inflection'
@@ -36,7 +44,10 @@ const saveContentTypeToFile = (contentType: ContentType, force = false) => {
     throw new Error('A kiqr.json file exists already at: ' + targetPath)
   }
 
-  fs.writeFileSync(targetPath, dump(contentType), {encoding: 'utf8', flag: 'w'})
+  fs.writeFileSync(targetPath, dump(contentType), {
+    encoding: 'utf8',
+    flag: 'w',
+  })
 }
 
 const readContentTypeFromFile = (id: string): ContentType | undefined => {

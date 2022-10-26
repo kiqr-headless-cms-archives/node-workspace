@@ -1,6 +1,14 @@
 /* eslint-disable camelcase */
-import {Command, Flags} from '@oclif/core'
-import {contentTypes, createSchema, project, promptForString, ResponseError, session, view} from '../utils'
+import { Command, Flags } from '@oclif/core'
+import {
+  contentTypes,
+  createSchema,
+  project,
+  promptForString,
+  ResponseError,
+  session,
+  view,
+} from '../utils'
 
 export default class PushCommand extends Command {
   static description = 'Push your local changes to KIQR.CLOUD'
@@ -17,7 +25,7 @@ export default class PushCommand extends Command {
   }
 
   public async run(): Promise<void> {
-    const {isLoggedIn, token} = session()
+    const { isLoggedIn, token } = session()
 
     if (!isLoggedIn) {
       return view('errors/unauthenticated')
@@ -27,9 +35,13 @@ export default class PushCommand extends Command {
       return view('errors/config-not-found')
     }
 
-    const {flags} = await this.parse(PushCommand)
+    const { flags } = await this.parse(PushCommand)
     const payload = {
-      message: flags.message ?? await promptForString('Write a meaningful push message that other developers can understand:'),
+      message:
+        flags.message ??
+        (await promptForString(
+          'Write a meaningful push message that other developers can understand:'
+        )),
       data: {
         content_types: contentTypes.all(),
       },
@@ -39,8 +51,15 @@ export default class PushCommand extends Command {
       const projectId = project.getConfigValue<string>('id')
       if (!projectId) throw new Error('Missing project ID in kiqr.yaml')
 
-      const schemaVersion = (project.getConfigValue<number>('schemaVersion') ?? 0).toString()
-      const schema = await createSchema(token?.access_token as string, projectId, schemaVersion, payload)
+      const schemaVersion = (
+        project.getConfigValue<number>('schemaVersion') ?? 0
+      ).toString()
+      const schema = await createSchema(
+        token?.access_token as string,
+        projectId,
+        schemaVersion,
+        payload
+      )
       project.setConfigValue<number>('schemaVersion', schema.version)
 
       view('schemas/created', schema)

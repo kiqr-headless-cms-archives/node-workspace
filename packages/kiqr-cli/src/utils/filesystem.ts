@@ -1,4 +1,4 @@
-import type {ContentType} from '@kiqr/management-api-sdk'
+import type { ContentType } from '@kiqr/management-api-sdk'
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -6,14 +6,16 @@ import path from 'node:path'
  * Search for a kiqr.yaml recursively in directores and parent directories.
  * @param {string} targetPath Path to target directory.
  * @returns {void}
-*/
-export const createDirectoryPath = async (targetPath: string): Promise<void> => {
+ */
+export const createDirectoryPath = async (
+  targetPath: string
+): Promise<void> => {
   // Extract filenames from targetPath
   targetPath = path.dirname(targetPath)
 
   // Create directory tree if it does not exist
   if (targetPath && !fs.existsSync(targetPath)) {
-    fs.mkdirSync(targetPath, {recursive: true})
+    fs.mkdirSync(targetPath, { recursive: true })
   }
 }
 
@@ -22,7 +24,9 @@ export const createDirectoryPath = async (targetPath: string): Promise<void> => 
  * @param {string | undefined} startDirectory Directory to start searching from.
  * @returns {string | undefined} path
  */
-export const findProjectFileInDirectory = (startDirectory: string): string | undefined => {
+export const findProjectFileInDirectory = (
+  startDirectory: string
+): string | undefined => {
   const fileName = 'kiqr.yaml'
   let lastScanned = startDirectory
 

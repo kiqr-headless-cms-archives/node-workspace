@@ -9,7 +9,7 @@
     "build": "rollup -c",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "eslint . --ext .ts --config .eslintrc"
+    "lint": "eslint . --ext .ts --config .eslintrc.json"
   },
   "browser": {
     "fs": false,
