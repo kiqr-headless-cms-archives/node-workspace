@@ -1,29 +1,15 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
+import styles from '../styles/Home.module.css'
 
-import { Heading } from '@kiqr/irelia'
-import { ProjectStack } from '../components'
-import { useCurrent } from '../hooks'
-
-const Dashboard: NextPage = () => {
-  const { currentUser, projects } = useCurrent()
-
+export default function Home() {
   return (
-    <>
+    <div>
       <Head>
-        <title>Select a project — KIQR</title>
+        <title>Dashboard — KIQR</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Heading
-        title={
-          currentUser?.name ? `Welcome back, ${currentUser?.name}!` : undefined
-        }
-        subtitle="Select one of your projects below to continue:"
-      />
-      {projects ? (
-        <ProjectStack projects={projects} isLoading={!projects} />
-      ) : null}
-    </>
+      It works!
+    </div>
   )
 }
-
-export default Dashboard

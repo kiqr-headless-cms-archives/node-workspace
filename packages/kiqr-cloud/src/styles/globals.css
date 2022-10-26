@@ -5,7 +5,9 @@
 /**
  * Global and layouts
 **/
-body { font-family: 'Poppins'; }
+body {
+  font-family: 'Poppins';
+}
 
 @layer base {
   body {
@@ -18,30 +20,5 @@ body { font-family: 'Poppins'; }
 
   a {
     @apply text-primary-700 hover:text-primary-900
-  }
-}
-
-/**
- * Sidebar (aside)
-**/
-@layer base {
-  aside#sidebar nav {
-    @apply flex flex-col gap-y-4 border-neutral-200;
-  }
-
-  aside#sidebar nav ul li.separator {
-    @apply px-4 pt-5 pb-2 text-xs border-b font-bold text-primary-800
-  }
-
-  aside#sidebar nav ul li a {
-    @apply flex px-4 items-center text-xs text-primary-700 py-4 overflow-hidden hover:bg-neutral-100 border-b border-neutral-200;
-  }
-
-  aside#sidebar nav ul li a.active {
-    @apply bg-neutral-100 font-bold text-primary-800;
-  }
-
-  aside#sidebar nav ul li a .icon {
-    @apply flex items-center justify-center w-4 h-4 mr-4;
   }
 }

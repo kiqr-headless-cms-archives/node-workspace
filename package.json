@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@jeliasson/husky-hooks": "^0.3.2",
-    "@nrwl/nx-cloud": "latest",
+    "@nrwl/nx-cloud": "^15.0.0",
     "@openapitools/openapi-generator-cli": "^2.5.2",
     "husky": "^8.0.1",
     "lerna": "^5.5.2",
