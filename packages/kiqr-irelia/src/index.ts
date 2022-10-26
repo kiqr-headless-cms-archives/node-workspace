@@ -1,6 +1,7 @@
 import './styles/tailwind.css'
 
 export * from './components/ApiEndpoint'
+export * from './components/AppShell'
 export * from './components/Announcement'
 export * from './components/Avatar'
 export * from './components/Box'
