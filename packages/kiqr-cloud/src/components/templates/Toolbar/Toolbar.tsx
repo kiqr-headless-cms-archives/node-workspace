@@ -1,14 +1,14 @@
 import React from 'react'
 import { Avatar, Button, Group } from '@kiqr/irelia'
 import { FaBook, FaTerminal, FaSignOutAlt } from 'react-icons/fa'
-import { useSession } from '../../../hooks'
+import { useUser } from '../../../hooks'
 
 const Separator = () => {
   return <div className="h-10 w-[1px] bg-neutral-100"></div>
 }
 
 export const Toolbar = () => {
-  const { user, userError } = useSession()
+  const { user } = useUser()
 
   return (
     <>
@@ -33,16 +33,10 @@ export const Toolbar = () => {
           <>
             <Separator />
             <Group gap={4}>
-              <Avatar
-                src={
-                  'https://avatars.dicebear.com/api/avataaars/david+specimen3.svg'
-                }
-              />
+              <Avatar src={user.avatar_url} />
               <Group direction="vertical" gap={0}>
-                <strong>David Specimen</strong>
-                <span className="topbar-separator">
-                  david.specimen@mail.com
-                </span>
+                <strong>{user.name}</strong>
+                <span className="topbar-separator">{user.email}</span>
               </Group>
             </Group>
             <Separator />

@@ -8,13 +8,18 @@ export interface AnnouncementProps {
   image: ReactNode
 }
 
-export const Announcement = ({title, paragraph, button, image}: AnnouncementProps) => {
+export const Announcement = ({
+  title,
+  paragraph,
+  button,
+  image,
+}: AnnouncementProps) => {
   const defaultOptions = {
-    allowedTags: [ 'b', 'i', 'em', 'strong', 'a' ],
+    allowedTags: ['b', 'i', 'em', 'strong', 'a'],
     allowedAttributes: {
-      'a': [ 'href' ]
-    }
-  };
+      a: ['href'],
+    },
+  }
 
   return (
     <Box>
@@ -25,12 +30,8 @@ export const Announcement = ({title, paragraph, button, image}: AnnouncementProp
               <h2 className="mb-8 text-4xl md:text-5xl font-heading font-bold text-neutral-900 md:leading-15">
                 {title}
               </h2>
-              <p className="text-lg text-slate-400 mb-8">
-                {paragraph}
-              </p>
-              <div className="gap-x-5 flex">
-                {button}
-              </div>
+              <p className="text-lg text-slate-400 mb-8">{paragraph}</p>
+              <div className="gap-x-5 flex">{button}</div>
             </div>
           </div>
           <div className="w-full md:w-1/2 flex pr-20">

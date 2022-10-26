@@ -1,20 +1,20 @@
 import React from 'react'
-import {Meta, Story} from '@storybook/react'
-import {AppShell, AppShellProps} from './AppShell'
-import {FaGithub, FaFire, FaFolder} from 'react-icons/fa'
+import { Meta, Story } from '@storybook/react'
+import { AppShell, AppShellProps } from './AppShell'
+import { FaGithub, FaFire, FaFolder } from 'react-icons/fa'
 
 const meta: Meta = {
-  title: 'Atoms/AppShell',
+  title: 'Molecules/AppShell',
   component: AppShell,
   argTypes: {
     direction: {
       options: ['horizontal', 'vertical'],
       defaultValue: 'horizontal',
-      control: {type: 'select'},
+      control: { type: 'select' },
     },
   },
   parameters: {
-    controls: {expanded: true},
+    controls: { expanded: true },
   },
 }
 
@@ -27,12 +27,12 @@ const FooterComponent = () => {
         Copyright &copy; WK Operations Ltd 2022 - All rights reserved.
       </span>
       <span className="flex items-center gap-x-1">
-        This is an open-source project. Explore and contribute to the
-        project on 
+        This is an open-source project. Explore and contribute to the project on
         <a
           href="https://github.com/kiqr/node-workspace/tree/main/apps/cloud-editor"
           target="_blank"
           className="flex items-center gap-x-1 font-bold"
+          rel="noreferrer"
         >
           <FaGithub /> Github.
         </a>
@@ -46,12 +46,16 @@ const SidebarComponent = () => {
     <>
       <nav className="flex flex-col">
         <a className="flex px-5 items-center text-xs text-primary-700 py-4 overflow-hidden hover:bg-neutral-100 border-b font-bold bg-neutral-100">
-          <span className="flex items-center justify-center w-4 h-4 mr-4"><FaFire /></span>
+          <span className="flex items-center justify-center w-4 h-4 mr-4">
+            <FaFire />
+          </span>
           <span>Dashboard</span>
         </a>
 
         <a className="flex px-5 items-center text-xs text-primary-700 py-4 overflow-hidden hover:bg-neutral-100 border-b">
-          <span className="flex items-center justify-center w-4 h-4 mr-4"><FaFolder /></span>
+          <span className="flex items-center justify-center w-4 h-4 mr-4">
+            <FaFolder />
+          </span>
           <span>Resources</span>
         </a>
       </nav>
@@ -67,8 +71,15 @@ const LogoComponent = () => {
   return <>YOUR LOGO</>
 }
 
-const Template: Story<AppShellProps> = args => (
-  <AppShell logo={<LogoComponent />} toolbar={<ToolbarComponent />} sidebar={<SidebarComponent />} sidebarOpen={true} footer={<FooterComponent />} {...args}>
+const Template: Story<AppShellProps> = (args) => (
+  <AppShell
+    logo={<LogoComponent />}
+    toolbar={<ToolbarComponent />}
+    sidebar={<SidebarComponent />}
+    sidebarOpen={true}
+    footer={<FooterComponent />}
+    {...args}
+  >
     Hello World!
   </AppShell>
 )
