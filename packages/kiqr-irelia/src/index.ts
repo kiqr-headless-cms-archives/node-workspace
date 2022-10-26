@@ -1,5 +1,7 @@
 import './styles/tailwind.css'
 
+export * from './components/ApiEndpoint'
+export * from './components/Announcement'
 export * from './components/Avatar'
 export * from './components/Box'
 export * from './components/Button'
@@ -11,3 +13,4 @@ export * from './components/Padding'
 export * from './components/Pagination'
 export * from './components/Placeholder'
 export * from './components/ProgressBar'
+export * from './components/Table'

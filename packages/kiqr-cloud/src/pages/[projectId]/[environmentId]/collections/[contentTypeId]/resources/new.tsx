@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import { Card, Heading } from '@kiqr/irelia'
+import { Card, Group, Heading } from '@kiqr/irelia'
 import { Button } from '@kiqr/irelia'
 
 import { useSession } from '@kiqr/react-hooks'
@@ -104,10 +104,10 @@ const NewResourcePage: NextPage = () => {
             title="Save changes"
             subtitle="Publish or schedule your resource for later"
           >
-            <div className="bg-neutral-50 p-5 flex justify-between gap-x-5">
+            <Group>
               <Button>Save draft</Button>
               <Button variant="primary">Save &amp; publish</Button>
-            </div>
+            </Group>
           </Card>
         </aside>
       </form>

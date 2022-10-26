@@ -5,8 +5,19 @@ import {
   UpdateResourceRequest,
 } from '@kiqr/management-api-sdk'
 
-import { Card, Heading, Padding } from '@kiqr/irelia'
-import { Button, LocalTime } from '@kiqr/irelia'
+import {
+  Box,
+  Button,
+  Card,
+  Heading,
+  LocalTime,
+  Padding,
+  Table,
+  Row,
+  Column,
+  Group,
+  ApiEndpoint,
+} from '@kiqr/irelia'
 
 import { useResource, useResourceVersions, useSession } from '@kiqr/react-hooks'
 import { useRouter } from 'next/router'
@@ -16,7 +27,7 @@ import inflection from 'inflection'
 
 import { PageTitle, ResourceForm } from '../../../../../../components'
 import { useCurrent } from '../../../../../../hooks'
-import { FaArrowCircleLeft } from 'react-icons/fa'
+import { FaArrowCircleLeft, FaUndo } from 'react-icons/fa'
 import { useForm } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
@@ -112,6 +123,13 @@ const ResourcePage: NextPage = () => {
           </a>
         </Link>
       </Heading>
+
+      {currentProject && currentContentType && resource ? (
+        <ApiEndpoint
+          url={`https://content.kiqr.cloud/v1/collections/${currentContentType.id}/${resource.slug}`}
+        />
+      ) : null}
+
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-4 gap-x-5"
@@ -124,48 +142,46 @@ const ResourcePage: NextPage = () => {
             title="Save changes"
             subtitle="Publish or schedule your resource for later"
           >
-            <div className="bg-neutral-50 p-5 flex justify-between gap-x-5">
+            <Group>
               <Button>Save draft</Button>
-              <Button variant="primary">Publish</Button>
-            </div>
+              <Button variant="primary">Save &amp; publish</Button>
+            </Group>
           </Card>
 
           {versions && versions.length > 0 ? (
-            <Card
+            <Table
               title="Versions"
               subtitle={`Current version: v${resource?.version}`}
+              className="border-0"
             >
-              <table className="table border-t">
-                <tbody>
-                  {versions.slice(0, 5).map((version) => (
-                    <tr key={version.version}>
-                      <td className="text-center mini">v{version.version}</td>
-                      <td className="">
-                        <LocalTime epochTime={version.updated_at} />
-                      </td>
-                      <td className="mini">
-                        <Button size="xs">Restore</Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </Card>
+              {versions.slice(0, 5).map((version) => (
+                <Row key={version.version}>
+                  <Column className="text-center w-0">
+                    v{version.version}
+                  </Column>
+                  <Column className="">
+                    <LocalTime epochTime={version.updated_at} />
+                  </Column>
+                  <Column className="w-0">
+                    <Button icon={<FaUndo />} size="xs" />
+                  </Column>
+                </Row>
+              ))}
+            </Table>
           ) : null}
 
           <Card
             title="Delete resource"
             subtitle="Unpublish and archive resource"
           >
-            <p className="text-xs px-5 pt-0">
+            <p className="text-xs">
               Deleting a resource will unpublish and archive it. It will be{' '}
               <strong>permanently deleted</strong> after 30 days.
             </p>
-            <Padding>
-              <Button variant="danger" size="xs">
-                Delete resource
-              </Button>
-            </Padding>
+            <br />
+            <Button variant="danger" size="sm">
+              Delete resource
+            </Button>
           </Card>
         </aside>
       </form>
