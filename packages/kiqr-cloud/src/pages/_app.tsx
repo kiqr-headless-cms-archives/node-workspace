@@ -6,7 +6,12 @@ import { Logo, Sidebar, Toolbar } from '../components'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <AppShell logo={<Logo />} toolbar={<Toolbar />} sidebar={<Sidebar />}>
+    <AppShell
+      logo={<Logo />}
+      toolbar={<Toolbar />}
+      sidebar={<Sidebar />}
+      sidebarOpen={false}
+    >
       <Component {...pageProps} />
     </AppShell>
   )
