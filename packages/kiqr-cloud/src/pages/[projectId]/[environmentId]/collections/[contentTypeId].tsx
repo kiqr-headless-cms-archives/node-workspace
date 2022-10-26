@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import { Button, Pagination, ApiEndpoint, Heading } from '@kiqr/irelia'
 import { PageTitle } from '../../../../components'
 import { useCurrent } from '../../../../hooks'
-import { useResources } from '@kiqr/react-hooks'
+import { useResources } from '@kiqr/cloud-sdk'
 import { FaPlusCircle } from 'react-icons/fa'
 
 import inflection from 'inflection'

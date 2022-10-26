@@ -1,6 +1,6 @@
 import { FaBook, FaSignOutAlt, FaTerminal } from 'react-icons/fa'
 
-import { useSession } from '@kiqr/react-hooks'
+import { useSession } from '@kiqr/cloud-sdk'
 import { Avatar, Button, Group } from '@kiqr/irelia'
 
 import Link from 'next/link'

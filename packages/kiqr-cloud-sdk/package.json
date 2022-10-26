@@ -1,7 +1,7 @@
 {
-  "name": "@kiqr/react-hooks",
+  "name": "@kiqr/cloud-sdk",
   "homepage": "https://kiqr.dev",
-  "version": "0.2.0",
+  "version": "0.0.1",
   "description": "React hooks the KIQR Management API",
   "author": "KIQR",
   "keywords": [

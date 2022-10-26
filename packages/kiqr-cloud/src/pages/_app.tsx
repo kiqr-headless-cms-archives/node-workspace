@@ -2,7 +2,7 @@ import '../styles/globals.css'
 
 import type { AppProps } from 'next/app'
 
-import { KiqrProvider } from '@kiqr/react-hooks'
+import { KiqrProvider } from '@kiqr/cloud-sdk'
 import { Layout } from '../components'
 
 function App({ Component, pageProps }: AppProps) {

@@ -13,7 +13,7 @@
     "packages/kiqr-irelia": {
       "release-as": ""
     },
-    "packages/kiqr-core": {
+    "packages/kiqr-cloud-sdk": {
       "release-as": ""
     },
     "packages/kiqr-cli": {

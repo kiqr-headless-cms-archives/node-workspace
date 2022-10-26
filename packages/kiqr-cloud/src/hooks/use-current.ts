@@ -5,7 +5,7 @@ import {
   useProjects,
   useSchema,
   useSession,
-} from '@kiqr/react-hooks'
+} from '@kiqr/cloud-sdk'
 
 import type {
   ContentType,

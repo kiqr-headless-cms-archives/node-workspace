@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import { Card, Group, Heading } from '@kiqr/irelia'
 import { Button } from '@kiqr/irelia'
 
-import { useSession } from '@kiqr/react-hooks'
+import { useSession } from '@kiqr/cloud-sdk'
 import { FaArrowCircleLeft } from 'react-icons/fa'
 import {
   Configuration,
@@ -33,7 +33,9 @@ const NewResourcePage: NextPage = () => {
 
   // Handle submission of form.
   const onSubmit = async (data: CreateResourceRequest): Promise<void> => {
-    const configuration = new Configuration({ accessToken: token.access_token })
+    const configuration = new Configuration({
+      accessToken: token.access_token,
+    })
     const api = new ResourcesApi(configuration)
 
     if (!currentContentType) return console.error('Missing content type')

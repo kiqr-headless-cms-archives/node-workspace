@@ -19,7 +19,7 @@ import {
   ApiEndpoint,
 } from '@kiqr/irelia'
 
-import { useResource, useResourceVersions, useSession } from '@kiqr/react-hooks'
+import { useResource, useResourceVersions, useSession } from '@kiqr/cloud-sdk'
 import { useRouter } from 'next/router'
 
 import Link from 'next/link'
@@ -75,7 +75,9 @@ const ResourcePage: NextPage = () => {
 
   // Handle submission of form.
   const onSubmit = async (data: UpdateResourceRequest): Promise<void> => {
-    const configuration = new Configuration({ accessToken: token.access_token })
+    const configuration = new Configuration({
+      accessToken: token.access_token,
+    })
     const api = new ResourcesApi(configuration)
 
     if (!currentContentType) return console.error('Missing content type')

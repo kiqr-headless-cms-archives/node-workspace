@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@kiqr/react-hooks": "*",
-    "@kiqr/core": "*",
+    "@kiqr/cloud-sdk": "*",
     "@kiqr/irelia": "*",
     "inflection": "^1.13.4",
     "next": "12.3.0",
