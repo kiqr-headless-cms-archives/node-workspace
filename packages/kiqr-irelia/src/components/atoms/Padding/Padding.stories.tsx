@@ -21,11 +21,12 @@ const meta: Meta = {
 export default meta
 
 const Template: Story<PaddingProps> = (args) => (
-  <Box>
-    <Padding {...args}>
-      This box has {args.size === 0 ? 'no' : null} padding
-    </Padding>
-  </Box>
+  <div className="flex flex-col gap-y-5">
+    <Box p={0}>No padding</Box>
+    <Box p={0}>
+      <Padding>Padding</Padding>
+    </Box>
+  </div>
 )
 
 export const Default = Template.bind({})
