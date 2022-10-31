@@ -1,26 +1,30 @@
 import React from 'react'
 import { Avatar, Button, Group } from '@kiqr/irelia'
 import { FaBook, FaTerminal, FaSignOutAlt } from 'react-icons/fa'
-import { useUser } from '../../../hooks'
+import { useCurrent, useUser } from '../../../hooks'
 
 const Separator = () => {
   return <div className="h-10 w-[1px] bg-neutral-100"></div>
 }
 
 export const Toolbar = () => {
-  const { user } = useUser()
+  const { currentUser, currentEnvironment, currentProject } = useCurrent()
 
   return (
     <>
-      <Group gap={4}>
-        <Avatar
-          src={'https://avatars.dicebear.com/api/initials/foobar+zoo.svg'}
-        />
-        <Group direction="vertical" gap={0}>
-          <strong>Foobar zoo</strong>
-          <span className="text-xs">Development</span>
+      {currentProject ? (
+        <Group gap={4}>
+          <Avatar
+            src={`https://avatars.dicebear.com/api/initials/${currentProject.name}.svg`}
+          />
+          <Group direction="vertical" gap={0}>
+            <strong>{currentProject.name}</strong>
+            <span className="text-xs">
+              {currentEnvironment ? currentEnvironment.name : 'Development'}
+            </span>
+          </Group>
         </Group>
-      </Group>
+      ) : null}
       <Group className="ml-auto">
         <Button icon={<FaBook />} size="xs">
           DOCS
@@ -29,14 +33,14 @@ export const Toolbar = () => {
           CLI
         </Button>
 
-        {user ? (
+        {currentUser ? (
           <>
             <Separator />
             <Group gap={4}>
-              <Avatar src={user.avatar_url} />
+              <Avatar src={currentUser.avatar_url} />
               <Group direction="vertical" gap={0}>
-                <strong>{user.name}</strong>
-                <span className="topbar-separator">{user.email}</span>
+                <strong>{currentUser.name}</strong>
+                <span className="topbar-separator">{currentUser.email}</span>
               </Group>
             </Group>
             <Separator />

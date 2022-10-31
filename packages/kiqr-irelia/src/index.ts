@@ -18,3 +18,4 @@ export * from './components/molecules/ApiEndpoint'
 export * from './components/molecules/AppShell'
 
 export * from './components/organisms/ProjectCard'
+export * from './components/organisms/ResourcesTable'
