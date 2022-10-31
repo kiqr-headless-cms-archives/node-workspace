@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar, Button, Group } from '@kiqr/irelia'
 import { FaBook, FaTerminal, FaSignOutAlt } from 'react-icons/fa'
-import { useCurrent, useUser } from '../../../hooks'
+import { useCurrent } from '../../../hooks'
 
 const Separator = () => {
   return <div className="h-10 w-[1px] bg-neutral-100"></div>

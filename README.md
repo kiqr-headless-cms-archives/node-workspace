@@ -46,14 +46,6 @@ This is the monorepo for KIQR.CLOUD, CLI, React and Node SDKs.
   </tbody>
 </table>
 
-#### Old projects
-
-These projects must be removed or moved to the `packages/`-directory.
-| Project            | Version | Npm package | Description |
-|--------------------|---------|-------------|---|
-| packages/react-hooks  | [![npm version](https://badge.fury.io/js/@kiqr%2Freact-hooks.svg)](https://badge.fury.io/js/@kiqr%2Freact-hooks) | @kiqr/react-hooks  |   |
-| sdks/management-api-sdk  | [![npm version](https://badge.fury.io/js/@kiqr%2Fmanagement-api-sdk.svg)](https://badge.fury.io/js/@kiqr%2Fmanagement-api-sdk) | @kiqr/management-api-sdk  |   |
-
 Getting started
 ---------------
 

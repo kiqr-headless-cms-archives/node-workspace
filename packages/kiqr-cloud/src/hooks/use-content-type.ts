@@ -1,11 +1,8 @@
-import { useCurrent } from '.'
 import { useEffect, useState } from 'react'
 
 import type { ContentType, SchemaExtended } from '@kiqr/management-api-sdk'
 
 export const useContentType = (schema?: SchemaExtended, id?: string) => {
-  const contentTypes = schema?.data?.content_types
-
   const [contentType, setContentType] = useState<ContentType>()
 
   useEffect(() => {

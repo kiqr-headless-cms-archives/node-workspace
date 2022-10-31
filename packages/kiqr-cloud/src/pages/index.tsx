@@ -1,5 +1,4 @@
 import { Heading } from '@kiqr/irelia'
-import Head from 'next/head'
 import { useCurrent, useProjects } from '../hooks'
 import { ProjectStack } from '../components'
 

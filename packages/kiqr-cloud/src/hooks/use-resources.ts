@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 export const useResources = (
   environmentId?: string,
   contentTypeId?: string,
-  page: number = 1
+  page = 1
 ) => {
   const { fetcher } = useFetcher()
   const [isReady, setReady] = useState(false)
