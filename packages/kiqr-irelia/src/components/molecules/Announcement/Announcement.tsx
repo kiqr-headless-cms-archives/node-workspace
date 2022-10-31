@@ -24,7 +24,7 @@ export const Announcement = ({
   return (
     <Box>
       <div className="container mx-auto py-24">
-        <div className="flex flex-wrap">
+        <div className="flex">
           <div className="w-full md:w-1/2">
             <div className="max-w-md mx-auto">
               <h2 className="mb-8 text-4xl md:text-5xl font-heading font-bold text-neutral-900 md:leading-15">
