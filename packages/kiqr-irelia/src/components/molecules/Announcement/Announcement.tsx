@@ -14,13 +14,6 @@ export const Announcement = ({
   button,
   image,
 }: AnnouncementProps) => {
-  const defaultOptions = {
-    allowedTags: ['b', 'i', 'em', 'strong', 'a'],
-    allowedAttributes: {
-      a: ['href'],
-    },
-  }
-
   return (
     <Box>
       <div className="container mx-auto py-24">
