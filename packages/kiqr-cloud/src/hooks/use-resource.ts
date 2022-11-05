@@ -21,11 +21,22 @@ export const useResource = (id?: string) => {
     fetcher
   )
 
+  const {
+    data: versions,
+    error: versionsError,
+    mutate: versionsMutate,
+  } = useSWR<Resource[]>(
+    isReady
+      ? `v1/environments/${currentEnvironment?.id}/resources/${id}/versions`
+      : null,
+    fetcher
+  )
+
   useEffect(() => {
     if (currentContentType && currentEnvironment && id && !isReady) {
       setReady(true)
     }
   }, [currentContentType, currentEnvironment, id, isReady])
 
-  return { resource, error, mutate }
+  return { resource, error, mutate, versions, versionsError, versionsMutate }
 }

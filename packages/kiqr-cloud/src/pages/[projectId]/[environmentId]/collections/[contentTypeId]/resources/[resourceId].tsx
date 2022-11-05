@@ -1,15 +1,94 @@
 import type { NextPage } from 'next'
 
-import { Heading } from '@kiqr/irelia'
-import { useCurrent } from '../../../../../../hooks'
+import {
+  Button,
+  Card,
+  Column,
+  Group,
+  Heading,
+  LocalTime,
+  Row,
+  Table,
+} from '@kiqr/irelia'
 import { useRouter } from 'next/router'
-import { useResource } from '../../../../../../hooks/use-resource'
+import { useForm } from 'react-hook-form'
+import { useApi, useCurrent, useResource } from '../../../../../../hooks'
+import { ResourceEditor } from '../../../../../../components'
+import { FaUndo } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
+
+import {
+  Configuration,
+  ResourcesApi,
+  UpdateResourceRequest,
+} from '@kiqr/management-api-sdk'
+import { version } from 'os'
 
 const EditResourcePage: NextPage = () => {
   const query = useRouter().query
+  const { token } = useApi()
 
-  const { currentContentType } = useCurrent()
-  const { resource } = useResource(query?.resourceId as string)
+  const { currentContentType, currentProject, currentEnvironment } =
+    useCurrent()
+  const { resource, mutate, versions, versionsMutate } = useResource(
+    query?.resourceId as string
+  )
+  const [isLoading, setIsLoading] = useState(true)
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    setValue,
+  } = useForm<UpdateResourceRequest>()
+
+  useEffect(() => {
+    if (!currentContentType || !resource || !isLoading) return
+
+    setValue('name', resource.name)
+    setValue('slug', resource.slug)
+
+    currentContentType.fields.map(
+      // @ts-expect-error content has any type
+      (field) => setValue(`content[${field.id}]`, resource.content[field.id])
+    )
+
+    setIsLoading(false)
+  }, [currentContentType, resource, isLoading, setValue])
+
+  // Handle submission of form.
+  const onSubmit = async (data: UpdateResourceRequest): Promise<void> => {
+    if (!token) return console.error('Missing access token')
+    if (!currentContentType) return console.error('Missing content type')
+    if (!currentProject) return console.error('Missing project_id')
+    if (!currentEnvironment) return console.error('Missing environment_id')
+    if (!resource) return console.error('Missing resource id')
+
+    const configuration = new Configuration({
+      accessToken: token?.access_token,
+    })
+
+    const api = new ResourcesApi(configuration)
+    const payload: UpdateResourceRequest = {
+      ...data,
+    }
+
+    toast.promise(
+      api
+        .updateResource(resource.id, currentEnvironment.id, payload)
+        .then((response) => {
+          console.log('response', response.data)
+          mutate(response.data)
+          versionsMutate()
+        }),
+      {
+        loading: 'Saving...',
+        success: 'Changes saved!',
+        error: 'Error when saving.',
+      }
+    )
+  }
 
   return (
     <>
@@ -21,7 +100,63 @@ const EditResourcePage: NextPage = () => {
             : null
         }`}
       />
-      <pre>{JSON.stringify(resource, null, 2)}</pre>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="grid grid-cols-4 gap-x-5"
+      >
+        <section className="col-span-3">
+          <ResourceEditor register={register} errors={errors} />
+        </section>
+        <aside className="flex flex-col gap-y-5">
+          <Card
+            title="Save changes"
+            subtitle="Publish or schedule your resource for later"
+          >
+            <Group>
+              <Button>Save draft</Button>
+              <Button variant="primary">Save &amp; publish</Button>
+            </Group>
+          </Card>
+
+          <Table
+            title="Versions"
+            subtitle="Undo changes / revert to an earlier version"
+          >
+            <Row>
+              <Column variant="th" className="w-0 text-center">
+                Version
+              </Column>
+              <Column variant="th">Timestamp</Column>
+            </Row>
+            {versions &&
+              versions.map((version) => (
+                <Row key={version.version}>
+                  <Column className="text-center">{version.version}</Column>
+                  <Column>
+                    <Group className="justify-between">
+                      <LocalTime epochTime={version.updated_at} />
+                      <Button size="xs" icon={<FaUndo />} />
+                    </Group>
+                  </Column>
+                </Row>
+              ))}
+          </Table>
+
+          <Card
+            title="Delete resource"
+            subtitle="Unpublish and archive resource"
+          >
+            <p className="text-xs">
+              Deleting a resource will unpublish and archive it. It will be{' '}
+              <strong>permanently deleted</strong> after 30 days.
+            </p>
+            <br />
+            <Button variant="danger" size="sm">
+              Delete resource
+            </Button>
+          </Card>
+        </aside>
+      </form>
     </>
   )
 }
