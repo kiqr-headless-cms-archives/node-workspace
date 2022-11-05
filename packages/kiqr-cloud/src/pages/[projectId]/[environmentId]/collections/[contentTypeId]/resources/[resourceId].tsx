@@ -23,7 +23,6 @@ import {
   ResourcesApi,
   UpdateResourceRequest,
 } from '@kiqr/management-api-sdk'
-import { version } from 'os'
 
 const EditResourcePage: NextPage = () => {
   const query = useRouter().query

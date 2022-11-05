@@ -15,7 +15,7 @@
     "prettier/prettier": [ "error", { "singleQuote": true, "semi": false }],
     "prefer-const": "error",
     "linebreak-style": [ "error", "unix" ],
-    "quotes": [ "error", "single" ],
+    "quotes": [ "error", "single", { "avoidEscape": true } ],
     "semi": [ "error", "never" ]
   }
 }
