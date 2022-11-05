@@ -1,71 +1,42 @@
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import {
-  useEnvironments,
-  useProjects,
-  useSchema,
-  useSession,
-} from '@kiqr/react-hooks'
-
-import type {
-  ContentType,
-  Environment,
-  Project,
-} from '@kiqr/management-api-sdk'
+  useContentType,
+  useProject,
+  useProjectEnvironment,
+  useProjectSchema,
+  useUser,
+} from '../hooks'
+import { useRouter } from 'next/router'
 
 export const useCurrent = () => {
-  const { query } = useRouter()
-  const [project, setProject] = useState<Project | undefined>(undefined)
-  const [environment, setEnvironment] = useState<Environment | undefined>(
-    undefined
+  const query = useRouter().query
+
+  const { user: currentUser, error: userError } = useUser()
+  const { project: currentProject, error: projectError } = useProject(
+    query?.projectId as string
   )
 
-  const [contentType, setContentType] = useState<ContentType | undefined>(
-    undefined
+  const { environment: currentEnvironment, error: environmentError } =
+    useProjectEnvironment(currentProject?.id, query?.environmentId as string)
+
+  const { schema: currentSchema, error: schemaError } = useProjectSchema(
+    currentProject?.id,
+    currentEnvironment?.schema_id as string
   )
 
-  const { user: currentUser } = useSession()
-  const { environments } = useEnvironments()
-  const { projects } = useProjects()
-  const { schema } = useSchema(project?.id, environment?.schema_id)
-
-  useEffect(() => {
-    if (projects && query?.projectId) {
-      const project = projects.find((p) => p.slug === query?.projectId)
-      setProject(project)
-    } else {
-      setProject(undefined)
-    }
-  }, [projects, query?.projectId])
-
-  useEffect(() => {
-    if (environments && query?.environmentId) {
-      const environment = environments.find(
-        (e) => e.slug === query?.environmentId && e.project_id === project?.id
-      )
-      setEnvironment(environment)
-    } else {
-      setEnvironment(undefined)
-    }
-  }, [environments, query?.environmentId, project])
-
-  useEffect(() => {
-    if (schema?.data?.content_types && query?.contentTypeId) {
-      const contentType = schema.data.content_types.find(
-        (ct) => ct.id === query?.contentTypeId
-      )
-      setContentType(contentType)
-    } else {
-      setContentType(undefined)
-    }
-  }, [query?.contentTypeId, schema])
+  const { contentType: currentContentType } = useContentType(
+    currentSchema,
+    query?.contentTypeId as string
+  )
 
   return {
-    projects,
-    currentEnvironment: environment,
-    currentProject: project,
-    currentSchema: schema,
-    currentContentType: contentType,
     currentUser,
+    userError,
+    currentProject,
+    projectError,
+    currentEnvironment,
+    environmentError,
+    currentSchema,
+    schemaError,
+    currentContentType,
   }
 }

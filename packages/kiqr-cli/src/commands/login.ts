@@ -1,8 +1,12 @@
-/* eslint-disable no-process-exit */
-/* eslint-disable unicorn/no-process-exit */
-import {Command} from '@oclif/core'
-import {config, performAuthorization, selectAnOption, view, session} from '../utils'
-import {createSpinner} from 'nanospinner'
+import { Command } from '@oclif/core'
+import {
+  config,
+  performAuthorization,
+  selectAnOption,
+  view,
+  session,
+} from '../utils'
+import { createSpinner } from 'nanospinner'
 
 import open from 'open'
 
@@ -10,9 +14,7 @@ export type LoginMethod = string
 
 export default class Login extends Command {
   static description = 'Login using your KIQR ID.'
-  static examples = [
-    '<%= config.bin %> <%= command.id %>',
-  ]
+  static examples = ['<%= config.bin %> <%= command.id %>']
 
   public async run(): Promise<void> {
     view('login/welcome')
@@ -26,26 +28,31 @@ export default class Login extends Command {
   }
 
   private loginUsingOauth = async () => {
-    const {authorizationUrl} = session()
+    const { authorizationUrl } = session()
 
-    view('login/oauth', {url: authorizationUrl})
+    view('login/oauth', { url: authorizationUrl })
     open(authorizationUrl)
-    const spinner = createSpinner('Waiting for user to sign in via browser..').start()
+    const spinner = createSpinner(
+      'Waiting for user to sign in via browser..'
+    ).start()
 
     try {
       const accessToken = await performAuthorization()
       config.set('tokenType', 'oauth2')
       config.set('token', accessToken)
-      spinner.success({text: 'Successfully logged in!'})
+      spinner.success({ text: 'Successfully logged in!' })
       process.exit(0)
     } catch {
-      spinner.error({text: 'Invalid authenication code or denied by user.'})
+      spinner.error({ text: 'Invalid authenication code or denied by user.' })
     }
   }
 
   private async determineLoginMethod(): Promise<LoginMethod | undefined> {
     const options = [
-      ['oauth', 'KIQR ID - Login using your email or Github account (opens in web browser)'],
+      [
+        'oauth',
+        'KIQR ID - Login using your email or Github account (opens in web browser)',
+      ],
     ]
 
     return selectAnOption('Select login method:', options)

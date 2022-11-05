@@ -1,5 +1,5 @@
-import {config} from '.'
-import {Oauth2Token, isValidToken, buildAuthorizationUrl} from './oauth'
+import { config } from '.'
+import { Oauth2Token, isValidToken, buildAuthorizationUrl } from './oauth'
 
 interface SessionProps {
   authorizationUrl: string
@@ -12,5 +12,5 @@ export const session = (): SessionProps => {
   const isLoggedIn = isValidToken(token)
   const authorizationUrl = buildAuthorizationUrl()
 
-  return {authorizationUrl, isLoggedIn, token}
+  return { authorizationUrl, isLoggedIn, token }
 }

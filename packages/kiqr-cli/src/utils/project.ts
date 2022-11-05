@@ -1,5 +1,5 @@
-import {dump, load} from 'js-yaml'
-import {findProjectFileInDirectory, findProjectRoot} from './'
+import { dump, load } from 'js-yaml'
+import { findProjectFileInDirectory, findProjectRoot } from './'
 
 import fs from 'node:fs'
 import path from 'node:path'

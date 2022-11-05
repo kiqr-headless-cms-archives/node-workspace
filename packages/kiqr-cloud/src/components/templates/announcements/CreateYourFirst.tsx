@@ -41,24 +41,19 @@ export const CreateYourFirstAnnouncement = ({
         </>
       }
       button={
-        <>
-          <Link href={href}>
-            <a>
-              <Button variant="primary" size="lg">
-                {`Create ${singularizedContentTypeName}`}
-              </Button>
-            </a>
-          </Link>
-        </>
+        <Link href={href}>
+          <Button variant="primary" size="lg">
+            {`Create ${singularizedContentTypeName}`}
+          </Button>
+        </Link>
       }
       image={
-        <>
-          <Image
-            src="/assets/images/undraw_elements.svg"
-            alt=""
-            layout="fill"
-          />
-        </>
+        <Image
+          src="https://avatars.dicebear.com/api/avataaars/lol.svg"
+          width={400}
+          height={400}
+          alt=""
+        />
       }
     />
   )

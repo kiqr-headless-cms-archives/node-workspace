@@ -1,53 +1,38 @@
 import type { NextPage } from 'next'
+
+import {
+  Button,
+  Card,
+  Column,
+  Group,
+  Heading,
+  LocalTime,
+  Row,
+  Table,
+} from '@kiqr/irelia'
+import { useRouter } from 'next/router'
+import { useForm } from 'react-hook-form'
+import { useApi, useCurrent, useResource } from '../../../../../../hooks'
+import { ResourceEditor } from '../../../../../../components'
+import { FaUndo } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
+
 import {
   Configuration,
   ResourcesApi,
   UpdateResourceRequest,
 } from '@kiqr/management-api-sdk'
 
-import {
-  Box,
-  Button,
-  Card,
-  Heading,
-  LocalTime,
-  Padding,
-  Table,
-  Row,
-  Column,
-  Group,
-  ApiEndpoint,
-} from '@kiqr/irelia'
+const EditResourcePage: NextPage = () => {
+  const query = useRouter().query
+  const { token } = useApi()
 
-import { useResource, useResourceVersions, useSession } from '@kiqr/react-hooks'
-import { useRouter } from 'next/router'
-
-import Link from 'next/link'
-import inflection from 'inflection'
-
-import { PageTitle, ResourceForm } from '../../../../../../components'
-import { useCurrent } from '../../../../../../hooks'
-import { FaArrowCircleLeft, FaUndo } from 'react-icons/fa'
-import { useForm } from 'react-hook-form'
-import { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
-
-const ResourcePage: NextPage = () => {
-  const { query } = useRouter()
-  const { token } = useSession()
-  const { currentProject, currentEnvironment, currentContentType } =
+  const { currentContentType, currentProject, currentEnvironment } =
     useCurrent()
-
-  const { resource, mutate } = useResource(
-    query?.resourceId as string,
-    currentEnvironment?.id
+  const { resource, mutate, versions, versionsMutate } = useResource(
+    query?.resourceId as string
   )
-
-  const { versions, mutate: mutateVersions } = useResourceVersions(
-    query?.resourceId as string,
-    currentEnvironment?.id
-  )
-
   const [isLoading, setIsLoading] = useState(true)
 
   const {
@@ -58,8 +43,7 @@ const ResourcePage: NextPage = () => {
   } = useForm<UpdateResourceRequest>()
 
   useEffect(() => {
-    if (!isLoading) return
-    if (resource === undefined || currentContentType === undefined) return
+    if (!currentContentType || !resource || !isLoading) return
 
     setValue('name', resource.name)
     setValue('slug', resource.slug)
@@ -70,18 +54,21 @@ const ResourcePage: NextPage = () => {
     )
 
     setIsLoading(false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [resource, currentContentType])
+  }, [currentContentType, resource, isLoading, setValue])
 
   // Handle submission of form.
   const onSubmit = async (data: UpdateResourceRequest): Promise<void> => {
-    const configuration = new Configuration({ accessToken: token.access_token })
-    const api = new ResourcesApi(configuration)
-
+    if (!token) return console.error('Missing access token')
     if (!currentContentType) return console.error('Missing content type')
     if (!currentProject) return console.error('Missing project_id')
     if (!currentEnvironment) return console.error('Missing environment_id')
+    if (!resource) return console.error('Missing resource id')
 
+    const configuration = new Configuration({
+      accessToken: token?.access_token,
+    })
+
+    const api = new ResourcesApi(configuration)
     const payload: UpdateResourceRequest = {
       ...data,
     }
@@ -90,8 +77,9 @@ const ResourcePage: NextPage = () => {
       api
         .updateResource(resource.id, currentEnvironment.id, payload)
         .then((response) => {
+          console.log('response', response.data)
           mutate(response.data)
-          mutateVersions()
+          versionsMutate()
         }),
       {
         loading: 'Saving...',
@@ -100,44 +88,25 @@ const ResourcePage: NextPage = () => {
       }
     )
   }
+
   return (
     <>
-      <PageTitle segments={[resource?.name, 'Edit']} />
       <Heading
-        title={resource?.name}
-        subtitle={
+        title={currentContentType ? currentContentType.name : '&nbsp;'}
+        subtitle={`Listing all resources in collection ${
           currentContentType
-            ? `Edit resource ${inflection
-                .transform(currentContentType?.name, ['singularize'])
-                .toLowerCase()}`
-            : undefined
-        }
-      >
-        <Link
-          href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}`}
-        >
-          <a>
-            <Button icon={<FaArrowCircleLeft />}>
-              {`Back to ${currentContentType?.name.toLowerCase()}`}
-            </Button>
-          </a>
-        </Link>
-      </Heading>
-
-      {currentProject && currentContentType && resource ? (
-        <ApiEndpoint
-          url={`https://content.kiqr.cloud/v1/collections/${currentContentType.id}/${resource.slug}`}
-        />
-      ) : null}
-
+            ? currentContentType.name.toLocaleLowerCase()
+            : null
+        }`}
+      />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-4 gap-x-5"
       >
-        <main className="left col-span-3">
-          <ResourceForm register={register} errors={errors} />
-        </main>
-        <aside className="right flex flex-col gap-y-5">
+        <section className="col-span-3">
+          <ResourceEditor register={register} errors={errors} />
+        </section>
+        <aside className="flex flex-col gap-y-5">
           <Card
             title="Save changes"
             subtitle="Publish or schedule your resource for later"
@@ -148,27 +117,29 @@ const ResourcePage: NextPage = () => {
             </Group>
           </Card>
 
-          {versions && versions.length > 0 ? (
-            <Table
-              title="Versions"
-              subtitle={`Current version: v${resource?.version}`}
-              className="border-0"
-            >
-              {versions.slice(0, 5).map((version) => (
+          <Table
+            title="Versions"
+            subtitle="Undo changes / revert to an earlier version"
+          >
+            <Row>
+              <Column variant="th" className="w-0 text-center">
+                Version
+              </Column>
+              <Column variant="th">Timestamp</Column>
+            </Row>
+            {versions &&
+              versions.map((version) => (
                 <Row key={version.version}>
-                  <Column className="text-center w-0">
-                    v{version.version}
-                  </Column>
-                  <Column className="">
-                    <LocalTime epochTime={version.updated_at} />
-                  </Column>
-                  <Column className="w-0">
-                    <Button icon={<FaUndo />} size="xs" />
+                  <Column className="text-center">{version.version}</Column>
+                  <Column>
+                    <Group className="justify-between">
+                      <LocalTime epochTime={version.updated_at} />
+                      <Button size="xs" icon={<FaUndo />} />
+                    </Group>
                   </Column>
                 </Row>
               ))}
-            </Table>
-          ) : null}
+          </Table>
 
           <Card
             title="Delete resource"
@@ -189,4 +160,4 @@ const ResourcePage: NextPage = () => {
   )
 }
 
-export default ResourcePage
+export default EditResourcePage

@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import {config} from '.'
+import { config } from '.'
 
 import axios from 'axios'
 import express from 'express'
@@ -37,7 +37,7 @@ export const buildAuthorizationUrl = (): string => {
   return authorizationUrl
 }
 
-export const performAuthorization = async () : Promise<Oauth2Token> => {
+export const performAuthorization = async (): Promise<Oauth2Token> => {
   // Poll for the authorization code.
   const authorizationCode = await pollForAuthorizationCode()
 
@@ -53,7 +53,7 @@ export const performAuthorization = async () : Promise<Oauth2Token> => {
   return response.data
 }
 
-export const pollForAuthorizationCode = async () : Promise<string> => {
+export const pollForAuthorizationCode = async (): Promise<string> => {
   return new Promise((resolve, reject) => {
     const app = express()
     let authStatus = 'failed'

@@ -1,63 +1,107 @@
 import type { NextPage } from 'next'
 
-import { Button, Pagination, ApiEndpoint, Heading } from '@kiqr/irelia'
-import { PageTitle } from '../../../../components'
-import { useCurrent } from '../../../../hooks'
-import { useResources } from '@kiqr/react-hooks'
-import { FaPlusCircle } from 'react-icons/fa'
+import {
+  Heading,
+  Pagination,
+  Table,
+  Row,
+  Column,
+  LocalTime,
+  Group,
+  Button,
+} from '@kiqr/irelia'
 
+import { useCurrent, useResources } from '../../../../hooks'
+import { useEffect, useState } from 'react'
+import { CreateYourFirstAnnouncement } from '../../../../components/templates/announcements/CreateYourFirst'
 import inflection from 'inflection'
 import Link from 'next/link'
 
-import { useState } from 'react'
-import { ResourcesTable } from '../../../../components/organisms/ResourcesTable/ResourcesTable'
-import { CreateYourFirstAnnouncement } from '../../../../components/templates/announcements/CreateYourFirst'
-
 const ContentTypePage: NextPage = () => {
-  const { currentContentType, currentEnvironment, currentProject } =
+  const [page, setPage] = useState(1)
+  const [emptyResults, setEmptyResults] = useState(false)
+  const { currentProject, currentContentType, currentEnvironment } =
     useCurrent()
 
-  const [page, setPage] = useState(1)
-  const { resources, pagination } = useResources(
-    currentEnvironment?.id,
-    currentContentType?.id,
-    page
-  )
+  const { resources, pagination } = useResources(page)
+
+  useEffect(() => {
+    if (resources && resources.length === 0) {
+      setEmptyResults(true)
+    } else {
+      setEmptyResults(false)
+    }
+  }, [resources, emptyResults])
 
   return (
     <>
-      {currentProject && currentContentType ? (
-        <PageTitle segments={[currentContentType.name, 'List']} />
+      <Heading
+        title={currentContentType ? currentContentType.name : '&nbsp;'}
+        subtitle={`Listing all resources in collection ${
+          currentContentType
+            ? currentContentType.name.toLocaleLowerCase()
+            : null
+        }`}
+      />
+
+      {resources && resources.length > 0 ? (
+        <Table>
+          <Row>
+            <Column variant="th" className="w-0"></Column>
+            <Column variant="th">
+              {currentContentType
+                ? inflection.singularize(currentContentType.name)
+                : null}
+            </Column>
+            <Column variant="th">Updated at</Column>
+            <Column variant="th">Created at</Column>
+            <Column variant="th" className="w-0">
+              Actions
+            </Column>
+          </Row>
+          {resources.map((resource) => (
+            <Row key={resource.id}>
+              <Column className="w-0"></Column>
+              <Column>
+                <Link
+                  href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
+                >
+                  {resource.name}
+                </Link>
+              </Column>
+              <Column>
+                <LocalTime epochTime={resource.updated_at} />
+              </Column>
+              <Column>
+                <LocalTime epochTime={resource.created_at} />
+              </Column>
+              <Column>
+                <Group gap={5}>
+                  <Button size="xs">Edit</Button>
+                  <Button size="xs" variant="danger">
+                    Delete
+                  </Button>
+                </Group>
+              </Column>
+            </Row>
+          ))}
+        </Table>
       ) : null}
-      {currentContentType ? (
-        <Heading
-          title={currentContentType.name}
-          subtitle={`Listing all resources in collection "${currentContentType.name}"`}
-        >
-          <Link
-            href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/new`}
-          >
-            <a>
-              <Button icon={<FaPlusCircle />} variant="primary">
-                {`New ${inflection.singularize(currentContentType.name)}`}
-              </Button>
-            </a>
-          </Link>
-        </Heading>
-      ) : null}
-      {currentContentType && resources && resources.length > 0 ? (
-        <ResourcesTable
-          resources={resources}
-          apiEndpoint={`https://content.kiqr.cloud/v1/collections/${currentContentType.id}`}
+
+      {currentContentType && emptyResults ? (
+        <CreateYourFirstAnnouncement
+          href="#"
+          contentTypeName={currentContentType?.name}
         />
       ) : null}
-      {pagination && pagination.pages > 1 ? (
+
+      {pagination?.pages && pagination?.pages > 1 ? (
         <Pagination
-          currentPage={pagination.page}
-          totalPages={pagination.pages}
-          callback={setPage}
+          currentPage={page}
+          totalPages={pagination?.pages}
+          callback={(page: number) => setPage(page)}
         />
-      ) : null}{' '}
+      ) : null}
     </>
   )
 }

@@ -1,8 +1,6 @@
 import type { NextPage } from 'next'
 
 import { Heading } from '@kiqr/irelia'
-
-import { PageTitle } from '../../../components'
 import { useCurrent } from '../../../hooks'
 
 const EnvironmentDashboard: NextPage = () => {
@@ -10,10 +8,9 @@ const EnvironmentDashboard: NextPage = () => {
 
   return (
     <>
-      {currentProject ? <PageTitle segments={['Dashboard']} /> : null}
       <Heading
-        title={currentProject?.name ? currentProject.name : undefined}
-        subtitle={'This is a project page'}
+        title={currentProject?.name}
+        subtitle="This page will give you a great project overview"
       />
     </>
   )

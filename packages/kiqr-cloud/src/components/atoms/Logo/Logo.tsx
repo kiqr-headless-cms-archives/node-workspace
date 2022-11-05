@@ -1,9 +1,13 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export const Logo = () => {
   return (
-    <div className="flex items-center justify-center font-bold text-primary-700 hover:text-primary-900 transition">
+    <Link
+      href="/"
+      className="flex w-full h-full items-center justify-center font-bold text-primary-700 hover:text-primary-900 transition"
+    >
       <Image
         src="http://localhost:8000/logo.svg"
         alt="KIQR Headless CMS"
@@ -13,6 +17,6 @@ export const Logo = () => {
       <span className="ml-2">
         KIQR.<span className="text-slate-400">CLOUD</span>
       </span>
-    </div>
+    </Link>
   )
 }

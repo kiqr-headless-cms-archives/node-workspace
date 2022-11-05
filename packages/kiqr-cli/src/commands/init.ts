@@ -1,7 +1,16 @@
-import {Command, Flags} from '@oclif/core'
-import {createDirectoryPath, createProject, findProjectFileInDirectory, promptForConfirmation, promptForString, ResponseError, session, view} from '../utils'
-import {Project} from '@kiqr/management-api-sdk'
-import {dump} from 'js-yaml'
+import { Command, Flags } from '@oclif/core'
+import {
+  createDirectoryPath,
+  createProject,
+  findProjectFileInDirectory,
+  promptForConfirmation,
+  promptForString,
+  ResponseError,
+  session,
+  view,
+} from '../utils'
+import { Project } from '@kiqr/management-api-sdk'
+import { dump } from 'js-yaml'
 
 import path from 'node:path'
 import fs from 'node:fs'
@@ -17,19 +26,19 @@ export default class InitCommand extends Command {
   ]
 
   static flags = {
-    name: Flags.string({char: 'n', description: 'Name your new project'}),
+    name: Flags.string({ char: 'n', description: 'Name your new project' }),
   }
 
-  static args = [{name: 'targetDirectory'}]
+  static args = [{ name: 'targetDirectory' }]
 
   async run(): Promise<void> {
-    const {isLoggedIn, token} = session()
+    const { isLoggedIn, token } = session()
 
     if (!isLoggedIn) {
       return view('errors/unauthenticated')
     }
 
-    const {args, flags} = await this.parse(InitCommand)
+    const { args, flags } = await this.parse(InitCommand)
     this.targetDirectory = path.resolve(args.targetDirectory ?? '.')
 
     // Check that theres no project in the targetDir already.
@@ -40,7 +49,10 @@ export default class InitCommand extends Command {
 
     // Set project name.
     const nameQuestion = 'What do you want to name your project?'
-    const projectName = inflection.transform(flags.name ?? await promptForString(nameQuestion), ['capitalize'])
+    const projectName = inflection.transform(
+      flags.name ?? (await promptForString(nameQuestion)),
+      ['capitalize']
+    )
 
     // Build payload from user input.
     const payload = {
@@ -48,7 +60,10 @@ export default class InitCommand extends Command {
     }
 
     try {
-      const project = await createProject(token?.access_token as string, payload)
+      const project = await createProject(
+        token?.access_token as string,
+        payload
+      )
       this.createKiqrFile(project)
     } catch (error: any) {
       if (error instanceof ResponseError) {
@@ -61,14 +76,15 @@ export default class InitCommand extends Command {
 
   // Check for conflicting projects
   private async throwOrDeleteIfConflictingProject(): Promise<void> {
-    if (!this.targetDirectory)
-      return
+    if (!this.targetDirectory) return
 
     const conflictingFile = findProjectFileInDirectory(this.targetDirectory)
 
     if (conflictingFile) {
       this.log(`A kiqr.yaml file already exists at: ${conflictingFile}`)
-      const deleteFile = await promptForConfirmation('Choose "yes" if you want to delete it and replace it with a new project')
+      const deleteFile = await promptForConfirmation(
+        'Choose "yes" if you want to delete it and replace it with a new project'
+      )
       if (deleteFile) {
         fs.unlinkSync(conflictingFile)
       } else {
@@ -79,9 +95,9 @@ export default class InitCommand extends Command {
 
   private createKiqrFile(project: Project): void {
     const filePath = this.targetDirectory + '/kiqr.yaml'
-    const fileContents = {id: project.id, schemaVersion: 0}
+    const fileContents = { id: project.id, schemaVersion: 0 }
 
     fs.writeFileSync(filePath, dump(fileContents))
-    view('init/success', {project: project, file: filePath})
+    view('init/success', { project: project, file: filePath })
   }
 }

@@ -4,19 +4,13 @@
     "node-workspace"
   ],
   "packages": {
-    "packages/eslint-config": {
-      "release-as": ""
-    },
-    "packages/eslint-config-typescript": {
-      "release-as": ""
-    },
     "packages/kiqr-irelia": {
       "release-as": ""
     },
-    "packages/kiqr-cli": {
+    "packages/kiqr-cloud": {
       "release-as": ""
     },
-    "packages/react-hooks": {
+    "packages/kiqr-cli": {
       "release-as": ""
     },
     "sdks/management-api-sdk": {

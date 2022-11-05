@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const colors = require('tailwindcss/colors')
 
 const PRIMARY_COLOR = process.env.TAILWIND_PRIMARY_COLOR || 'cyan'

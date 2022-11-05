@@ -1,27 +1,29 @@
 import '../styles/globals.css'
-
 import type { AppProps } from 'next/app'
 
-import { KiqrProvider } from '@kiqr/react-hooks'
-import { Layout } from '../components'
+import { AppShell } from '@kiqr/irelia'
+import { Logo, Sidebar, Toolbar } from '../components'
+import { KiqrProvider } from '../components/KiqrProvider'
+import { useRouter } from 'next/router'
+import { Toaster } from 'react-hot-toast'
 
-function App({ Component, pageProps }: AppProps) {
-  // const { push } = useRouter()
-  const handleRedirectBack = (url: string) => {
-    // @todo: push(url)
-    console.log('redirect to', url)
-  }
+export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+  const { query } = router
+
+  const sidebarOpen = Boolean(query?.projectId) && Boolean(query?.environmentId)
 
   return (
-    <KiqrProvider
-      appRootUrl="http://localhost:8000"
-      handleRedirectBack={handleRedirectBack}
-    >
-      <Layout>
+    <KiqrProvider redirectUri="http://localhost:8000">
+      <Toaster />
+      <AppShell
+        logo={<Logo />}
+        toolbar={<Toolbar />}
+        sidebar={<Sidebar />}
+        sidebarOpen={sidebarOpen}
+      >
         <Component {...pageProps} />
-      </Layout>
+      </AppShell>
     </KiqrProvider>
   )
 }
-
-export default App
