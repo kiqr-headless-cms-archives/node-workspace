@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@kiqr/irelia": "*",
+    "@tiptap/react": "^2.0.0-beta.202",
+    "@tiptap/starter-kit": "^2.0.0-beta.202",
     "next": "13.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

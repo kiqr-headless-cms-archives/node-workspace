@@ -121,24 +121,28 @@ const EditResourcePage: NextPage = () => {
             title="Versions"
             subtitle="Undo changes / revert to an earlier version"
           >
-            <Row>
-              <Column variant="th" className="w-0 text-center">
-                Version
-              </Column>
-              <Column variant="th">Timestamp</Column>
-            </Row>
-            {versions &&
-              versions.map((version) => (
-                <Row key={version.version}>
-                  <Column className="text-center">{version.version}</Column>
-                  <Column>
-                    <Group className="justify-between">
-                      <LocalTime epochTime={version.updated_at} />
-                      <Button size="xs" icon={<FaUndo />} />
-                    </Group>
-                  </Column>
-                </Row>
-              ))}
+            <thead>
+              <Row>
+                <Column variant="th" className="w-0 text-center">
+                  Version
+                </Column>
+                <Column variant="th">Timestamp</Column>
+              </Row>
+            </thead>
+            <tbody>
+              {versions &&
+                versions.map((version) => (
+                  <Row key={version.version}>
+                    <Column className="text-center">{version.version}</Column>
+                    <Column>
+                      <Group className="justify-between">
+                        <LocalTime epochTime={version.updated_at} />
+                        <Button size="xs" icon={<FaUndo />} />
+                      </Group>
+                    </Column>
+                  </Row>
+                ))}
+            </tbody>
           </Table>
 
           <Card
