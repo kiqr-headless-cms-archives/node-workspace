@@ -49,10 +49,13 @@ const EditResourcePage: NextPage = () => {
     setValue('name', resource.name)
     setValue('slug', resource.slug)
 
-    currentContentType.fields.map(
+    currentContentType.fields.map((field) => {
       // @ts-expect-error content has any type
-      (field) => setValue(`content[${field.id}]`, resource.content[field.id])
-    )
+      const value = resource.content[field.id] || null
+
+      // @ts-expect-error content has any type
+      setValue(`content[${field.id}]`, value)
+    })
 
     setIsLoading(false)
   }, [currentContentType, resource, isLoading, setValue])

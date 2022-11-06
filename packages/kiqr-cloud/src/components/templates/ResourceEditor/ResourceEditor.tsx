@@ -109,6 +109,7 @@ export const ResourceEditor = ({
               {currentContentType.fields.map((field) => (
                 <FieldRenderer
                   key={field.id}
+                  control={control}
                   field={field}
                   register={register}
                   errors={errors}
