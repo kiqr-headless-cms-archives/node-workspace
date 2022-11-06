@@ -3,8 +3,8 @@ import React from 'react'
 import { Button } from '../Button'
 import { Group } from '../Group'
 
-import {FaChevronCircleLeft} from 'react-icons/fa'
-import {FaChevronCircleRight} from 'react-icons/fa'
+import { FaChevronCircleLeft } from 'react-icons/fa'
+import { FaChevronCircleRight } from 'react-icons/fa'
 
 export interface PaginationProps {
   currentPage?: number
@@ -14,7 +14,13 @@ export interface PaginationProps {
   callback: (pageNumber: number) => void
 }
 
-export const Pagination = ({ currentPage = 1, totalPages = 1, maxLength = 10, gap = 3, callback }: PaginationProps) => {
+export const Pagination = ({
+  currentPage = 1,
+  totalPages = 1,
+  maxLength = 10,
+  gap = 3,
+  callback,
+}: PaginationProps) => {
   const pageNumbers = []
   const aroundCount = Math.floor((maxLength - 1) / 2)
 
@@ -30,7 +36,6 @@ export const Pagination = ({ currentPage = 1, totalPages = 1, maxLength = 10, ga
           key={page}
           size="xs"
           variant={page === currentPage ? 'primary' : 'secondary'}
-          component="a"
         >
           {page.toString()}
         </Button>
@@ -41,8 +46,8 @@ export const Pagination = ({ currentPage = 1, totalPages = 1, maxLength = 10, ga
   })
 
   const beforeLinks = () => {
-    let startPage = (currentPage - aroundCount)
-    let stopPage = currentPage
+    let startPage = currentPage - aroundCount
+    const stopPage = currentPage
 
     if (startPage < 1) {
       startPage = 1
@@ -52,7 +57,7 @@ export const Pagination = ({ currentPage = 1, totalPages = 1, maxLength = 10, ga
   }
 
   const afterLinks = () => {
-    let startPage = currentPage + 1
+    const startPage = currentPage + 1
     let stopPage = startPage + aroundCount
 
     if (stopPage > totalPages) {
@@ -62,17 +67,31 @@ export const Pagination = ({ currentPage = 1, totalPages = 1, maxLength = 10, ga
     return pageLinks.slice(startPage - 1, stopPage - 1)
   }
 
-  const prevPage = currentPage > 1 ? (currentPage - 1) : undefined
-  const nextPage = currentPage === totalPages ? undefined : (currentPage + 1)
+  const prevPage = currentPage > 1 ? currentPage - 1 : undefined
+  const nextPage = currentPage === totalPages ? undefined : currentPage + 1
 
   return (
     <div className="flex justify-center items-center">
       <Group gap={gap}>
-        { prevPage ? <Button onClick={() => callback(prevPage)} icon={<FaChevronCircleLeft />} size="xs"/> : null }
+        {prevPage ? (
+          <Button
+            onClick={() => callback(prevPage)}
+            icon={<FaChevronCircleLeft />}
+            size="xs"
+          />
+        ) : null}
         {beforeLinks()}
-        <Button variant="primary" size="xs">{currentPage}</Button>
+        <Button variant="primary" size="xs">
+          {currentPage}
+        </Button>
         {afterLinks()}
-        { nextPage ? <Button onClick={() => callback(nextPage)} icon={<FaChevronCircleRight />} size="xs"/> : null }
+        {nextPage ? (
+          <Button
+            onClick={() => callback(nextPage)}
+            icon={<FaChevronCircleRight />}
+            size="xs"
+          />
+        ) : null}
       </Group>
     </div>
   )

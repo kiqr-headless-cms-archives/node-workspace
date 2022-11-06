@@ -36,6 +36,7 @@ const EditResourcePage: NextPage = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   const {
+    control,
     handleSubmit,
     register,
     formState: { errors },
@@ -48,10 +49,13 @@ const EditResourcePage: NextPage = () => {
     setValue('name', resource.name)
     setValue('slug', resource.slug)
 
-    currentContentType.fields.map(
+    currentContentType.fields.map((field) => {
       // @ts-expect-error content has any type
-      (field) => setValue(`content[${field.id}]`, resource.content[field.id])
-    )
+      const value = resource.content[field.id] || null
+
+      // @ts-expect-error content has any type
+      setValue(`content[${field.id}]`, value)
+    })
 
     setIsLoading(false)
   }, [currentContentType, resource, isLoading, setValue])
@@ -77,7 +81,6 @@ const EditResourcePage: NextPage = () => {
       api
         .updateResource(resource.id, currentEnvironment.id, payload)
         .then((response) => {
-          console.log('response', response.data)
           mutate(response.data)
           versionsMutate()
         }),
@@ -104,7 +107,11 @@ const EditResourcePage: NextPage = () => {
         className="grid grid-cols-4 gap-x-5"
       >
         <section className="col-span-3">
-          <ResourceEditor register={register} errors={errors} />
+          <ResourceEditor
+            register={register}
+            control={control}
+            errors={errors}
+          />
         </section>
         <aside className="flex flex-col gap-y-5">
           <Card
@@ -113,7 +120,9 @@ const EditResourcePage: NextPage = () => {
           >
             <Group>
               <Button>Save draft</Button>
-              <Button variant="primary">Save &amp; publish</Button>
+              <Button variant="primary" type="submit">
+                Save &amp; publish
+              </Button>
             </Group>
           </Card>
 
@@ -121,24 +130,28 @@ const EditResourcePage: NextPage = () => {
             title="Versions"
             subtitle="Undo changes / revert to an earlier version"
           >
-            <Row>
-              <Column variant="th" className="w-0 text-center">
-                Version
-              </Column>
-              <Column variant="th">Timestamp</Column>
-            </Row>
-            {versions &&
-              versions.map((version) => (
-                <Row key={version.version}>
-                  <Column className="text-center">{version.version}</Column>
-                  <Column>
-                    <Group className="justify-between">
-                      <LocalTime epochTime={version.updated_at} />
-                      <Button size="xs" icon={<FaUndo />} />
-                    </Group>
-                  </Column>
-                </Row>
-              ))}
+            <thead>
+              <Row>
+                <Column variant="th" className="w-0 text-center">
+                  Version
+                </Column>
+                <Column variant="th">Timestamp</Column>
+              </Row>
+            </thead>
+            <tbody>
+              {versions &&
+                versions.map((version) => (
+                  <Row key={version.version}>
+                    <Column className="text-center">{version.version}</Column>
+                    <Column>
+                      <Group className="justify-between">
+                        <LocalTime epochTime={version.updated_at} />
+                        <Button size="xs" icon={<FaUndo />} />
+                      </Group>
+                    </Column>
+                  </Row>
+                ))}
+            </tbody>
           </Table>
 
           <Card

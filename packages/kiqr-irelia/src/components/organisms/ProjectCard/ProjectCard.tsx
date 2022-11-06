@@ -1,5 +1,10 @@
 import React from 'react'
-import { Avatar, Card, ProgressBar, Group } from '../../../'
+
+import { Avatar } from '../../atoms/Avatar'
+import { Card } from '../../atoms/Card'
+import { Group } from '../../atoms/Group'
+import { ProgressBar } from '../../atoms/ProgressBar'
+
 import type { Project } from '@kiqr/management-api-sdk'
 
 export interface ProjectCardProps {

@@ -46,45 +46,49 @@ const ContentTypePage: NextPage = () => {
 
       {resources && resources.length > 0 ? (
         <Table>
-          <Row>
-            <Column variant="th" className="w-0"></Column>
-            <Column variant="th">
-              {currentContentType
-                ? inflection.singularize(currentContentType.name)
-                : null}
-            </Column>
-            <Column variant="th">Updated at</Column>
-            <Column variant="th">Created at</Column>
-            <Column variant="th" className="w-0">
-              Actions
-            </Column>
-          </Row>
-          {resources.map((resource) => (
-            <Row key={resource.id}>
-              <Column className="w-0"></Column>
-              <Column>
-                <Link
-                  href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
-                >
-                  {resource.name}
-                </Link>
+          <thead>
+            <Row>
+              <Column variant="th" className="w-0"></Column>
+              <Column variant="th">
+                {currentContentType
+                  ? inflection.singularize(currentContentType.name)
+                  : null}
               </Column>
-              <Column>
-                <LocalTime epochTime={resource.updated_at} />
-              </Column>
-              <Column>
-                <LocalTime epochTime={resource.created_at} />
-              </Column>
-              <Column>
-                <Group gap={5}>
-                  <Button size="xs">Edit</Button>
-                  <Button size="xs" variant="danger">
-                    Delete
-                  </Button>
-                </Group>
+              <Column variant="th">Updated at</Column>
+              <Column variant="th">Created at</Column>
+              <Column variant="th" className="w-0">
+                Actions
               </Column>
             </Row>
-          ))}
+          </thead>
+          <tbody>
+            {resources.map((resource) => (
+              <Row key={resource.id}>
+                <Column className="w-0"></Column>
+                <Column>
+                  <Link
+                    href={`/${currentProject?.slug}/${currentEnvironment?.slug}/collections/${currentContentType?.id}/resources/${resource.slug}`}
+                  >
+                    {resource.name}
+                  </Link>
+                </Column>
+                <Column>
+                  <LocalTime epochTime={resource.updated_at} />
+                </Column>
+                <Column>
+                  <LocalTime epochTime={resource.created_at} />
+                </Column>
+                <Column>
+                  <Group gap={5}>
+                    <Button size="xs">Edit</Button>
+                    <Button size="xs" variant="danger">
+                      Delete
+                    </Button>
+                  </Group>
+                </Column>
+              </Row>
+            ))}
+          </tbody>
         </Table>
       ) : null}
 

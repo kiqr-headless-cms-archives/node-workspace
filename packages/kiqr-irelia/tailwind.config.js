@@ -6,13 +6,11 @@ const PRIMARY_COLOR = process.env.TAILWIND_PRIMARY_COLOR || 'cyan'
 const NEUTRAL_COLOR = process.env.TAILWIND_NEUTRAL_COLOR || 'slate'
 
 module.exports = {
-  content: [
-    './src/components/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./src/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Poppins', 'sans-serif'],
+        sans: ['Poppins', 'sans-serif'],
       },
       colors: {
         primary: colors[PRIMARY_COLOR],
@@ -20,5 +18,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }
