@@ -10,9 +10,14 @@ import { FieldRenderer, FormError } from '../../fields'
 export interface ResourceEditorProps {
   register: any
   errors: any
+  control: any
 }
 
-export const ResourceEditor = ({ register, errors }: ResourceEditorProps) => {
+export const ResourceEditor = ({
+  control,
+  register,
+  errors,
+}: ResourceEditorProps) => {
   const { currentContentType } = useCurrent()
   if (!currentContentType) return null
 
@@ -93,6 +98,7 @@ export const ResourceEditor = ({ register, errors }: ResourceEditorProps) => {
               {currentContentType.fields.map((field) => (
                 <FieldRenderer
                   key={field.id}
+                  control={control}
                   field={field}
                   register={register}
                   errors={errors}

@@ -36,6 +36,7 @@ const EditResourcePage: NextPage = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   const {
+    control,
     handleSubmit,
     register,
     formState: { errors },
@@ -77,7 +78,6 @@ const EditResourcePage: NextPage = () => {
       api
         .updateResource(resource.id, currentEnvironment.id, payload)
         .then((response) => {
-          console.log('response', response.data)
           mutate(response.data)
           versionsMutate()
         }),
@@ -104,7 +104,11 @@ const EditResourcePage: NextPage = () => {
         className="grid grid-cols-4 gap-x-5"
       >
         <section className="col-span-3">
-          <ResourceEditor register={register} errors={errors} />
+          <ResourceEditor
+            register={register}
+            control={control}
+            errors={errors}
+          />
         </section>
         <aside className="flex flex-col gap-y-5">
           <Card
@@ -113,7 +117,9 @@ const EditResourcePage: NextPage = () => {
           >
             <Group>
               <Button>Save draft</Button>
-              <Button variant="primary">Save &amp; publish</Button>
+              <Button variant="primary" type="submit">
+                Save &amp; publish
+              </Button>
             </Group>
           </Card>
 

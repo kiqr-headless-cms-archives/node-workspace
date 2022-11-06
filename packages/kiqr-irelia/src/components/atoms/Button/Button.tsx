@@ -1,4 +1,4 @@
-import React, {FC, ReactNode} from 'react'
+import React, { FC, ReactNode } from 'react'
 import classNames from 'classnames'
 
 export interface ButtonProps {
@@ -7,23 +7,25 @@ export interface ButtonProps {
   icon?: JSX.Element
   variant?: string
   disabled?: boolean
-  component?: string
+  type?: 'button' | 'submit' | 'reset'
   onClick?: () => any
 }
 
 export const Button: FC<ButtonProps> = ({
   children,
-  component = 'button',
   size = 'md',
   variant = 'default',
   icon,
   disabled = false,
+  type = 'button',
   onClick,
-}) => {
-  const defaultClasses = 'inline-flex items-center gap-x-2 leading-3 justify-center rounded transition shadow font-bold cursor-pointer hover:shadow-sm'
+}): JSX.Element => {
+  const defaultClasses =
+    'inline-flex items-center gap-x-2 leading-3 justify-center rounded transition shadow font-bold cursor-pointer hover:shadow-sm'
 
   const variantClasses = {
-    'text-neutral-600 bg-neutral-100 hover:text-neutral-800': variant === 'default',
+    'text-neutral-600 bg-neutral-100 hover:text-neutral-800':
+      variant === 'default',
     'text-white bg-primary-700 hover:bg-primary-800': variant === 'primary',
     'text-white bg-rose-700 hover:bg-rose-800': variant === 'danger',
     'opacity-50 cursor-not-allowed': disabled === true,
@@ -37,12 +39,16 @@ export const Button: FC<ButtonProps> = ({
   }
 
   const className = classNames(defaultClasses, variantClasses, sizeClasses)
-  const Component = (component ? component : 'button') as keyof JSX.IntrinsicElements;
 
   return (
-    <Component className={className} onClick={disabled ? undefined : onClick} disabled={disabled}>
+    <button
+      className={className}
+      onClick={disabled ? undefined : onClick}
+      disabled={disabled}
+      type={type}
+    >
       {icon || null}
       {children}
-    </Component>
+    </button>
   )
 }

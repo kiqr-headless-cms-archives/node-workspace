@@ -7,6 +7,7 @@ export const FormError: React.FC<{ message: string }> = ({ message }) => {
 
 export interface FieldProps {
   field: ContentTypeField
+  control: any
   register: any
   errors: any
 }
