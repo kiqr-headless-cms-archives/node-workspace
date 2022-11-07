@@ -4,6 +4,7 @@ import {
   contentTypes,
   createSchema,
   project,
+  plugins,
   promptForString,
   ResponseError,
   session,
@@ -44,6 +45,7 @@ export default class PushCommand extends Command {
         )),
       data: {
         content_types: contentTypes.all(),
+        plugins: plugins.all(),
       },
     }
 
@@ -63,7 +65,7 @@ export default class PushCommand extends Command {
       project.setConfigValue<number>('schemaVersion', schema.version)
 
       view('schemas/created', schema)
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (error instanceof ResponseError) {
         view('errors/request', error)
       } else {

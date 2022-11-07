@@ -1,4 +1,4 @@
-import type { ContentType } from '@kiqr/management-api-sdk'
+import type { ContentType, Plugin } from '@kiqr/management-api-sdk'
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -55,6 +55,17 @@ export const contentTypeDirectory = (): string => {
 
 export const contentTypeFilePath = (contentType: ContentType) => {
   return path.join(contentTypeDirectory(), `${contentType.id}.yaml`)
+}
+
+export const pluginsDirectory = (): string => {
+  const rootDir = findProjectRoot()
+  if (!rootDir) throw new Error('Couldnt find kiqr file.')
+
+  return path.join(rootDir, '/kiqr/plugins')
+}
+
+export const pluginsFilePath = (plugin: Plugin) => {
+  return path.join(pluginsDirectory(), `${plugin.id}.yaml`)
 }
 
 export const findProjectRoot = (): string | undefined => {

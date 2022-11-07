@@ -6,13 +6,13 @@ import {
   promptForString,
   selectAnOption,
   view,
-} from '../utils'
+} from '../../utils'
 
 import inflection from 'inflection'
 
 import { ContentType, ContentTypeKindEnum } from '@kiqr/management-api-sdk'
 
-export default class CreateCommand extends Command {
+export default class CreateContentTypeCommand extends Command {
   static description = 'Create a new content type'
   static examples = [
     '<%= config.bin %> <%= command.id %>',
@@ -30,17 +30,17 @@ export default class CreateCommand extends Command {
     force: Flags.boolean(),
   }
 
-  static args = [{ name: 'contentType', required: true }]
+  static args = [{ name: 'id', required: true }]
 
   public async run(): Promise<void> {
     if (!project.hasConfig()) {
       return view('errors/config-not-found')
     }
 
-    const { args, flags } = await this.parse(CreateCommand)
+    const { args, flags } = await this.parse(CreateContentTypeCommand)
 
     // Parse id from arguments
-    const id = inflection.transform(args.contentType, ['dasherize'])
+    const id = inflection.transform(args.id, ['dasherize'])
 
     // Ask user for a name of the content type.
     const nameQuestion = 'Give your content type a human readable name:'

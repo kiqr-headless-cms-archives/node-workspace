@@ -28,8 +28,12 @@ const EditResourcePage: NextPage = () => {
   const query = useRouter().query
   const { token } = useApi()
 
-  const { currentContentType, currentProject, currentEnvironment } =
-    useCurrent()
+  const {
+    currentContentType,
+    currentProject,
+    currentSchema,
+    currentEnvironment,
+  } = useCurrent()
   const { resource, mutate, versions, versionsMutate } = useResource(
     query?.resourceId as string
   )
@@ -44,7 +48,7 @@ const EditResourcePage: NextPage = () => {
   } = useForm<UpdateResourceRequest>()
 
   useEffect(() => {
-    if (!currentContentType || !resource || !isLoading) return
+    if (!currentContentType || !currentSchema || !resource || !isLoading) return
 
     setValue('name', resource.name)
     setValue('slug', resource.slug)
@@ -57,8 +61,18 @@ const EditResourcePage: NextPage = () => {
       setValue(`content[${field.id}]`, value)
     })
 
+    currentSchema?.data.plugins?.map((plugin) => {
+      plugin.fields.map((field) => {
+        // @ts-expect-error content has any type
+        const value = resource.content[`_${plugin.id}`]?.[field.id] || null
+
+        // @ts-expect-error content has any type
+        setValue(`content[_${plugin.id}][${field.id}]`, value)
+      })
+    })
+
     setIsLoading(false)
-  }, [currentContentType, resource, isLoading, setValue])
+  }, [currentContentType, currentSchema, resource, isLoading, setValue])
 
   // Handle submission of form.
   const onSubmit = async (data: UpdateResourceRequest): Promise<void> => {
@@ -77,11 +91,14 @@ const EditResourcePage: NextPage = () => {
       ...data,
     }
 
+    console.log('request payload:', payload)
+
     toast.promise(
       api
         .updateResource(resource.id, currentEnvironment.id, payload)
         .then((response) => {
           mutate(response.data)
+          console.log('response:', response.data)
           versionsMutate()
         }),
       {

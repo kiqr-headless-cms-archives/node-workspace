@@ -2,6 +2,8 @@ id: posts
 name: Posts
 kind: collection
 associations: []
+plugins:
+  - seo
 fields:
   - id: title
     label: Title

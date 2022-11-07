@@ -6,6 +6,7 @@ import { useCurrent } from '../../../hooks'
 
 import inflection from 'inflection'
 import { FieldRenderer, FormError } from '../../fields'
+import { useState } from 'react'
 
 export interface ResourceEditorProps {
   register: any
@@ -18,7 +19,9 @@ export const ResourceEditor = ({
   register,
   errors,
 }: ResourceEditorProps) => {
-  const { currentContentType } = useCurrent()
+  const { currentContentType, currentSchema } = useCurrent()
+  const [currentTabIndex, setTabIndex] = useState(0)
+
   if (!currentContentType) return null
 
   const singularizedContentTypeName = currentContentType
@@ -27,13 +30,19 @@ export const ResourceEditor = ({
         ?.toLowerCase()
     : null
 
+  const tabNames = [{ title: 'General', subtitle: 'General settings' }]
+
+  currentSchema?.data.plugins?.map((plugin) => {
+    tabNames.push({ title: plugin.tabName, subtitle: plugin.name + ' by KIQR' })
+  })
+
   return (
-    <Tabs>
+    <Tabs onSelect={(tabIndex: number) => setTabIndex(tabIndex)}>
       <Box p={0}>
         <Padding>
           <Heading
-            title="General"
-            subtitle="Edit general settings"
+            title={tabNames[currentTabIndex].title}
+            subtitle={tabNames[currentTabIndex].subtitle}
             variant="box"
           />
         </Padding>
@@ -49,15 +58,18 @@ export const ResourceEditor = ({
                 </div>
                 <span>General</span>
               </Tab>
-              <Tab
-                selectedClassName="font-bold text-primary-700 bg-neutral-50"
-                className="flex w-full px-5 py-4 items-center gap-x-1 text-xs border-b cursor-pointer"
-              >
-                <div className="mr-3">
-                  <FaGoogle />
-                </div>
-                <span>SEO</span>
-              </Tab>
+              {currentSchema?.data.plugins?.map((plugin) => (
+                <Tab
+                  key={plugin.id}
+                  selectedClassName="font-bold text-primary-700 bg-neutral-50"
+                  className="flex w-full px-5 py-4 items-center gap-x-1 text-xs border-b cursor-pointer"
+                >
+                  <div className="mr-3">
+                    <FaGoogle />
+                  </div>
+                  <span>{plugin.tabName}</span>
+                </Tab>
+              ))}
             </TabList>
           </aside>
           <main className="flex-1">
@@ -98,6 +110,7 @@ export const ResourceEditor = ({
               {currentContentType.fields.map((field) => (
                 <FieldRenderer
                   key={field.id}
+                  name={`content[${field.id}]`}
                   control={control}
                   field={field}
                   register={register}
@@ -105,17 +118,21 @@ export const ResourceEditor = ({
                 />
               ))}
             </TabPanel>
-            <TabPanel>
-              {currentContentType.fields.map((field) => (
-                <FieldRenderer
-                  key={field.id}
-                  control={control}
-                  field={field}
-                  register={register}
-                  errors={errors}
-                />
-              ))}
-            </TabPanel>
+
+            {currentSchema?.data.plugins?.map((plugin) => (
+              <TabPanel key={plugin.id}>
+                {plugin.fields.map((field) => (
+                  <FieldRenderer
+                    key={field.id}
+                    name={`content[_${plugin.id}][${field.id}]`}
+                    control={control}
+                    field={field}
+                    register={register}
+                    errors={errors}
+                  />
+                ))}
+              </TabPanel>
+            ))}
           </main>
         </div>
       </Box>

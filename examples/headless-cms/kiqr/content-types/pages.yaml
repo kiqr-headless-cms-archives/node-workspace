@@ -2,4 +2,6 @@ id: pages
 name: Pages
 kind: collection
 associations: []
+plugins:
+  - seo
 fields: []

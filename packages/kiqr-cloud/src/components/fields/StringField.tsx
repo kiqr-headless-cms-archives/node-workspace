@@ -1,13 +1,13 @@
 import { FieldProps, FormError } from '../fields'
 
 export const StringField: React.FC<FieldProps> = (props) => {
-  const { field, register, errors } = props
+  const { name, field, register, errors } = props
 
   return (
     <>
       <input
         type="text"
-        {...register(`content[${field.id}]`, { required: field.required })}
+        {...register(name, { required: field.required })}
         className="border-neutral-200 outline-none focus:ring-0 text-sm bg-white"
         placeholder={`Enter a value for "${field.label.toLowerCase()}"`}
       />
