@@ -1,6 +1,5 @@
 id: seo
 name: SEO Meta Tags
-tabName: SEO
 fields:
   - id: title
     label: Page title

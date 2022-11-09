@@ -9,8 +9,8 @@ export const TextareaField: React.FC<FieldProps> = (props) => {
         type="text"
         rows="3"
         {...register(name, { required: field.required })}
-        className="border-neutral-200 outline-none focus:ring-0 text-sm bg-white"
-        placeholder={`Enter a text for "${field.label.toLowerCase()}"`}
+        className="border-neutral-200 outline-none focus:ring-0 text-sm bg-neutral-50 p-3 rounded"
+        placeholder={`Enter a text for "${field?.label?.toLowerCase()}"`}
       ></textarea>
 
       {errors?.content?.[field.id] && (

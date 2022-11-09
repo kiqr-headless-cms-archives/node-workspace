@@ -1,4 +1,4 @@
-import { ContentTypeField } from '@kiqr/management-api-sdk'
+import type { Component, ContentTypeField } from '@kiqr/management-api-sdk'
 import React from 'react'
 
 export const FormError: React.FC<{ message: string }> = ({ message }) => {
@@ -11,9 +11,14 @@ export interface FieldProps {
   control: any
   register: any
   errors: any
+  component?: Component
 }
 
+// Fields
 export * from './EditorField'
 export * from './StringField'
 export * from './TextareaField'
+
+// Renderers
+export * from './ComponentRenderer'
 export * from './FieldRenderer'

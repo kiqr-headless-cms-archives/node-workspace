@@ -45,6 +45,7 @@ const EditResourcePage: NextPage = () => {
     register,
     formState: { errors },
     setValue,
+    watch,
   } = useForm<UpdateResourceRequest>()
 
   useEffect(() => {
@@ -59,16 +60,6 @@ const EditResourcePage: NextPage = () => {
 
       // @ts-expect-error content has any type
       setValue(`content[${field.id}]`, value)
-    })
-
-    currentSchema?.data.plugins?.map((plugin) => {
-      plugin.fields.map((field) => {
-        // @ts-expect-error content has any type
-        const value = resource.content[`_${plugin.id}`]?.[field.id] || null
-
-        // @ts-expect-error content has any type
-        setValue(`content[_${plugin.id}][${field.id}]`, value)
-      })
     })
 
     setIsLoading(false)
@@ -90,8 +81,6 @@ const EditResourcePage: NextPage = () => {
     const payload: UpdateResourceRequest = {
       ...data,
     }
-
-    console.log('request payload:', payload)
 
     toast.promise(
       api
@@ -128,6 +117,7 @@ const EditResourcePage: NextPage = () => {
             register={register}
             control={control}
             errors={errors}
+            watch={watch}
           />
         </section>
         <aside className="flex flex-col gap-y-5">

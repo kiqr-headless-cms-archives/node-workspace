@@ -4,7 +4,7 @@ import {
   contentTypes,
   createSchema,
   project,
-  plugins,
+  components,
   promptForString,
   ResponseError,
   session,
@@ -45,7 +45,7 @@ export default class PushCommand extends Command {
         )),
       data: {
         content_types: contentTypes.all(),
-        plugins: plugins.all(),
+        components: components.all(),
       },
     }
 

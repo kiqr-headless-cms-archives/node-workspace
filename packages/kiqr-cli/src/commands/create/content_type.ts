@@ -24,7 +24,7 @@ export default class CreateContentTypeCommand extends Command {
     kind: Flags.enum({
       char: 'k',
       description: 'What kind of content type?',
-      options: ['collection', 'component'],
+      options: ['collection', 'single'],
     }),
     fields: Flags.string({ char: 'f', description: 'Initial fields' }),
     force: Flags.boolean(),

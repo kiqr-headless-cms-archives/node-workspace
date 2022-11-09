@@ -2,6 +2,6 @@ id: pages
 name: Pages
 kind: collection
 associations: []
-plugins:
-  - seo
-fields: []
+fields:
+  - id: seo
+    component: "seo"
