@@ -1,9 +1,24 @@
-import { Box, Button, Column, Heading, Padding, Row, Table } from '@kiqr/irelia'
+import {
+  Box,
+  Button,
+  Column,
+  Group,
+  Heading,
+  Padding,
+  Row,
+  Table,
+} from '@kiqr/irelia'
 import { Component } from '@kiqr/management-api-sdk'
 import inflection from 'inflection'
 import { useState } from 'react'
 import { useFieldArray } from 'react-hook-form'
-import { FaEdit, FaPlusCircle, FaWindowMinimize } from 'react-icons/fa'
+import {
+  FaArrowDown,
+  FaArrowUp,
+  FaEdit,
+  FaPlusCircle,
+  FaWindowMinimize,
+} from 'react-icons/fa'
 import { useCurrent } from '../../hooks'
 import { FieldRenderer } from './FieldRenderer'
 
@@ -158,11 +173,24 @@ export const ComponentRenderer = (
                         <Column key={field.id}>{row[field.id]}</Column>
                       ))}
                       <Column>
-                        <Button
-                          size="xs"
-                          onClick={() => setSelectedIndex(rowIndex)}
-                          icon={<FaEdit />}
-                        />
+                        <Group gap={2}>
+                          <Button
+                            size="xs"
+                            onClick={() => move(rowIndex, rowIndex - 1)}
+                            icon={<FaArrowUp />}
+                          />
+                          <Button
+                            size="xs"
+                            onClick={() => move(rowIndex, rowIndex + 1)}
+                            icon={<FaArrowDown />}
+                          />
+                          <Button
+                            size="xs"
+                            onClick={() => setSelectedIndex(rowIndex)}
+                            icon={<FaEdit />}
+                            variant="primary"
+                          />
+                        </Group>
                       </Column>
                     </Row>
                   )
