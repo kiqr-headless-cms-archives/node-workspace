@@ -1,0 +1,23 @@
+id: quotes
+name: Quotes
+fields:
+  - id: quote
+    label: Quote
+    type: text
+    required: true
+  - id: icon
+    label: Fontawesome icon
+    type: string
+    required: false
+  - id: authorName
+    label: Author's name
+    type: string
+    required: true
+  - id: authorAvatarUrl
+    label: Author's avatar Url
+    type: string
+    required: false
+  - id: authorWebsiteUrl
+    label: Author's website
+    type: string
+    required: false

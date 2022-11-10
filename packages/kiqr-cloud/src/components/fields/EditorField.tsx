@@ -7,12 +7,12 @@ export const EditorField: React.FC<FieldProps> = (props) => {
     <>
       <Controller
         control={props.control}
-        name={`content[${props.field.id}]`}
+        name={props.name}
         render={({ field }) =>
           field.value !== undefined ? (
             <HtmlEditor initialValue={field.value} onChange={field.onChange} />
           ) : (
-            <>test: {JSON.stringify(field.value === undefined)}</>
+            <></>
           )
         }
       />

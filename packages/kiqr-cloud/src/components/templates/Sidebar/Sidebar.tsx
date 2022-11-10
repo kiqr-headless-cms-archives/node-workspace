@@ -27,8 +27,8 @@ export const Sidebar = () => {
     ? contentTypes.filter((ct) => ct.kind === 'collection')
     : []
 
-  const components = Array.isArray(contentTypes)
-    ? contentTypes?.filter((ct) => ct.kind === 'component')
+  const singles = Array.isArray(contentTypes)
+    ? contentTypes?.filter((ct) => ct.kind === 'single')
     : []
 
   return (
@@ -52,10 +52,8 @@ export const Sidebar = () => {
         active={router.pathname === '/[projectId]/[environmentId]/log'}
       />
 
-      <h5 className="p-5 pb-2.5 text-xs font-bold">Collections</h5>
-
-      {collections &&
-        collections.map((contentType) => (
+      {singles &&
+        singles.map((contentType) => (
           <SidebarLink
             key={contentType.id}
             title={contentType.name}
@@ -65,10 +63,10 @@ export const Sidebar = () => {
           />
         ))}
 
-      <h5 className="p-5 pb-2.5 text-xs font-bold">Components</h5>
+      <h5 className="p-5 pb-2.5 text-xs font-bold">Collections</h5>
 
-      {components &&
-        components.map((contentType) => (
+      {collections &&
+        collections.map((contentType) => (
           <SidebarLink
             key={contentType.id}
             title={contentType.name}

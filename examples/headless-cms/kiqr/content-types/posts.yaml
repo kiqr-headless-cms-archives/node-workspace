@@ -3,11 +3,16 @@ name: Posts
 kind: collection
 associations: []
 fields:
+  - id: seo
+    component: seo
   - id: title
     label: Title
     type: string
     required: false
   - id: body
     label: Body
-    type: text
+    type: editor
     required: false
+  - id: quotes
+    component: "quotes"
+    repeatable: true

@@ -1,0 +1,11 @@
+id: seo
+name: SEO Meta Tags
+fields:
+  - id: title
+    label: Page title
+    type: string
+    required: false
+  - id: description
+    label: Meta description
+    type: text
+    required: false

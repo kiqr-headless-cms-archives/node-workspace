@@ -10,12 +10,17 @@ export interface ColumnProps {
   variant?: 'th' | 'td'
 }
 
-export const Column = ({children, className, variant = 'td'}: ColumnProps) => {
-  const defaultClasses = 'text-left px-5 border-r'
+export const Column = ({
+  children,
+  className,
+  variant = 'td',
+}: ColumnProps) => {
+  const defaultClasses = 'text-left px-5 border-r last:border-r-0'
 
   const variantClasses = {
     'text-sm py-2 text-neutral-500': variant === 'td',
-    'text-xs bg-white font-bold py-4 uppercase text-primary-700': variant === 'th'
+    'text-xs bg-white font-bold py-4 uppercase text-primary-700':
+      variant === 'th',
   }
 
   const classnames = classNames(defaultClasses, variantClasses, className)
@@ -27,7 +32,7 @@ export interface RowProps {
   className?: string
 }
 
-export const Row = ({children, className}: RowProps) => {
+export const Row = ({ children, className }: RowProps) => {
   const defaultClasses = 'border-b hover:bg-neutral-50'
 
   const classnames = classNames(defaultClasses, className)
@@ -41,13 +46,17 @@ export interface TableProps {
   subtitle?: string
 }
 
-export const Table = ({children, title, subtitle, className}: TableProps) => {
-  const defaultClasses = 'w-full border-t rounded border-b-0 border-r-0'
+export const Table = ({ children, title, subtitle, className }: TableProps) => {
+  const defaultClasses = 'w-full border-t border-b-2 rounded'
   const classnames = classNames(defaultClasses, className)
 
   return (
     <Box p={0}>
-      { title || subtitle ? <Padding><Heading title={title} subtitle={subtitle} variant='box' /></Padding> : null }
+      {title || subtitle ? (
+        <Padding>
+          <Heading title={title} subtitle={subtitle} variant="box" />
+        </Padding>
+      ) : null}
       <table className={classnames}>{children}</table>
     </Box>
   )

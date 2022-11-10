@@ -1,5 +1,5 @@
 id: footer
 name: Footer
-kind: component
+kind: single
 associations: []
 fields: []

@@ -1,7 +1,7 @@
 import { FieldProps, EditorField, StringField, TextareaField } from './'
 
 export const FieldRenderer = (props: FieldProps): JSX.Element => {
-  const { field } = props
+  const { component, field } = props
 
   const renderField = (type: string) => {
     switch (type) {
@@ -35,7 +35,7 @@ export const FieldRenderer = (props: FieldProps): JSX.Element => {
         {field.label}
       </label>
 
-      {renderField(field.type)}
+      {field?.type ? renderField(field.type) : null}
     </div>
   )
 }

@@ -14,7 +14,7 @@ import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { useApi, useCurrent, useResource } from '../../../../../../hooks'
 import { ResourceEditor } from '../../../../../../components'
-import { FaUndo } from 'react-icons/fa'
+import { FaDownload, FaGlobe, FaSave, FaUndo, FaUpload } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -28,8 +28,12 @@ const EditResourcePage: NextPage = () => {
   const query = useRouter().query
   const { token } = useApi()
 
-  const { currentContentType, currentProject, currentEnvironment } =
-    useCurrent()
+  const {
+    currentContentType,
+    currentProject,
+    currentSchema,
+    currentEnvironment,
+  } = useCurrent()
   const { resource, mutate, versions, versionsMutate } = useResource(
     query?.resourceId as string
   )
@@ -41,10 +45,11 @@ const EditResourcePage: NextPage = () => {
     register,
     formState: { errors },
     setValue,
+    watch,
   } = useForm<UpdateResourceRequest>()
 
   useEffect(() => {
-    if (!currentContentType || !resource || !isLoading) return
+    if (!currentContentType || !currentSchema || !resource || !isLoading) return
 
     setValue('name', resource.name)
     setValue('slug', resource.slug)
@@ -58,7 +63,7 @@ const EditResourcePage: NextPage = () => {
     })
 
     setIsLoading(false)
-  }, [currentContentType, resource, isLoading, setValue])
+  }, [currentContentType, currentSchema, resource, isLoading, setValue])
 
   // Handle submission of form.
   const onSubmit = async (data: UpdateResourceRequest): Promise<void> => {
@@ -82,6 +87,7 @@ const EditResourcePage: NextPage = () => {
         .updateResource(resource.id, currentEnvironment.id, payload)
         .then((response) => {
           mutate(response.data)
+          console.log('response:', response.data)
           versionsMutate()
         }),
       {
@@ -111,6 +117,7 @@ const EditResourcePage: NextPage = () => {
             register={register}
             control={control}
             errors={errors}
+            watch={watch}
           />
         </section>
         <aside className="flex flex-col gap-y-5">
@@ -118,10 +125,10 @@ const EditResourcePage: NextPage = () => {
             title="Save changes"
             subtitle="Publish or schedule your resource for later"
           >
-            <Group>
-              <Button>Save draft</Button>
-              <Button variant="primary" type="submit">
-                Save &amp; publish
+            <Group className="flex justify-between">
+              <Button icon={<FaSave />}>Save draft</Button>
+              <Button icon={<FaGlobe />} variant="primary" type="submit">
+                Publish
               </Button>
             </Group>
           </Card>
