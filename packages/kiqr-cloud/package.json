@@ -1,6 +1,6 @@
 {
   "name": "@kiqr/cloud",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "next dev --port 8000",
     "build": "next build",
@@ -8,7 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@kiqr/irelia": "*",
+    "@kiqr/irelia": "^1.0.0",
     "next": "13.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
