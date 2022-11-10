@@ -10,13 +10,14 @@ import {
 } from '@kiqr/irelia'
 import { Component } from '@kiqr/management-api-sdk'
 import inflection from 'inflection'
-import { useState } from 'react'
-import { useFieldArray } from 'react-hook-form'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useFieldArray, useWatch } from 'react-hook-form'
 import {
   FaArrowDown,
   FaArrowUp,
   FaEdit,
   FaPlusCircle,
+  FaTrash,
   FaWindowMinimize,
 } from 'react-icons/fa'
 import { useCurrent } from '../../hooks'
@@ -70,9 +71,13 @@ export const ComponentRenderer = (
     const { currentContentType } = useCurrent()
     const [selectedIndex, setSelectedIndex] = useState<number>()
 
-    const { fields: formRows, move } = useFieldArray({
-      control, // control props comes from useForm (optional: if you are using FormContext)
-      name: `content[${component.id}]`, // unique name for your Field Array
+    const {
+      fields: formRows,
+      move,
+      remove,
+    } = useFieldArray({
+      control,
+      name: `content[${component.id}]`,
     })
 
     const EditRowModal = () => {
@@ -81,7 +86,9 @@ export const ComponentRenderer = (
           <Box className="relative w-1/2 max-h-[75vh] overflow-scroll">
             <div className="absolute top-10 right-10">
               <Button
-                onClick={() => setSelectedIndex(undefined)}
+                onClick={() => {
+                  setSelectedIndex(undefined)
+                }}
                 icon={<FaWindowMinimize />}
                 size="sm"
                 variant="primary"
@@ -114,7 +121,7 @@ export const ComponentRenderer = (
       )
     }
 
-    //uses move from useFieldArray to change the position of the form
+    // uses move from useFieldArray to change the position of the form
     // const handleDrag = ({ source, destination }) => {
     //   console.log('lool', source, destination)
     //   if (destination) {
@@ -122,50 +129,45 @@ export const ComponentRenderer = (
     //   }
     // }
 
-    return (
-      <div className="flex flex-col w-full p-5 border-b border-neutral-200 bg-white relative">
-        <label
-          className={
-            'flex justify-between items-center text-primary-700 text-xs mb-3 uppercase'
-          }
-        >
-          <span>{component.name}</span>
-          <span>
-            <Button size="xs" icon={<FaPlusCircle />}>
-              Add a new{' '}
-              {inflection
-                .transform(component.name, ['humanize', 'singularize'])
-                .toLocaleLowerCase()}
-            </Button>
-          </span>
-        </label>
+    // const FormModal = useMemo<JSX.Element>(() => {
+    //   return <EditRowModal />
+    // }, [selectedIndex])
 
-        {formRows.length > 0 ? (
-          <Table
-            title={inflection.transform(component.name, [
-              'humanize',
-              'pluralize',
-            ])}
-            subtitle={`Add, edit or remove ${inflection
-              .transform(component.name, ['humanize', 'pluralize'])
-              .toLocaleLowerCase()}`}
-          >
-            <thead>
-              <Row>
-                <Column variant="th"></Column>
-                {component.fields.slice(0, 4).map((field) => (
-                  <Column key={field.id} variant="th">
-                    {field.label}
-                  </Column>
-                ))}
-                <Column variant="th"></Column>
-              </Row>
-            </thead>
-            <tbody>
-              {(formRows as Record<string, string | number | boolean>[]).map(
-                (row, rowIndex) => {
+    const ItemsListTable = () => {
+      const formRowsWatched = useWatch({
+        control,
+        name: `content[${component.id}]`,
+      })
+
+      if (formRowsWatched !== undefined && formRowsWatched.length > 0) {
+        return (
+          <>
+            <Table
+              title={inflection.transform(component.name, [
+                'humanize',
+                'pluralize',
+              ])}
+              subtitle={`Add, edit or remove ${inflection
+                .transform(component.name, ['humanize', 'pluralize'])
+                .toLocaleLowerCase()}`}
+            >
+              <thead>
+                <Row>
+                  <Column variant="th"></Column>
+                  {component.fields.slice(0, 4).map((field) => (
+                    <Column key={field.id} variant="th">
+                      {field.label}
+                    </Column>
+                  ))}
+                  <Column variant="th"></Column>
+                </Row>
+              </thead>
+              <tbody>
+                {(
+                  formRowsWatched as Record<string, string | number | boolean>[]
+                ).map((row, rowIndex) => {
                   return (
-                    <Row key={row.id as string}>
+                    <Row key={rowIndex}>
                       <Column className="w-0 text-center font-bold">
                         {rowIndex + 1}
                       </Column>
@@ -190,15 +192,26 @@ export const ComponentRenderer = (
                             icon={<FaEdit />}
                             variant="primary"
                           />
+                          <Button
+                            size="xs"
+                            onClick={() => remove(rowIndex)}
+                            variant="danger"
+                            icon={<FaTrash />}
+                          />
                         </Group>
                       </Column>
                     </Row>
                   )
-                }
-              )}
-            </tbody>
-          </Table>
-        ) : (
+                })}
+              </tbody>
+            </Table>
+          </>
+        )
+      }
+
+      return (
+        <>
+          {' '}
           <div className="text-neutral-400 text-xs">
             No{' '}
             {inflection
@@ -214,8 +227,33 @@ export const ComponentRenderer = (
                   .toLocaleLowerCase()
               : null}
           </div>
-        )}
+        </>
+      )
+    }
 
+    return (
+      <div className="flex flex-col w-full p-5 border-b border-neutral-200 bg-white relative">
+        <label
+          className={
+            'flex justify-between items-center text-primary-700 text-xs mb-3 uppercase'
+          }
+        >
+          <span>{component.name}</span>
+          <span>
+            <Button
+              size="xs"
+              onClick={() => setSelectedIndex(formRows.length)}
+              icon={<FaPlusCircle />}
+            >
+              Add a new{' '}
+              {inflection
+                .transform(component.name, ['humanize', 'singularize'])
+                .toLocaleLowerCase()}
+            </Button>
+          </span>
+        </label>
+
+        <ItemsListTable />
         {selectedIndex !== undefined ? <EditRowModal /> : null}
       </div>
     )

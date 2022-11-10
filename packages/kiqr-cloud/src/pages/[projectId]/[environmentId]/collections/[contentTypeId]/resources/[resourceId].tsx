@@ -14,7 +14,7 @@ import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { useApi, useCurrent, useResource } from '../../../../../../hooks'
 import { ResourceEditor } from '../../../../../../components'
-import { FaUndo } from 'react-icons/fa'
+import { FaDownload, FaGlobe, FaSave, FaUndo, FaUpload } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
@@ -125,10 +125,10 @@ const EditResourcePage: NextPage = () => {
             title="Save changes"
             subtitle="Publish or schedule your resource for later"
           >
-            <Group>
-              <Button>Save draft</Button>
-              <Button variant="primary" type="submit">
-                Save &amp; publish
+            <Group className="flex justify-between">
+              <Button icon={<FaSave />}>Save draft</Button>
+              <Button icon={<FaGlobe />} variant="primary" type="submit">
+                Publish
               </Button>
             </Group>
           </Card>
