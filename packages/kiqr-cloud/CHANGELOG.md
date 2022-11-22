@@ -1,9 +1,6 @@
-# Change Log
+# Changelog
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-## [1.0.0](https://www.github.com/kiqr/kiqr/compare/irelia-v0.0.1...irelia-v1.0.0) (2022-11-10)
+## [1.0.0](https://www.github.com/kiqr/kiqr/compare/cloud-v0.0.1...cloud-v1.0.0) (2022-11-10)
 
 
 ### ⚠ BREAKING CHANGES
@@ -26,6 +23,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * "The big refactor" ([#75](https://www.github.com/kiqr/kiqr/issues/75)) ([ae0c7c1](https://www.github.com/kiqr/kiqr/commit/ae0c7c1e1ce82fb496db5c397b0ceb3db556fd66))
 
-## [0.0.3](https://github.com/kiqr/node-workspace/compare/@kiqr/react@0.0.2...@kiqr/react@0.0.3) (2022-09-26)
 
-**Note:** Version bump only for package @kiqr/react
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @kiqr/irelia bumped from * to ^1.0.0

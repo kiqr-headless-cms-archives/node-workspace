@@ -1,6 +1,6 @@
 {
   "name": "@kiqr/cli",
-  "version": "0.0.19",
+  "version": "1.0.0",
   "description": "The command line application for KIQR Headless CMS.",
   "author": "KIQR",
   "bin": {
@@ -17,7 +17,7 @@
     "/oclif.manifest.json"
   ],
   "dependencies": {
-    "@kiqr/management-api-sdk": "^0.2.0",
+    "@kiqr/management-api-sdk": "^1.0.0",
     "@oclif/core": "^1.13.10",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
